@@ -1,0 +1,7 @@
+{
+  "name": "AES",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
