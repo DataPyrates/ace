@@ -1,6 +1,6 @@
 .center{
     text-align: center;
-    color:white;
+    color:#1a181f ;
 }
 .text-left{
     text-align: unset  !important;
@@ -16,10 +16,10 @@
     --background:#95caf3 url('../../assets/icon/logo.png')  no-repeat center 15% fixed;
     display: table-header-group;
   }
-// ion-item{
-//       --background: #95caf3;
-//       color:#1a181f ;
-// }
+ion-item{
+      --background: #95caf3;
+      color:white ;
+}
 ion-icon{
     color:white ;
 }
@@ -33,45 +33,10 @@ p{
 }
 ion-grid{
     margin-top: 40%;
-    border-radius: 15%;
    
 }
- ion-toolbar{
+ion-toolbar{
     --background: #155c95;  
     color: white;
-}
-ion-title{
-    --background: url('../../assets/icon/logo.png')  no-repeat center 0% fixed;
     text-align: center;
-}
-
-.form-structor::after {
-    content: "";
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: 500px;
-    background-image: url(https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad…&auto=format&fit=crop&w=1000&q=100);
-}
-.login{
-    position: unset;
-    top: 50%;
-    left: 50%;
-    // -webkit-transform: translate(-50%, -50%);
-    width: 65%;
-    z-index: 5;
-    // -webkit-transition: all 0.3s ease;
-}
-.form-holder{
-    border-radius: 15px;
-    background-color: #fff;
-    overflow: hidden;
-    margin-top: 50px;
-    opacity: 1;
-    visibility: visible;
 }
