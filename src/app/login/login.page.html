@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
+    </ion-buttons>
+    <ion-title>ACE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="form-structor">
+  <ion-grid class="login">
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h3 class="center">Sign In</h3>
+        </div>
+        <div class="form-holder">
+  <ion-item >
+    <ion-icon name="mail-outline" class="pr3"></ion-icon>
+    <ion-input name="name" type="text" [(ngModel)]="username" placeholder="Your Username" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="lock-closed-outline" class="pr3"></ion-icon>
+    <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ></ion-input>
+    <!-- <ion-icon name="eye" item-right (click)="toggleTextPassword()" class="white"></ion-icon> -->
+  </ion-item>
+  <!-- <ion-item>
+    <ion-icon name="person-add-outline" class="pr3"></ion-icon>
+    <ion-label>Select Type</ion-label>
+    <ion-select [(ngModel)]="role">
+      <ion-select-option value="2">Booker</ion-select-option>
+      <ion-select-option value="1">Gaurd</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+</div>
+  <div padding class="register_btn">
+    <ion-button class="btn" size="large" type="submit" (click)="login()">Sign In</ion-button>
+  </div>
+  <p [routerLink]="['/forgot-password']">Forgot Password?</p>
+</ion-col>
+</ion-row>
+</ion-grid>
+</ion-content>

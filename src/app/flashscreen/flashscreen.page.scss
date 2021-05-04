@@ -1,0 +1,20 @@
+.btn_position{
+    position: relative;
+    top: 75%;
+    margin: 5%;
+    height: 6%;
+  }
+  .scroll-content{
+    --background:#95caf3 url('../../assets/icon/logo.png')  no-repeat center ;
+  }
+  .btncolor {
+    --background: #0f31eb;
+  }
+  .signup{
+    --background: #155c95;
+  }
+//   @media screen and (min-height: 580px){
+//     .btn_position{
+//       top: 80%;   
+//     }
+//   }
