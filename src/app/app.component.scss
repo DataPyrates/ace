@@ -1,0 +1,28 @@
+ion-header{
+    padding: 1rem;
+    padding-top: calc(var(--ion-safe-area-top) + 1.5rem);
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	width: 100%;
+	padding-left: 0.5rem;
+    background:  #fe5f55;
+}
+ion-item{
+    --background: #fe5f55;
+    color:white;  
+}
+ion-content{
+    --background: #fe5f55;
+    color:white;    
+}
+ion-list{
+    background: #fe5f55;
+    color:white;  
+}
+.img{
+    width:50%;
+}
+ion-icon{
+    color: white;
+}
