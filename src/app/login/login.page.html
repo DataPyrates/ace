@@ -1,43 +1,60 @@
-<ion-header>
-  <ion-toolbar  class="tool">
-    <ion-buttons slot="start">
-      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
-    </ion-buttons>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content class="scroll-content">
-  <ion-grid>
-    <ion-row color="primary" justify-content-center>
-      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <div text-center>
-          <!-- <h3 class="center">Sign In</h3> -->
-        </div>
-        <div padding>
-  <ion-item>
-    <ion-icon name="mail-outline" class="pr3"></ion-icon>
-    <ion-input name="name" type="text" [(ngModel)]="username" placeholder="Your Username" required></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-icon name="lock-closed-outline" class="pr3"></ion-icon>
-    <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ></ion-input>
-    <!-- <ion-icon name="eye" item-right (click)="toggleTextPassword()" class="white"></ion-icon> -->
-  </ion-item>
-  <!-- <ion-item>
-    <ion-icon name="person-add-outline" class="pr3"></ion-icon>
-    <ion-label>Select Type</ion-label>
-    <ion-select [(ngModel)]="role">
-      <ion-select-option value="2">Booker</ion-select-option>
-      <ion-select-option value="1">Gaurd</ion-select-option>
-    </ion-select>
-  </ion-item> -->
-</div>
-  <div padding class="register_btn">
-    <ion-button  size="large" type="submit" (click)="login()">Sign In</ion-button>
-  </div>
-  <p [routerLink]="['/forgot-password']">Forgot Password?</p>
-</ion-col>
-</ion-row>
-</ion-grid>
-</ion-content>
+  <ion-grid class="grid1">
+  
+      <ion-row class="row1">
+          <ion-col class="img-container">
+            <img src="../../assets/icon/logo.png">
+          </ion-col>
+      </ion-row>
+  
+      <ion-row class="row2">
+          <ion-col>
+  
+          </ion-col>
+      </ion-row>
+  
+  </ion-grid>
+  
+  <ion-slide>
+      <div class="contaier-login">
+          <ion-grid>
+              <ion-row>
+                  <ion-col>
+                      <h1>Hello, Login here!</h1>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-list>
+  
+                          <ion-item>
+                              <ion-icon name="person" class="icon-login"></ion-icon>
+                              <ion-input name="name" type="text" [(ngModel)]="username" placeholder="Your Username" required></ion-input>
+                          </ion-item>
+                          <br />
+                          <ion-item>
+                              <ion-icon name="lock-closed" class="icon-login"></ion-icon>
+                              <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ></ion-input>
+                          </ion-item>
+  
+                      </ion-list>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-button type="submit" fill="solid" expand="full" (click)="login()">
+                          Login
+                      </ion-button>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-label>
+                          <h3 [routerLink]="['/forgot-password']">Forgot Password?</h3>
+                      </ion-label>
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+  </ion-slide>

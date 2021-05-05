@@ -1,3 +1,108 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-app>
+    <ion-menu side="start" menuId="first" contentId="content1">
+        <ion-header>
+          <ion-toolbar class="text-left">
+            <ion-title><ion-icon name="person-circle-outline" class="pr3"></ion-icon>
+              <ion-label class="username">{{username}}</ion-label></ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list>
+            <ion-item lines="none" (click)="isHome === 1 ? isHome = 0 : isHome = 1">
+              <ion-icon name="home" slot="start"></ion-icon>
+              Home
+              <ion-icon slot="end" [name]="isHome? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+              <ion-list lines="none">
+              <ion-menu-toggle auto-hide="false">
+                
+                  <ion-item menuclose [hidden]="!isHome" [routerLink]="['/login']"
+                    [queryParams]="{ type: 'birthday' }" menuClose class="sub-menu">
+                    <ion-icon name="home" slot="start"></ion-icon>
+                    Birthdays
+                  </ion-item>
+                
+              </ion-menu-toggle>
+            </ion-list>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+    </ion-menu>
+  <ion-router-outlet id="content1"></ion-router-outlet>
+  </ion-app>
+ -->
+ <ion-app>
+  <ion-menu side="start" contentId="main-menu">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title size="small">Ionic 5 Menu and Submenu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-menu-toggle auto-hide="false">
+        <ion-list lines="none">
+          <ion-item [routerLink]="'/'">
+            <ion-icon name="home" slot="start"></ion-icon>
+            Home
+          </ion-item>
+           <ion-item routerLink="todos">
+            <ion-icon name="cash" slot="start"></ion-icon>
+            <ion-label>
+              Transaction
+            </ion-label>
+          </ion-item> 
+           <ion-item [routerLink]="['/production-log']">
+            <ion-icon name="list" slot="start"></ion-icon>
+            <ion-label>
+              Production Log
+            </ion-label>
+          </ion-item> 
+          <ion-item routerLink="finance">
+            <ion-icon name="cash" slot="start"></ion-icon>
+            <ion-label>
+              Inward Production
+            </ion-label>
+          </ion-item> 
+         </ion-list>
+      </ion-menu-toggle>
+      <!-- <ion-item lines="none" (click)="isHome === 1 ? isHome = 0 : isHome = 1">
+        <ion-icon name="home" slot="start"></ion-icon>
+        Home
+        <ion-icon slot="end" name="isHome? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </ion-item> 
+
+      <ion-menu-toggle auto-hide="false">
+        <ion-list lines="none">
+          <ion-item menuclose [hidden]="!isHome" [routerLink]="['/notifications']"
+            [queryParams]="{ type: 'birthday' }" menuClose class="sub-menu" (click)="islist === 1 ? islist = 0 : islist = 1">
+            <ion-icon name="calendar" slot="start"></ion-icon>
+            Birthdays
+            <ion-icon slot="end" name="islist? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          </ion-item>
+          <ion-menu-toggle auto-hide="false">
+            <ion-list lines="none">
+              <ion-item menuclose [hidden]="!isHome" [routerLink]="['/notifications']"
+                [queryParams]="{ type: 'birthday' }" menuClose class="sub-menu" (click)="islist === 1 ? islist = 0 : islist = 1">
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                Birthdays
+                <ion-icon slot="end" name="islist? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-list lines="none">
+              <ion-item menuclose [hidden]="!islist" [routerLink]="['/notifications']"
+                [queryParams]="{ type: 'birthday' }" menuClose class="sub-menu">
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                Birthdays
+                <ion-icon slot="end" name="islist? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-menu-toggle> -->
+       
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-menu"></ion-router-outlet>
 </ion-app>

@@ -1,42 +1,57 @@
-.center{
-    text-align: center;
-    color:#1a181f ;
-}
-.text-left{
-    text-align: unset  !important;
+
+.grid1 {
+    height: 100%;
+    padding: 0px;
 }
 
-.register_btn{
-  text-align: center;  
-  --background: #1a181f;
-  margin-top: 7%;
-  width: 100%;
+.contaier-login {
+    width: 90%;
+    padding: 10px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
 }
-.scroll-content{
-    --background:#95caf3 url('../../assets/icon/logo.png')  no-repeat center 15% fixed;
-    display: table-header-group;
-  }
-ion-item{
-      --background: #95caf3;
-      color:white ;
+
+
+.row1 {
+    height: 50%;
+    // background: -moz-linear-gradient(137deg, #fe5f55, #ffc107);
+    // background: -webkit-linear-gradient(45deg, rgba(61, 66, 150, 1) 0%, rgba(84, 74, 171, 0.8) 100%);
+    background: linear-gradient(137deg, #fe5f55, #ffc107);
 }
-ion-icon{
-    color:white ;
+
+.row2 {
+    height: 50%;
 }
-ion-button{
-    --background: #155c95; 
-    width: inherit;
+
+ion-icon {
+    margin-right: 15px;
+    color:#fe5f55;
 }
-p{
-    text-align: right;
-    color:white ;
+
+ion-button {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    --background:linear-gradient(137deg, #fe5f55, #ffc107);;
 }
-ion-grid{
-    margin-top: 40%;
-   
+
+ion-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute !important;
+    top: 0px !important;
 }
-ion-toolbar{
-    --background: #155c95;  
-    color: white;
-    text-align: center;
-}
+.img-container {
+    display: grid;
+    top: 17%;
+    justify-content: center;
+    // align-items: center;
+ }
+ h1,h3{
+     color:#fe5f55;
+ }
+ ion-input{
+    color:#fe5f55;
+ }

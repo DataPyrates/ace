@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'production-log',
+    loadChildren: () => import('./production-log/production-log.module').then( m => m.ProductionLogPageModule)
+  },
+  {
+    path: 'production-dashboard',
+    loadChildren: () => import('./production-dashboard/production-dashboard.module').then( m => m.ProductionDashboardPageModule)
+  },
 ];
 
 @NgModule({

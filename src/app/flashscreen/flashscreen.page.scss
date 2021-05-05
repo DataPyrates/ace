@@ -5,10 +5,11 @@
     height: 6%;
   }
   .scroll-content{
-    --background:#95caf3 url('../../assets/icon/logo.png')  no-repeat center ;
+    --background:linear-gradient(137deg, #fe5f55, #ffc107);
   }
   .btncolor {
-    --background: #0f31eb;
+    --background: white;
+    color:#fe5f55
   }
   .signup{
     --background: #155c95;
@@ -18,3 +19,11 @@
 //       top: 80%;   
 //     }
 //   }
+
+.img-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
