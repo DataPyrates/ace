@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./production-log.page.scss'],
 })
 export class ProductionLogPage implements OnInit {
-
+  secondgrid:boolean=false;
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
+  opengrid(){
+this.secondgrid=true;
+  }
 }

@@ -16,25 +16,125 @@
         </div>
         <div padding>
           <ion-item>
-            <ion-icon name="help-buoy" class="pr3"></ion-icon>
+            <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
             <ion-label>Select Machine Number</ion-label>
-            <ion-select [(ngModel)]="role">
+            <ion-select [(ngModel)]="machine_no">
               <ion-select-option value="2">1</ion-select-option>
               <ion-select-option value="1">2</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-icon name="information-circle" class="pr3"></ion-icon>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
             <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="mail" class="pr3"></ion-icon>
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
             <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="person" class="pr3"></ion-icon>
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" required></ion-input>
           </ion-item>
+          <ion-grid *ngIf="(machine_no)" class="production_detail">
+          <ion-item>
+            <ion-icon name="alarm-outline" class="pr3"></ion-icon>
+            <ion-text class="pr3">Timer</ion-text>
+            <ion-icon name="caret-forward-circle-outline" color="success" class="pr3"></ion-icon>
+            <ion-icon name="pause-circle-outline" color="danger" class="pr3"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="start_time" type="text" placeholder="Start At" [(ngModel)]="start_time" required></ion-input>
+          <!-- </ion-item>
+          <ion-item> -->
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="end_time" type="text" placeholder="End At" [(ngModel)]="end_time" required></ion-input>
+          <!-- </ion-item>
+          <ion-item> -->
+            <ion-icon name="time-outline" class="pr3"></ion-icon>
+            <ion-input name="stop_duration" type="text" placeholder="Duration" [(ngModel)]="stop_duration" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="grid-outline" class="pr3"></ion-icon>
+            <ion-input name="taka_no" type="text" placeholder="Taka Number" [(ngModel)]="taka_no" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
+            <ion-label>Select Meter Reading</ion-label>
+            <ion-select [(ngModel)]="meter_reading" multiple>
+              <ion-select-option value="2">1</ion-select-option>
+              <ion-select-option value="1">2</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
+            <ion-label>Select Fields</ion-label>
+            <ion-select [(ngModel)]="fields" multiple>
+              <ion-select-option value="1">Field 1</ion-select-option>
+              <ion-select-option value="2">Field 2</ion-select-option>
+              <ion-select-option value="3">Field 3</ion-select-option>
+              <ion-select-option value="4">Field 4</ion-select-option>
+              <ion-select-option value="5">Field 5</ion-select-option>
+              <ion-select-option value="6">Field 6</ion-select-option>
+              <ion-select-option value="7">Field 7</ion-select-option>
+              <ion-select-option value="8">Field 8</ion-select-option>
+              <ion-select-option value="9">Field 9</ion-select-option>
+              <ion-select-option value="10">Field 10</ion-select-option>
+              <ion-select-option value="11">Field 11</ion-select-option>
+              <ion-select-option value="12">Field 12</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+          <ion-button slot="end" (click)="opengrid()" large >
+            <ion-icon name="add-circle" color="white"></ion-icon>
+            </ion-button>
+          </ion-item>
+         </ion-grid>
+         <ion-grid *ngIf="secondgrid">
+          <ion-item >
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="start_time" type="text" placeholder="Start At" [(ngModel)]="start_time" required></ion-input>
+          <!-- </ion-item>
+          <ion-item> -->
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="end_time" type="text" placeholder="End At" [(ngModel)]="end_time" required></ion-input>
+          <!-- </ion-item>
+          <ion-item> -->
+            <ion-icon name="time-outline" class="pr3"></ion-icon>
+            <ion-input name="stop_duration" type="text" placeholder="Duration" [(ngModel)]="stop_duration" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="grid-outline" class="pr3"></ion-icon>
+            <ion-input name="taka_no" type="text" placeholder="Taka Number" [(ngModel)]="taka_no" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
+            <ion-label>Select Meter Reading</ion-label>
+            <ion-select [(ngModel)]="meter_reading" multiple>
+              <ion-select-option value="2">1</ion-select-option>
+              <ion-select-option value="1">2</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
+            <ion-label>Select Fields</ion-label>
+            <ion-select [(ngModel)]="fields" multiple>
+              <ion-select-option value="1">Field 1</ion-select-option>
+              <ion-select-option value="2">Field 2</ion-select-option>
+              <ion-select-option value="3">Field 3</ion-select-option>
+              <ion-select-option value="4">Field 4</ion-select-option>
+              <ion-select-option value="5">Field 5</ion-select-option>
+              <ion-select-option value="6">Field 6</ion-select-option>
+              <ion-select-option value="7">Field 7</ion-select-option>
+              <ion-select-option value="8">Field 8</ion-select-option>
+              <ion-select-option value="9">Field 9</ion-select-option>
+              <ion-select-option value="10">Field 10</ion-select-option>
+              <ion-select-option value="11">Field 11</ion-select-option>
+              <ion-select-option value="12">Field 12</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-grid>
+        
         </div>
         <div padding class="register_btn">
           <ion-button size="large" (click)="register()">Submit</ion-button>

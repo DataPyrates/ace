@@ -21,14 +21,14 @@ ion-grid {
     }
    
     ion-col {
-      border: 1px solid white;
+      border: 1px solid grey;
       border-bottom: 0;
       border-right: 0;
       display: table-cell;
       
     }
     ion-col:last-child {
-      border-right: 1px solid white;
+      border-right: 1px solid grey;
      
     }
     
