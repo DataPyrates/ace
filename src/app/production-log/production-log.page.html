@@ -25,15 +25,15 @@
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" required></ion-input>
+            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" required></ion-input>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="person-outline" class="pr3"></ion-icon>
-            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" required></ion-input>
+            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
           </ion-item>
           <ion-grid *ngIf="(machine_no)" class="production_detail">
           <ion-item>

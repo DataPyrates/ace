@@ -25,30 +25,30 @@
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" required></ion-input>
+            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" required></ion-input>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="person-outline" class="pr3"></ion-icon>
-            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" required></ion-input>
+            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
           </ion-item>
             <ion-grid *ngIf="(machine_no)" class="production_detail">
               <ion-item>
                 <ion-text class="pr3">TAKA A</ion-text>
               </ion-item>
           <ion-item>
-            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-icon name="timer-outline"></ion-icon>
             <ion-input name="roll_width" type="text" placeholder="Roll Width" [(ngModel)]="roll_width" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
-            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-icon name="timer-outline"></ion-icon>
             <ion-input name="start_meter" type="text" placeholder="Start Meter" [(ngModel)]="start_meter" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
-            <ion-icon name="time-outline" class="pr3"></ion-icon>
+            <ion-icon name="time-outline"></ion-icon>
             <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter" required></ion-input>
           </ion-item>
           <ion-item>
@@ -71,15 +71,15 @@
             <ion-text class="pr3">TAKA B</ion-text>
           </ion-item>
           <ion-item>
-            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-icon name="timer-outline"></ion-icon>
             <ion-input name="roll_width" type="text" placeholder="Roll Width" [(ngModel)]="roll_width" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
-            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-icon name="timer-outline"></ion-icon>
             <ion-input name="start_meter" type="text" placeholder="Start Meter" [(ngModel)]="start_meter" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
-            <ion-icon name="time-outline" class="pr3"></ion-icon>
+            <ion-icon name="time-outline"></ion-icon>
             <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter" required></ion-input>
           </ion-item>
           <ion-item>
