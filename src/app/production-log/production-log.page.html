@@ -12,7 +12,7 @@
     <ion-row color="primary" justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
-          <h1 class="center">Production Log</h1>
+          <h1 class="center">Add W.K. Production Log</h1>
         </div>
         <div padding>
           <ion-item>
@@ -25,15 +25,15 @@
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" required></ion-input>
+            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" required></ion-input>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="person-outline" class="pr3"></ion-icon>
-            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" required></ion-input>
+            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
           </ion-item>
           <ion-grid *ngIf="(machine_no)" class="production_detail">
           <ion-item>

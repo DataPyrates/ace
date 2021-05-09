@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'production-dashboard',
     loadChildren: () => import('./production-dashboard/production-dashboard.module').then( m => m.ProductionDashboardPageModule)
   },
+  {
+    path: 'inward-production-dashboard',
+    loadChildren: () => import('./inward-production-dashboard/inward-production-dashboard.module').then( m => m.InwardProductionDashboardPageModule)
+  },
+  {
+    path: 'add-inward-production',
+    loadChildren: () => import('./add-inward-production/add-inward-production.module').then( m => m.AddInwardProductionPageModule)
+  },
 ];
 
 @NgModule({
