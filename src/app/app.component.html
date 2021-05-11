@@ -74,8 +74,14 @@
               Inward Production
             </ion-label>
           </ion-item>
+          <ion-item [routerLink]="['/machine-master']">
+            <ion-icon name="grid" slot="start"></ion-icon>
+            <ion-label>
+             Machine Master
+            </ion-label>
+          </ion-item>
           <ion-item (click)="logout()">
-            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            <ion-icon name="log-out" slot="start"></ion-icon>
             <ion-label>
               Logout
             </ion-label>
