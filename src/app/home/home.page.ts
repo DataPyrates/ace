@@ -13,7 +13,7 @@ export class HomePage {
 
   ngOnInit() {
     
-    $(".username").html(localStorage.getItem('username'));
+   $(".username").html(localStorage.getItem('username'));
    var userdata= JSON.parse(localStorage.getItem('user_data'));
    console.log(userdata);
    $(".branch").html(userdata.data.branches[0]['short_name']);

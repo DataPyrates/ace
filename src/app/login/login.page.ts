@@ -13,6 +13,8 @@ password:any;
   constructor(private route: Router,private api: ApiService) { }
 
   ngOnInit() {
+    this.username='';
+    this.password='';
   }
 
   login(){
