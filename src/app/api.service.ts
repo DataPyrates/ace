@@ -18,6 +18,9 @@ export class ApiService {
     }
     return this.http.post(environment.apiURL+'api-token/',postData).pipe(catchError(this.errorHandler));
   }
+  public machine_data(machine_role){
+    return this.http.get(environment.apiURL+'erp/api/masters/machine_number/?machine_type__machine_role='+machine_role);
+  }
 
   /** Error Handling method */
 

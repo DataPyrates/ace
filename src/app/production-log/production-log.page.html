@@ -18,9 +18,9 @@
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
             <ion-label>Select Machine Number</ion-label>
-            <ion-select [(ngModel)]="machine_no">
-              <ion-select-option value="2">1</ion-select-option>
-              <ion-select-option value="1">2</ion-select-option>
+            <ion-select [(ngModel)]="machine_no" >
+              <ion-select-option value="">--Select--</ion-select-option>
+              <!-- <ion-select-option value="machine.id" *ngFor="let machine of machine_data">{{machine.name}}</ion-select-option> -->
             </ion-select>
           </ion-item>
           <ion-item>

@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'add-inward-production',
     loadChildren: () => import('./add-inward-production/add-inward-production.module').then( m => m.AddInwardProductionPageModule)
   },
+  {
+    path: 'machine-master',
+    loadChildren: () => import('./machine-master/machine-master.module').then( m => m.MachineMasterPageModule)
+  },
 ];
 
 @NgModule({
