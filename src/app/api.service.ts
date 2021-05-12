@@ -30,7 +30,10 @@ export class ApiService {
   }
 
   public machine_data(machine_role) {
-    return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?machine_type__machine_role=' + machine_role);
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    console.log(headers);
+    return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?machine_type__machine_role=' + machine_role,{'headers':headers});
   }
 
 }

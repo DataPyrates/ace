@@ -25,6 +25,7 @@ password:any;
             localStorage.clear();
             localStorage.setItem('user_data',JSON.stringify(data));
             localStorage.setItem('username',this.username);
+            localStorage.setItem('access',data['data']['access']);
             this.route.navigate(['/home']);
        }
        else{
