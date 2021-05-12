@@ -12,23 +12,29 @@
 
 <ion-content >
   <ion-grid class="ion-margin">
-    <ion-row>
-      <ion-col>Start Date</ion-col>
-      <ion-col>Production Order No.</ion-col>
-      <ion-col>Machine No.</ion-col>
-      <ion-col>Operator</ion-col>
-      <ion-col>WPR Status</ion-col>
-      <ion-col>Remarks</ion-col>
-      <ion-col>Action</ion-col>
+    <ion-row >
+      <ion-col size="2">Start Date </ion-col>
+      <ion-col  size="2">Production Order No.</ion-col>
+      <ion-col  size="2">Machine No.</ion-col>
+      <ion-col  size="2">Operator</ion-col>
+      <ion-col  size="2">WPR Status</ion-col>
+      <ion-col  size="1">Remarks</ion-col>
+      <ion-col  size="1">Action</ion-col>
     </ion-row>
-    <ion-row *ngFor="let guard of guarddata">
-      <ion-col>{{ guard.name }}</ion-col>
-      <ion-col>{{ guard.phone }}</ion-col>
+    <ion-row *ngFor="let product of productionlog">
+      
+      <ion-col  size="2">{{ product.created_date}}</ion-col>
+      <ion-col  size="2">{{ product.greige_production_transaction_number }}</ion-col>
+      <ion-col  size="2">{{ product.machine_number }}</ion-col>
+      <ion-col  size="2">{{ product.operator_first_name }} {{ product.operator_last_name }}</ion-col>
+      <ion-col  size="2">{{ product.process_status_display }}</ion-col>
+      <ion-col  size="1"></ion-col>
+      <ion-col  size="1"><ion-icon name="eye-outline"></ion-icon></ion-col>
       <!-- <ion-col>{{ guard.daily_status }}</ion-col> -->
-      <ion-col>
-        <ion-label *ngIf="guard.t_status">{{guard.t_status}}</ion-label>
-        <ion-button (click)="book(guard.id)" *ngIf="guard.t_status == ''">Book</ion-button>
-      </ion-col>
+      <!-- <ion-col> -->
+        <!-- <ion-label *ngIf="guard.t_status">{{guard.t_status}}</ion-label>
+        <ion-button (click)="book(guard.id)" *ngIf="guard.t_status == ''">Book</ion-button> -->
+      <!-- </ion-col> -->
     </ion-row>
   </ion-grid>
 

@@ -9,27 +9,44 @@ import {ApiService} from './../api.service';
 })
 export class ProductionLogPage implements OnInit {
   secondgrid:boolean=false;
-  constructor(private route: Router,private api: ApiService) { }
+  machine_data:any;
+  machine_detail:any;
+  machine_no:any;
+  greige_article_name:any;
+  greige_production_transaction_number:any;
+  operator:any;
 
+
+  constructor(private route: Router,private api: ApiService) { } 
+ 
   ngOnInit() {
-   this.machine_data();
-  }
-  opengrid(){
-this.secondgrid=true;
+   this.get_machine_data();
   }
 
-  machine_data(){
+  opengrid(){
+  this.secondgrid=true;
+  }
+
+  get_machine_data(){
     var machine_role = 2;
-      this.api.machine_data(machine_role).subscribe(
+      this.api.get_machine_data(machine_role).subscribe(
       (data :any )=> {
        if((data['status'] == 200)){
-  
+         this.machine_data=data['data']['results'];
        }
-       else{
-        alert(data[0]['msg']);
-       }
+      
       })
-    
-    
-  }
+    }
+
+    get_machine_detail(){
+      this.api.get_machine_detail(this.machine_no).subscribe(
+      (data :any )=> {
+       if((data['status'] == 200)){
+         this.greige_production_transaction_number=data['data']['results'][0]['greige_production_transaction_number'];
+         this.greige_article_name=data['data']['results'][0]['greige_article_name'];
+         this.operator = localStorage.getItem('username')
+       }
+      
+      })
+    }
 }

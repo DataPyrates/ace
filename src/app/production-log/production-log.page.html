@@ -18,18 +18,18 @@
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
             <ion-label>Select Machine Number</ion-label>
-            <ion-select [(ngModel)]="machine_no" >
+            <ion-select [(ngModel)]="machine_no" (ionChange)="get_machine_detail()">
               <ion-select-option value="">--Select--</ion-select-option>
-              <!-- <ion-select-option value="machine.id" *ngFor="let machine of machine_data">{{machine.name}}</ion-select-option> -->
+              <ion-select-option [value]="machine.id" *ngFor="let machine of machine_data" >{{machine.number}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" readonly></ion-input>
+            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="greige_production_transaction_number" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" readonly></ion-input>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="greige_article_name" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="person-outline" class="pr3"></ion-icon>
