@@ -42,7 +42,14 @@
 ion-title,ion-label{
   font-size: 11px !important;
 }
- 
+.list {
+  max-width: 550px;
+  margin: auto;
+}
+
+li {
+  margin-bottom: 5px;
+}
 // ul{
 //   text-align: center;
 //   list-style:none;
@@ -150,8 +157,7 @@ ion-title,ion-label{
   padding: 8px 16px;
   text-decoration: none;
 }
-
-
+ 
 
 
 

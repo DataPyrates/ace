@@ -16,10 +16,11 @@ export class ProductionDashboardPage implements OnInit {
   greige_production_transaction_number:any;
   operator:any;
   page:any;
-  items = [];
-  pageOfItems: Array<any>;
   
-  constructor(private route: Router,private api: ApiService) { }
+  collection = [];
+  constructor(private route: Router,private api: ApiService) { 
+   
+  }
 
   ngOnInit() {
     this.greige_production_log();
@@ -43,23 +44,20 @@ export class ProductionDashboardPage implements OnInit {
       month[9] = "October";
       month[10] = "November";
       month[11] = "December";
-       this.items=data['data']['results'];
-       for(let i= 0;i<this.items.length;i++){
-        var c_date = this.items[i]['created_date'];
+       this.collection=data['data']['results'];
+       for(let i= 0;i<this.collection.length;i++){
+        var c_date = this.collection[i]['created_date'];
         var today = new Date(c_date);
         var dd = today.getDate();
         var mm = month[today.getMonth()];
         var year = today.getFullYear();
-        this.items[i]['created_date'] = dd+'-'+mm+'-'+year;
+        this.collection[i]['created_date'] = dd+'-'+mm+'-'+year;
        }
      }
     
     })
   }
 
-  onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
-    this.pageOfItems = pageOfItems;
-   }
+
 
 }

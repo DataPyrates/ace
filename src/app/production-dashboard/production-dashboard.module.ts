@@ -9,14 +9,16 @@ import { ProductionDashboardPageRoutingModule } from './production-dashboard-rou
 import { ProductionDashboardPage } from './production-dashboard.page';
 
 import { JwPaginationComponent } from 'jw-angular-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductionDashboardPageRoutingModule
+    ProductionDashboardPageRoutingModule,
+    NgxPaginationModule
   ],
-  declarations: [ProductionDashboardPage,JwPaginationComponent]
+  declarations: [ProductionDashboardPage,JwPaginationComponent,]
 })
 export class ProductionDashboardPageModule {}

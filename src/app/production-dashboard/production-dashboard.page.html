@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="ion-card-list" *ngFor="let product of pageOfItems">
+  <ion-card class="ion-card-list" *ngFor="let product of collection | paginate: { itemsPerPage: 10, currentPage: p }">
     <ion-card-content>
       <ion-item href="#">
         <ion-title slot="start">Start Date</ion-title>
@@ -46,7 +46,8 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <div class="card-footer" style="list-style: none; display: flex;">
-    <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+
+<div class="list">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
 </ion-content>
