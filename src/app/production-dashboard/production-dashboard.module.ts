@@ -8,6 +8,8 @@ import { ProductionDashboardPageRoutingModule } from './production-dashboard-rou
 
 import { ProductionDashboardPage } from './production-dashboard.page';
 
+import { JwPaginationComponent } from 'jw-angular-pagination';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { ProductionDashboardPage } from './production-dashboard.page';
     IonicModule,
     ProductionDashboardPageRoutingModule
   ],
-  declarations: [ProductionDashboardPage]
+  declarations: [ProductionDashboardPage,JwPaginationComponent]
 })
 export class ProductionDashboardPageModule {}

@@ -2,41 +2,51 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+    </ion-buttons>
     <ion-title>ACE</ion-title>
-    <ion-button slot="end" [routerLink]="['/production-log']" large >
-      <ion-icon name="add-circle" ></ion-icon>
-      </ion-button>
+    <ion-button slot="end" [routerLink]="['/production-log']" large>
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <ion-grid class="ion-margin">
-    <ion-row >
-      <ion-col size="2">Start Date </ion-col>
-      <ion-col  size="2">Production Order No.</ion-col>
-      <ion-col  size="2">Machine No.</ion-col>
-      <ion-col  size="2">Operator</ion-col>
-      <ion-col  size="2">WPR Status</ion-col>
-      <ion-col  size="1">Remarks</ion-col>
-      <ion-col  size="1">Action</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let product of productionlog">
-      
-      <ion-col  size="2">{{ product.created_date}}</ion-col>
-      <ion-col  size="2">{{ product.greige_production_transaction_number }}</ion-col>
-      <ion-col  size="2">{{ product.machine_number }}</ion-col>
-      <ion-col  size="2">{{ product.operator_first_name }} {{ product.operator_last_name }}</ion-col>
-      <ion-col  size="2">{{ product.process_status_display }}</ion-col>
-      <ion-col  size="1"></ion-col>
-      <ion-col  size="1"><ion-icon name="eye-outline"></ion-icon></ion-col>
-      <!-- <ion-col>{{ guard.daily_status }}</ion-col> -->
-      <!-- <ion-col> -->
-        <!-- <ion-label *ngIf="guard.t_status">{{guard.t_status}}</ion-label>
-        <ion-button (click)="book(guard.id)" *ngIf="guard.t_status == ''">Book</ion-button> -->
-      <!-- </ion-col> -->
-    </ion-row>
-  </ion-grid>
+<ion-content>
+  <ion-card class="ion-card-list" *ngFor="let product of pageOfItems">
+    <ion-card-content>
+      <ion-item href="#">
+        <ion-title slot="start">Start Date</ion-title>
+        <ion-label>{{ product.created_date}}</ion-label>
+      </ion-item>
 
+      <ion-item href="#">
+        <ion-title slot="start">Production Order No</ion-title>
+        <ion-label>{{ product.greige_production_transaction_number }}</ion-label>
+      </ion-item>
+
+      <ion-item class="ion-activated">
+        <ion-title slot="start">Machine No.</ion-title>
+        <ion-label>{{ product.machine_number }}</ion-label>
+      </ion-item>
+
+      <ion-item href="#">
+        <ion-title slot="start">Operator</ion-title>
+        <ion-label>{{ product.operator_first_name }} {{product.operator_last_name}}</ion-label>
+      </ion-item>
+
+      <ion-item href="#">
+        <ion-title slot="start">WPR Status</ion-title>
+        <ion-label>{{ product.process_status_display }}</ion-label>
+      </ion-item>
+
+      <ion-item href="#">
+        <ion-title slot="start">Action</ion-title>
+        <ion-label>
+          <ion-icon name="eye-outline"></ion-icon>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+    <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
 
 </ion-content>
