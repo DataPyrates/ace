@@ -11,10 +11,10 @@ const routes: Routes = [
     redirectTo: 'flashscreen',
     pathMatch: 'full'
   },
-  {
+   {
     path: 'flashscreen',
     loadChildren: () => import('./flashscreen/flashscreen.module').then( m => m.FlashscreenPageModule)
-  },
+   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
