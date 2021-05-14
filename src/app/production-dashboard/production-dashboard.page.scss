@@ -1,45 +1,13 @@
-// ion-toolbar{
-//     --background: #fe5f55;
-//     text-align: center;
-//     color: white;
-// }
+
 .scroll-content{
     --background:white;
   }
-// ion-grid {
-//     overflow-x: scroll;
-//     border-collapse: collapse;
-//     border-style: hidden;
-    
-//     ion-row:first-child {
-//     background-color:  #fe5f55;
-//     font-weight: bold;
-//     color:white;      
-//     white-space: nowrap;
-//     height:5;
-//     display: table-cell;
-//     }
-   
-//     ion-col {
-//       border: 1px solid grey;
-//       border-bottom: 0;
-//       border-right: 0;
-//       display: table-cell; 
-//     }
-//     ion-col:last-child {
-//       border-right: 1px solid grey;
-//       max-width: 15%
-//     }
-    
-//     ion-row:last-child {
-//       border-bottom: 1px solid white;
-//       display: table;       
-//     }
-//   }
+
+
   ion-button{
     --background: #fe5f55;
   }
-ion-title,ion-label{
+ .content_card{
   font-size: 11px !important;
 }
 .list {
@@ -50,106 +18,6 @@ ion-title,ion-label{
 li {
   margin-bottom: 5px;
 }
-// ul{
-//   text-align: center;
-//   list-style:none;
-//   display:flex;
-// }
-
-// jw-pagination {
-//   justify-content: center;
-//   flex-wrap: wrap;
- 
-// }
-
-// jw-pagination {
-// display: -ms-flexbox;
-// display: flex;
-// padding-left: 0;
-// list-style: none;
-// border-radius: .25rem;
-// }
-
-
-// a:hover {
-//   z-index: 2;
-//   color: #0056b3;
-//   text-decoration: none;
-//   background-color: #e9ecef;
-//   border-color: #dee2e6;
-// }
-
-// a:focus {
-//   z-index: 3;
-//   outline: 0;
-//   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-// }
-
-// li:first-child a {
-//   margin-left: 0;
-//   border-top-left-radius: 0.25rem;
-//   border-bottom-left-radius: 0.25rem;
-// }
-
-// li:last-child a {
-//   border-top-right-radius: 0.25rem;
-//   border-bottom-right-radius: 0.25rem;
-// }
-
-// li.active a {
-//   z-index: 3;
-//   color: #fff;
-//   background-color: #007bff;
-//   border-color: #007bff;
-// }
-
-// li.disabled a {
-//   color: #6c757d;
-//   pointer-events: none;
-//   cursor: auto;
-//   background-color: #fff;
-//   border-color: #dee2e6;
-// }
-
-// jw-pagination-lg a {
-//   padding: 0.75rem 1.5rem;
-//   font-size: 1.25rem;
-//   line-height: 1.5;
-// }
-
-// jw-pagination-lg li:first-child a {
-//   border-top-left-radius: 0.3rem;
-//   border-bottom-left-radius: 0.3rem;
-// }
-
-// jw-pagination-lg li:last-child a {
-//   border-top-right-radius: 0.3rem;
-//   border-bottom-right-radius: 0.3rem;
-// }
-
-// jw-pagination-sm a {
-//   padding: 0.25rem 0.5rem;
-//   font-size: 0.875rem;
-//   line-height: 1.5;
-// }
-
-// jw-pagination-sm li:first-child a {
-//   border-top-left-radius: 0.2rem;
-//   border-bottom-left-radius: 0.2rem;
-// }
-
-// jw-pagination-sm li:last-child a {
-//   border-top-right-radius: 0.2rem;
-//   border-bottom-right-radius: 0.2rem;
-// }
-// .page-item{
-//   display:flex !important;
-// }
-// .pagination {
-//   justify-content: center;
-//   flex-wrap: wrap;
-// }
-
 
 .pagination a {
   color: black;
