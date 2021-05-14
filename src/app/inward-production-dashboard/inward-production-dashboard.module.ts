@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { InwardProductionDashboardPageRoutingModule } from './inward-production-dashboard-routing.module';
 
 import { InwardProductionDashboardPage } from './inward-production-dashboard.page';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InwardProductionDashboardPageRoutingModule
+    InwardProductionDashboardPageRoutingModule,
+    NgxPaginationModule
   ],
-  declarations: [InwardProductionDashboardPage]
+  declarations: [InwardProductionDashboardPage,JwPaginationComponent,]
 })
 export class InwardProductionDashboardPageModule {}

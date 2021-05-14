@@ -17,23 +17,32 @@
         <div padding>
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
-            <ion-label>Select Machine Number</ion-label>
-            <ion-select [(ngModel)]="machine_no">
-              <ion-select-option value="2">1</ion-select-option>
-              <ion-select-option value="1">2</ion-select-option>
+            <ion-label *ngIf="!view" >Select Machine Number</ion-label>
+            <ion-select [(ngModel)]="machine_number" *ngIf="!view">
+              <ion-select-option value="">--Select--</ion-select-option>
+              <ion-select-option [value]="machine.id" *ngFor="let machine of machine_data" >{{machine.number}}</ion-select-option>
             </ion-select>
+            <ion-input name="order_no" type="text" [(ngModel)]="machine_number" readonly *ngIf="view"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="order_no" readonly></ion-input>
+            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="greige_production_order_transaction_number" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="article" readonly></ion-input>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="greige_article_name" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="article" type="text" placeholder="Greige Color" [(ngModel)]="greige_color_name" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="article" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="person-outline" class="pr3"></ion-icon>
-            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
+            <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator_name" readonly></ion-input>
           </ion-item>
             <ion-grid *ngIf="(machine_no)" class="production_detail">
               <ion-item>
