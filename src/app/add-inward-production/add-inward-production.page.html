@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
       </ion-buttons>
     <ion-title>ACE</ion-title>
   </ion-toolbar>
@@ -71,7 +71,7 @@
               </ion-item>
               <ion-item class="content_card">
                 <ion-title class="content_card" slot="start">QR Code</ion-title>
-                <ion-label><ion-icon name="barcode"></ion-icon>
+                <ion-label class="font_22"><ion-icon name="barcode"></ion-icon>
                 </ion-label>
               </ion-item>
               </ion-card-content>

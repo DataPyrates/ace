@@ -14,11 +14,15 @@ username:any;
 password:any;
   constructor(private route: Router,private api: ApiService, public popup: PopupService) { }
 
-  ngOnInit() {
+  ngOnInit(){}
+  
+  ionViewWillEnter() {
+    this.username ='';
+    this.password ='';
   }
   
   login(){
-    if(this.username !=undefined && this.password !=undefined){
+    if(this.username !=undefined && this.password !=undefined && this.username && this.password ){
       this.api.login(this.username,this.password).subscribe(
       (data :any )=> {
        if((data['status'] == 200)){
@@ -31,7 +35,7 @@ password:any;
       })
     }
     else{
-      this.popup.showAlert('Login','Please Enter Username and Password!');
+      this.popup.showAlert('Login','Please Enter Username and Password !');
     }
   }
 }

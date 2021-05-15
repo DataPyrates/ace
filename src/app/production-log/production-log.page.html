@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
       </ion-buttons>
     <ion-title>ACE</ion-title>
   </ion-toolbar>
@@ -17,7 +17,7 @@
         <div padding>
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
-            <ion-label *ngIf="!view">Select Machine Number</ion-label>
+            <ion-label *ngIf="!view">Select Machine No.</ion-label>
             <ion-select [(ngModel)]="machine_no" (ionChange)="get_machine_detail()" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
               <ion-select-option [value]="machine.id" *ngFor="let machine of machine_data" >{{machine.number}}</ion-select-option>
@@ -37,22 +37,18 @@
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
           </ion-item>
-          <ion-grid *ngIf="(production_log_details && production_log_details.length > 0) || !view" class="production_detail">
+          <ion-grid *ngIf="(production_log_details && production_log_details.length > 0) || (!view && machine_flag)" class="production_detail">
           <ion-item>
-            <ion-icon name="alarm-outline" class="pr3"></ion-icon>
-            <ion-text class="pr3">Timer</ion-text>
-            <ion-icon name="caret-forward-circle-outline" color="success" class="pr3"></ion-icon>
-            <ion-icon name="pause-circle-outline" color="danger" class="pr3"></ion-icon>
+            <ion-icon name="list-circle-outline" class="pr3"></ion-icon>
+            <!-- <ion-text class="pr3">Timer</ion-text> -->
+            <ion-icon name="caret-forward-circle-outline" color="success" class="pr3" (click)="startprocess()"></ion-icon>
+            <ion-icon name="pause-circle-outline" color="danger" class="pr3" (click)="stopprocess()"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-icon name="timer-outline" class="pr3"></ion-icon>
-            <ion-input name="start_time" type="text" placeholder="Start At" [(ngModel)]="start_time" required></ion-input>
-          <!-- </ion-item>
-          <ion-item> -->
+            <ion-input name="start_time" type="text" placeholder="Stop T." [(ngModel)]="end_time" required></ion-input>
             <ion-icon name="timer-outline" class="pr3"></ion-icon>
-            <ion-input name="end_time" type="text" placeholder="End At" [(ngModel)]="end_time" required></ion-input>
-          <!-- </ion-item>
-          <ion-item> -->
+            <ion-input name="end_time" type="text" placeholder="Start T." [(ngModel)]="start_time" required></ion-input>
             <ion-icon name="time-outline" class="pr3"></ion-icon>
             <ion-input name="stop_duration" type="text" placeholder="Duration" [(ngModel)]="stop_duration" required></ion-input>
           </ion-item>

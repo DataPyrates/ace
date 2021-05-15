@@ -67,4 +67,10 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/'+id+'/',{'headers':headers});
   }
 
+  public machine_data(page){
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?action=table_list&page_size=10&page='+page,{'headers':headers});
+  }
+
 }
