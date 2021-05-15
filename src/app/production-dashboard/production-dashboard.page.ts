@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {ApiService} from './../api.service';
+import { Router,NavigationExtras } from '@angular/router';
 import { JwPaginationModule } from 'jw-angular-pagination';
 
 
@@ -58,6 +58,13 @@ export class ProductionDashboardPage implements OnInit {
     })
   }
 
-
+  view(id){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id,
+      }
+    };
+    this.route.navigate(['/production-log'],navigationExtras);
+  }
 
 }

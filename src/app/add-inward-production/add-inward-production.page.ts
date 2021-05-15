@@ -18,6 +18,7 @@ greige_article_name:any;
 greige_production_order_transaction_number:any;
 view:boolean = false;
 machine_number:any;
+inward_item:any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -42,7 +43,8 @@ machine_number:any;
           this.greige_color_name=data['data']['production_info']['greige_color_name'];
           this.greige_article_name=data['data']['production_info']['greige_article_name'];
           this.greige_production_order_transaction_number=data['data']['production_info']['greige_production_order_transaction_number'];
-          this.machine_number=data ['data']['machine_info']['machine_number'];
+          this.machine_number=data['data']['machine_info']['machine_number'];
+          this.inward_item = data['data']['roll_inventory_items'];
         })
     }
   }

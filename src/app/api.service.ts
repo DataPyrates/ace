@@ -58,4 +58,10 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/transactions/greige_inward_production/'+id+'/',{'headers':headers});
   }
 
+  public  production_log_view(id) {
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/'+id+'/',{'headers':headers});
+  }
+
 }
