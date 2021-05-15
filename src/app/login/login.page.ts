@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ApiService} from './../api.service';
+import { AlertController } from '@ionic/angular';
+import {PopupService} from './../popup.service';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +12,11 @@ import {ApiService} from './../api.service';
 export class LoginPage implements OnInit {
 username:any;
 password:any;
-  constructor(private route: Router,private api: ApiService) { }
+  constructor(private route: Router,private api: ApiService, public popup: PopupService) { }
 
   ngOnInit() {
-    this.username='';
-    this.password='';
   }
-
+  
   login(){
     if(this.username !=undefined && this.password !=undefined){
       this.api.login(this.username,this.password).subscribe(
@@ -28,13 +28,10 @@ password:any;
             localStorage.setItem('access',data['data']['access']);
             this.route.navigate(['/home']);
        }
-       else{
-        alert(data[0]['msg']);
-       }
       })
     }
     else{
-      alert("Please Enter Username & Password");
+      this.popup.showAlert('Login','Please Enter Username and Password!');
     }
   }
 }

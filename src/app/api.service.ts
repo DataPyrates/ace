@@ -4,13 +4,16 @@ import { environment } from '../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {PopupService} from '../app/popup.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,public popup:PopupService) { }
+
+ 
 
   public login(username, password) {
     let postData = {
@@ -24,7 +27,7 @@ export class ApiService {
         return throwError(new Error(error.status));
       }
       else if (error.status === 401) {
-        alert("No active account found with the given credentials");
+        this.popup.showAlert('Login','No active account found with the given credentials');
       }
     }));
   }
