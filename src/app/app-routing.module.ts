@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'machine-master',
     loadChildren: () => import('./machine-master/machine-master.module').then( m => m.MachineMasterPageModule)
   },
+  {
+    path: 'open-barcode',
+    loadChildren: () => import('./open-barcode/open-barcode.module').then( m => m.OpenBarcodePageModule)
+  },
 ];
 
 @NgModule({

@@ -9,3 +9,5 @@ Cordova reference documentation:
 
 for pagination install
 npm install ngx-pagination --save
+npm i text-copy
+npm install ngx-barcode --save

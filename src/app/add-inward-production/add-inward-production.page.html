@@ -13,6 +13,7 @@
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
           <h1 class="center">Add W.K. Inward From Production</h1>
+          <ion-label *ngIf="view">Transaction Number {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
         </div>
         <div padding>
           <ion-item>
@@ -71,7 +72,7 @@
               </ion-item>
               <ion-item class="content_card">
                 <ion-title class="content_card" slot="start">QR Code</ion-title>
-                <ion-label class="font_22"><ion-icon name="barcode"></ion-icon>
+                <ion-label class="font_22" (click)="openIonModal(inward.qr_code)"><ion-icon name="barcode"></ion-icon>
                 </ion-label>
               </ion-item>
               </ion-card-content>

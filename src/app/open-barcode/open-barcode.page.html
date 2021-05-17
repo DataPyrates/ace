@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ACE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+  <ngx-barcode [bc-value]="qr_code" [bc-display-value]="true"></ngx-barcode>
+</ion-col>
+  <ion-col></ion-col>
+</ion-row>
+  <ion-row>
+ <ion-col></ion-col>
+    <ion-col>
+  <ion-button class="modal_button" (click)="closeModel()">Close</ion-button>
+</ion-col>
+<ion-col></ion-col>
+</ion-row>
+</ion-content>

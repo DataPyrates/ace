@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ApiService } from './../api.service';
+import { NgxBarcodeModule } from 'ngx-barcode';
+import { ModalController } from '@ionic/angular';
+import { OpenBarcodePage } from './../open-barcode/open-barcode.page';
+import copy from 'text-copy';
+import {PopupService} from './../popup.service';
+
 
 
 @Component({
@@ -19,8 +25,10 @@ greige_production_order_transaction_number:any;
 view:boolean = false;
 machine_number:any;
 inward_item:any;
+modelData:any;
+transaction_number:any;
 
-  constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
+  constructor(public popup: PopupService,public modalController: ModalController,private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -45,9 +53,33 @@ inward_item:any;
           this.greige_production_order_transaction_number=data['data']['production_info']['greige_production_order_transaction_number'];
           this.machine_number=data['data']['machine_info']['machine_number'];
           this.inward_item = data['data']['roll_inventory_items'];
+          this.transaction_number = data['data']['transaction_number'];
+          console.log(this.transaction_number);
         })
     }
   }
+  async openIonModal(qr_code) {
+    localStorage.setItem('qr_code',qr_code);
+    const modal = await this.modalController.create({
+      component: OpenBarcodePage,
+      componentProps: {
+        'model_title': "Nomadic model's reveberation"
+      }
+    });
 
+    modal.onDidDismiss().then((modelData) => {
+      if (modelData !== null) {
+        this.modelData = modelData.data;
+        console.log('Modal Data : ' + modelData.data);
+      }
+    });
 
+    return await modal.present();
+  }
+
+  copyTransaction(transaction_number){
+    copy(transaction_number);
+    this.popup.showAlert('Transaction Number','Copied');
+
+  }
 }
