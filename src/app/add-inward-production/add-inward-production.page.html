@@ -21,27 +21,27 @@
             <ion-label *ngIf="!view" >Select Machine Number</ion-label>
             <ion-select [(ngModel)]="machine_number" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
-              <ion-select-option [value]="machine.id" *ngFor="let machine of machine_data" >{{machine.number}}</ion-select-option>
+              <ion-select-option [value]="machine.id" *ngFor="let machine of inward_production_data" >{{machine.machine_number}}</ion-select-option>
             </ion-select>
             <ion-input name="order_no" type="text" [(ngModel)]="machine_number" readonly *ngIf="view"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="greige_production_order_transaction_number" readonly></ion-input>
+          <ion-item *ngIf="machine_number">
+            <ion-icon name="information-circle-outline"  class="pr3"></ion-icon>
+            <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="greige_production_transaction_number" readonly></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+          <ion-item *ngIf="machine_number">
+            <ion-icon name="mail-outline"  class="pr3"></ion-icon>
             <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="greige_article_name" readonly></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="machine_number">
             <ion-icon name="color-palette-outline" class="pr3"></ion-icon>
             <ion-input name="article" type="text" placeholder="Greige Color" [(ngModel)]="greige_color_name" readonly></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="machine_number">
             <ion-icon name="logo-dropbox" class="pr3"></ion-icon>
             <ion-input name="article" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="machine_number">
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator_name" readonly></ion-input>
           </ion-item>
@@ -77,17 +77,17 @@
               </ion-item>
               </ion-card-content>
               </ion-card>
-            <ion-grid *ngIf="(machine_no)" class="production_detail">
+            <ion-grid *ngIf="machine_number" class="production_detail">
               <ion-item>
                 <ion-text class="pr3">TAKA A</ion-text>
               </ion-item>
           <ion-item>
             <ion-icon name="timer-outline"></ion-icon>
-            <ion-input name="roll_width" type="text" placeholder="Roll Width" [(ngModel)]="roll_width" required></ion-input>
+            <ion-input name="roll_width" type="text" placeholder="Roll Width" [(ngModel)]="width_A" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="timer-outline"></ion-icon>
-            <ion-input name="start_meter" type="text" placeholder="Start Meter" [(ngModel)]="start_meter" required></ion-input>
+            <ion-input name="start_meter" type="text" placeholder="Start Meter" [(ngModel)]="start_meter_A" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="time-outline"></ion-icon>
@@ -108,17 +108,17 @@
           <ion-item>
           </ion-item>
          </ion-grid>
-         <ion-grid *ngIf="(machine_no)">
+         <ion-grid *ngIf="machine_number">
           <ion-item>
             <ion-text class="pr3">TAKA B</ion-text>
           </ion-item>
           <ion-item>
             <ion-icon name="timer-outline"></ion-icon>
-            <ion-input name="roll_width" type="text" placeholder="Roll Width" [(ngModel)]="roll_width" required></ion-input>
+            <ion-input name="roll_width" type="text" placeholder="Roll Width" [(ngModel)]="width_B" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="timer-outline"></ion-icon>
-            <ion-input name="start_meter" type="text" placeholder="Start Meter" [(ngModel)]="start_meter" required></ion-input>
+            <ion-input name="start_meter" type="text" placeholder="Start Meter" [(ngModel)]="start_meter_B" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="time-outline"></ion-icon>

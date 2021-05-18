@@ -73,4 +73,9 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?action=table_list&page_size=10&page='+page,{'headers':headers});
   }
 
+  public get_inward_data(process_status) {
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?process_status=' + process_status,{'headers':headers});
+  }
 }

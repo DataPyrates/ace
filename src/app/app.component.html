@@ -50,7 +50,7 @@
     
 
     <ion-content>
-      <!-- <ion-menu-toggle auto-hide="false">
+      <ion-menu-toggle auto-hide="false">
         <ion-list lines="none">
           <ion-item [routerLink]="['/home']">
             <ion-icon name="home" slot="start"></ion-icon>
@@ -87,7 +87,7 @@
             </ion-label>
           </ion-item>
         </ion-list>
-      </ion-menu-toggle> -->
+      </ion-menu-toggle>
       <ion-list >
         <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
           <h4>

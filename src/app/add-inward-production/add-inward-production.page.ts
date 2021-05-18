@@ -21,16 +21,22 @@ operator_name:any;
 quantity:any;
 greige_color_name:any;
 greige_article_name:any;
-greige_production_order_transaction_number:any;
+greige_production_transaction_number:any;
 view:boolean = false;
 machine_number:any;
 inward_item:any;
 modelData:any;
 transaction_number:any;
+inward_production_data:any;
+width_A:any;
+  width_B: any;
+  start_meter_B: any;
+  start_meter_A: any;
 
   constructor(public popup: PopupService,public modalController: ModalController,private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
+    this.get_all_inward_data();
     this.activatedRoute.queryParams.subscribe(params => {
       this.id = params['id'];
     });
@@ -50,7 +56,7 @@ transaction_number:any;
           this.quantity=data['data']['production_info']['quantity'];
           this.greige_color_name=data['data']['production_info']['greige_color_name'];
           this.greige_article_name=data['data']['production_info']['greige_article_name'];
-          this.greige_production_order_transaction_number=data['data']['production_info']['greige_production_order_transaction_number'];
+          this.greige_production_transaction_number=data['data']['production_info']['greige_production_order_transaction_number'];
           this.machine_number=data['data']['machine_info']['machine_number'];
           this.inward_item = data['data']['roll_inventory_items'];
           this.transaction_number = data['data']['transaction_number'];
@@ -81,5 +87,28 @@ transaction_number:any;
     copy(transaction_number);
     this.popup.showAlert('Transaction Number','Copied');
 
+  }
+  get_all_inward_data(){
+    var process_status = 0;
+    this.api.get_inward_data(process_status).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+          this.inward_production_data = data['data']['results'];
+          this.greige_article_name= data['data']['results'][0]['greige_article_name'];
+          this.greige_production_transaction_number= data['data']['results'][0]['greige_production_transaction_number'];
+          this.greige_color_name= data['data']['results'][0]['production_order_info']['greige_color_name'];
+          this.quantity= data['data']['results'][0]['production_order_info']['quantity'];
+          this.operator_name = localStorage.getItem('username');
+          this.width_A = data['data']['results'][0]['width_A'];
+          this.width_B = data['data']['results'][0]['width_B'];
+          this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
+          this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
+
+
+
+
+        }
+
+      })
   }
 }
