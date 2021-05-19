@@ -29,9 +29,13 @@ modelData:any;
 transaction_number:any;
 inward_production_data:any;
 width_A:any;
-  width_B: any;
-  start_meter_B: any;
-  start_meter_A: any;
+width_B: any;
+start_meter_B: any;
+start_meter_A: any;
+end_meter = 0;
+roll_cut = 0;
+weight = 0;
+lot_no = 0;
 
   constructor(public popup: PopupService,public modalController: ModalController,private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
