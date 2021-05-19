@@ -16,13 +16,11 @@ export class MenuItemComponent implements OnInit {
   constructor(private route: Router, public menuCtrl: MenuController) {}
 
   ngOnInit() {
-    this.isOpen = false;
   }
 
 
   onMenuItemSelected(menuItem: MenuItem): void {
     if(menuItem.url){
-      this.isOpen = false;
       if(menuItem.url == 'login'){
         localStorage.clear();
       }

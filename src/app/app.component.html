@@ -6,21 +6,25 @@
         <ion-label class="username"></ion-label>
       </ion-row>
     </ion-header>
-
-    <ion-row>
-      <ion-col>
-        <ion-label class="branch"></ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-label class="department"></ion-label>
-      </ion-col>
-    </ion-row>
-
+     
+      <ion-row>
+        <ion-col>
+          <ion-label class="branch"></ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="department"></ion-label>
+        </ion-col>
+      </ion-row>
+    
 
     <ion-content>
-
+      
       <ion-list>
-        <app-menu-item *ngFor="let menuItem of menu" [menuItem]="menuItem" [isRoot]="true"></app-menu-item>
+        <app-menu-item
+          *ngFor="let menuItem of menu"
+          [menuItem]="menuItem"
+          [isRoot]="true"
+        ></app-menu-item>
       </ion-list>
     </ion-content>
   </ion-menu>
