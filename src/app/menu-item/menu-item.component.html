@@ -3,7 +3,7 @@
     <ion-button
       [color]="isRoot ? 'primary' : 'secondary'"
       [expand]="isRoot ? 'full' : 'block'"
-      (click)="isOpen = !isOpen"
+      (click)="isOpen = !isOpen;" 
     >
       {{ menuItem.name }}
     </ion-button>
@@ -20,8 +20,9 @@
 <ng-template #finalItem>
   <p>
     <ion-button color="light" expand="full"   [ngClass]="menuItem.url =='login' ? 'primary_btn' : ''"
-                (click)="onMenuItemSelected(menuItem)">
+                (click)="onMenuItemSelected(menuItem);toggleMenu()">
       {{ menuItem.name }}
     </ion-button>
   </p>
 </ng-template>
+
