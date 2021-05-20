@@ -43,3 +43,7 @@ ion-toolbar{
 .font_22{
     font-size: 22px !important;
 }
+.primary_btn{
+    --ion-color-base: var(--ion-color-primary, #3880ff) !important;
+    --ion-color-contrast: var(--ion-color-primary-contrast, #fff) !important;
+}
