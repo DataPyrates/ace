@@ -36,6 +36,12 @@ end_meter = 0;
 roll_cut = 0;
 weight = 0;
 lot_no = 0;
+  total_length_produced: any;
+  total_qty_produced: any;
+  roll_cut_A: any;
+  end_meter_A: any;
+  weight_A: any;
+  start_greige_production_machine: any;
 
   constructor(public popup: PopupService,public modalController: ModalController,private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -115,4 +121,33 @@ lot_no = 0;
 
       })
   }
+
+  machine_master(){
+    var machine_master = 9;
+    this.api.get_machine_master(machine_master).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+          this.total_length_produced = data['data']['results'][0]['total_length_produced'];
+          this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
+          this.start_greige_production_machine = data['data']['results'][0]['id'];
+        }
+
+      })
+  }
+
+  stickerA(){
+    var insert_roll_inventory_item = [];
+    insert_roll_inventory_item.push({ "roll_width": this.width_A, "length_in_meter": this.roll_cut_A, "end_meter": this.end_meter_A, 
+    "start_meter": this.start_meter_A, 'weight_in_kg': this.weight_A, 'greige_inward_production':'', 'taaka_or_piece_number': 'A'});
+    if(this.end_meter_A && this.weight_A){
+    this.api.get_greige_inward_card(insert_roll_inventory_item,this.start_greige_production_machine).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+          // this.total_length_produced = data['data']['results'][0]['total_length_produced'];
+          // this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
+        }
+
+      })
+  }
+}
 }
