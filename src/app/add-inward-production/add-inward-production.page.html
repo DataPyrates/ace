@@ -17,7 +17,7 @@
         </div>
         <div padding>
           <ion-item>
-            <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
+            <ion-icon name="settings-outline" class="pr3"></ion-icon>
             <ion-label *ngIf="!view" >Select Machine Number</ion-label>
             <ion-select [(ngModel)]="machine_number" (ionChange)="machine_master()" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
@@ -99,7 +99,7 @@
             <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter_A" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="grid-outline" class="pr3"></ion-icon>
+            <ion-icon name="cut-outline" class="pr3"></ion-icon>
             <ion-input name="roll_cut" type="text" placeholder="Roll Cut" [(ngModel)]="roll_cut_A" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
@@ -110,7 +110,7 @@
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
             <ion-input name="lot_no" type="text" placeholder="Lot No." [(ngModel)]="lot_no_A" required></ion-input>
           </ion-item>
-            <div padding class="register_btn">
+            <div padding class="register_btn" *ngIf="machine_number">
               <ion-button size="large" *ngIf="!view" (click)="stickerA()">Add and Generate Sticker</ion-button>
             </div>
           
@@ -132,7 +132,7 @@
             <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter_B" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-icon name="grid-outline" class="pr3"></ion-icon>
+            <ion-icon name="cut-outline" class="pr3"></ion-icon>
             <ion-input name="roll_cut" type="text" placeholder="Roll Cut" [(ngModel)]="roll_cut_B" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
@@ -148,7 +148,7 @@
         </ion-grid>
         
         </div>
-        <div padding class="register_btn">
+        <div padding class="register_btn" *ngIf="machine_number">
           <ion-button size="large" *ngIf="!view" (click)="stickerB()">Add and Generate Sticker</ion-button>
         </div>
       </ion-col>
