@@ -19,7 +19,7 @@
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
             <ion-label *ngIf="!view" >Select Machine Number</ion-label>
-            <ion-select [(ngModel)]="machine_number" *ngIf="!view">
+            <ion-select [(ngModel)]="machine_number" (ionChange)="machine_master()" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
               <ion-select-option [value]="machine.id" *ngFor="let machine of inward_production_data" >{{machine.machine_number}}</ion-select-option>
             </ion-select>
@@ -47,7 +47,7 @@
           </ion-item>
           <ion-item *ngIf="machine_number">
             <ion-checkbox [(ngModel)]="mushrooms"></ion-checkbox>
-            <p class="pr3" style="padding-left:3%">Same for both</p>
+            <p class="pr3" style="padding-left:3%"> Same End Meter for all rolls</p>
           </ion-item>
           <ion-card class="ion-card-list" *ngFor="let inward of inward_item">
             <ion-card-content *ngIf="view">
@@ -96,22 +96,24 @@
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="time-outline"></ion-icon>
-            <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter" required></ion-input>
+            <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter_A" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="roll_cut" type="text" placeholder="Roll Cut" [(ngModel)]="roll_cut" required></ion-input>
+            <ion-input name="roll_cut" type="text" placeholder="Roll Cut" [(ngModel)]="roll_cut_A" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="weight" type="text" placeholder="Weight" [(ngModel)]="weight" required></ion-input>
+            <ion-input name="weight" type="text" placeholder="Weight" [(ngModel)]="weight_A" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="lot_no" type="text" placeholder="Lot No." [(ngModel)]="lot_no" required></ion-input>
+            <ion-input name="lot_no" type="text" placeholder="Lot No." [(ngModel)]="lot_no_A" required></ion-input>
           </ion-item>
-          <ion-item>
-          </ion-item>
+            <div padding class="register_btn">
+              <ion-button size="large" *ngIf="!view" (click)="stickerA()">Add and Generate Sticker</ion-button>
+            </div>
+          
          </ion-grid>
          <ion-grid *ngIf="machine_number">
           <ion-item>
@@ -127,27 +129,27 @@
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="time-outline"></ion-icon>
-            <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter" required></ion-input>
+            <ion-input name="end_meter" type="text" placeholder="End Meter" [(ngModel)]="end_meter_B" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="roll_cut" type="text" placeholder="Roll Cut" [(ngModel)]="roll_cut" required></ion-input>
+            <ion-input name="roll_cut" type="text" placeholder="Roll Cut" [(ngModel)]="roll_cut_B" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="weight" type="text" placeholder="Weight" [(ngModel)]="weight" required></ion-input>
+            <ion-input name="weight" type="text" placeholder="Weight" [(ngModel)]="weight_B" required></ion-input>
           <!-- </ion-item>
           <ion-item> -->
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="lot_no" type="text" placeholder="Lot No." [(ngModel)]="lot_no" required></ion-input>
+            <ion-input name="lot_no" type="text" placeholder="Lot No." [(ngModel)]="lot_no_B" required></ion-input>
           </ion-item>
-          <ion-item>
-          </ion-item>
+          <!-- <ion-item>
+          </ion-item> -->
         </ion-grid>
         
         </div>
-        <div padding class="register_btn" >
-          <ion-button size="large" *ngIf="!view" (click)="register()">Add and Generate Sticker</ion-button>
+        <div padding class="register_btn">
+          <ion-button size="large" *ngIf="!view" (click)="stickerB()">Add and Generate Sticker</ion-button>
         </div>
       </ion-col>
     </ion-row>
@@ -155,10 +157,47 @@
   <p style="padding-left:3%" *ngIf="machine_number">Total Production Till Now:</p>
   <ion-item *ngIf="machine_number">
     <ion-icon name="color-palette-outline" class="pr3"></ion-icon>
-    <ion-input name="article" type="text" placeholder="Total Weight" [(ngModel)]="total_weight" readonly></ion-input>
+    <ion-input name="article" type="text" placeholder="Total Weight" [(ngModel)]="total_qty_produced" readonly></ion-input>
   </ion-item>
   <ion-item *ngIf="machine_number">
     <ion-icon name="color-palette-outline" class="pr3"></ion-icon>
-    <ion-input name="article" type="text" placeholder="Total Length" [(ngModel)]="total_length" readonly></ion-input>
+    <ion-input name="article" type="text" placeholder="Total Length" [(ngModel)]="total_length_produced" readonly></ion-input>
   </ion-item>
+
+  <ion-card class="ion-card-list" *ngFor="let inward of greige_item">
+    <ion-card-content *ngIf="!view">
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Roll No.</ion-title>
+        <ion-label>{{ inward.qr_code}}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Roll Width.</ion-title>
+        <ion-label>{{ inward.roll_width }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Roll Length</ion-title>
+        <ion-label>{{ inward.length_in_meter }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Roll Weight</ion-title>
+        <ion-label>{{ inward.weight_in_kg }}</ion-label>
+      </ion-item>
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Lot No.</ion-title>
+        <ion-label>{{ inward.width_unit }}</ion-label>
+      </ion-item>
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">QR Code</ion-title>
+        <ion-label class="font_22" (click)="openIonModal(inward.qr_code)"><ion-icon name="barcode"></ion-icon>
+        </ion-label>
+      </ion-item>
+      </ion-card-content>
+      </ion-card>
+      <div padding class="register_btn" *ngIf="machine_number">
+        <ion-button *ngIf="!view" (click)="save()">Save</ion-button>
+        <ion-button *ngIf="!view" (click)="endprod()">End Production Order And Save</ion-button>
+      </div>
 </ion-content>

@@ -78,4 +78,19 @@ export class ApiService {
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?process_status=' + process_status,{'headers':headers});
   }
+  
+  public get_machine_master(machine_master) {
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?machine_master=' + machine_master,{'headers':headers});
+  }
+  public get_greige_inward_card(insert_roll_inventory_item,start_greige_production_machine) {
+    let postData = {
+      start_greige_production_machine: start_greige_production_machine,
+      insert_roll_inventory_item: insert_roll_inventory_item
+    }
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_inward_production/',{'headers':headers,'params':postData});
+  }
 }
