@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MenuItem } from '../models/menu-item';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import * as $ from "jquery";
+
 @Component({
   selector: 'app-menu-item',
   templateUrl: './menu-item.component.html',
