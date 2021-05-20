@@ -13,6 +13,7 @@
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
           <h1 class="center">Add W.K. Production Log</h1>
+          <ion-label *ngIf="view" class="center">Transaction Number {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
         </div>
         <div padding>
           <ion-item>
@@ -37,7 +38,7 @@
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
           </ion-item>
-          <ion-grid *ngIf="(production_log_details && production_log_details.length > 0) || (!view && machine_flag)" class="production_detail">
+          <ion-grid *ngIf="(production_log_details && production_log_details.length > 0) || (!view && machine_flag) || (process_status_display == 'Paused')" class="production_detail">
           <ion-item>
             <ion-icon name="list-circle-outline" class="pr3"></ion-icon>
             <!-- <ion-text class="pr3">Timer</ion-text> -->
@@ -46,46 +47,46 @@
           </ion-item>
           <ion-item>
             <ion-icon name="timer-outline" class="pr3"></ion-icon>
-            <ion-input name="start_time" type="text" placeholder="Stop T." [(ngModel)]="end_time" required></ion-input>
+            <ion-input name="start_time" type="text" placeholder="Stop T." [(ngModel)]="end_time" readonly></ion-input>
             <ion-icon name="timer-outline" class="pr3"></ion-icon>
-            <ion-input name="end_time" type="text" placeholder="Start T." [(ngModel)]="start_time" required></ion-input>
+            <ion-input name="end_time" type="text" placeholder="Start T." [(ngModel)]="start_time" readonly></ion-input>
             <ion-icon name="time-outline" class="pr3"></ion-icon>
-            <ion-input name="stop_duration" type="text" placeholder="Duration" [(ngModel)]="stop_duration" required></ion-input>
+            <ion-input name="stop_duration" type="text" placeholder="Duration" [(ngModel)]="stop_duration_minutes" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="grid-outline" class="pr3"></ion-icon>
-            <ion-input name="taka_no" type="text" placeholder="Taka Number" [(ngModel)]="taka_no" required></ion-input>
+            <ion-label>Select Takka</ion-label>
+            <ion-select [(ngModel)]="taka_no" multiple [disabled]="taka_no_flag">
+              <ion-select-option value="A">A</ion-select-option>
+              <ion-select-option value="B">B</ion-select-option>
+            </ion-select>
           </ion-item>
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
-            <ion-label>Select Meter Reading</ion-label>
-            <ion-select [(ngModel)]="meter_reading" multiple>
-              <ion-select-option value="2">1</ion-select-option>
-              <ion-select-option value="1">2</ion-select-option>
-            </ion-select>
+            <ion-input  type="number" placeholder="Meter Reading" [(ngModel)]="meter_reading" [disabled]="taka_no_flag"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
             <ion-label>Select Fields</ion-label>
-            <ion-select [(ngModel)]="fields" multiple>
-              <ion-select-option value="1">Field 1</ion-select-option>
-              <ion-select-option value="2">Field 2</ion-select-option>
-              <ion-select-option value="3">Field 3</ion-select-option>
-              <ion-select-option value="4">Field 4</ion-select-option>
-              <ion-select-option value="5">Field 5</ion-select-option>
-              <ion-select-option value="6">Field 6</ion-select-option>
-              <ion-select-option value="7">Field 7</ion-select-option>
-              <ion-select-option value="8">Field 8</ion-select-option>
-              <ion-select-option value="9">Field 9</ion-select-option>
-              <ion-select-option value="10">Field 10</ion-select-option>
-              <ion-select-option value="11">Field 11</ion-select-option>
-              <ion-select-option value="12">Field 12</ion-select-option>
+            <ion-select [(ngModel)]="fields" multiple [disabled]="taka_no_flag">
+              <ion-select-option value="f1">Field 1</ion-select-option>
+              <ion-select-option value="f2">Field 2</ion-select-option>
+              <ion-select-option value="f3">Field 3</ion-select-option>
+              <ion-select-option value="f4">Field 4</ion-select-option>
+              <ion-select-option value="f5">Field 5</ion-select-option>
+              <ion-select-option value="f6">Field 6</ion-select-option>
+              <ion-select-option value="f7">Field 7</ion-select-option>
+              <ion-select-option value="f8">Field 8</ion-select-option>
+              <ion-select-option value="f9">Field 9</ion-select-option>
+              <ion-select-option value="f10">Field 10</ion-select-option>
+              <ion-select-option value="f11">Field 11</ion-select-option>
+              <ion-select-option value="f12">Field 12</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
-          <ion-button slot="end" (click)="opengrid()" large >
+          <!-- <ion-button slot="end" (click)="opengrid()" large >
             <ion-icon name="add-circle" color="white"></ion-icon>
-            </ion-button>
+          </ion-button> -->
           </ion-item>
          </ion-grid>
          <ion-grid *ngIf="secondgrid">
