@@ -45,7 +45,7 @@
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator_name" readonly></ion-input>
           </ion-item>
-          <ion-item *ngIf="machine_number">
+          <ion-item *ngIf="machine_number && !view">
             <ion-checkbox [(ngModel)]="mushrooms"></ion-checkbox>
             <p class="pr3" style="padding-left:3%"> Same End Meter for all rolls</p>
           </ion-item>
@@ -82,7 +82,7 @@
               </ion-card-content>
               </ion-card>
              
-            <ion-grid *ngIf="machine_number" class="production_detail">
+            <ion-grid *ngIf="machine_number && !view" class="production_detail">
               <ion-item>
                 <ion-text class="pr3">TAKA A</ion-text>
               </ion-item>
@@ -115,7 +115,7 @@
             </div>
           
          </ion-grid>
-         <ion-grid *ngIf="machine_number">
+         <ion-grid *ngIf="machine_number && !view">
           <ion-item>
             <ion-text class="pr3">TAKA B</ion-text>
           </ion-item>
@@ -154,44 +154,44 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <p style="padding-left:3%" *ngIf="machine_number">Total Production Till Now:</p>
-  <ion-item *ngIf="machine_number">
+  <p style="padding-left:3%" *ngIf="machine_number && !view">Total Production Till Now:</p>
+  <ion-item *ngIf="machine_number && !view">
     <ion-icon name="color-palette-outline" class="pr3"></ion-icon>
     <ion-input name="article" type="text" placeholder="Total Weight" [(ngModel)]="total_qty_produced" readonly></ion-input>
   </ion-item>
-  <ion-item *ngIf="machine_number">
+  <ion-item *ngIf="machine_number && !view">
     <ion-icon name="color-palette-outline" class="pr3"></ion-icon>
     <ion-input name="article" type="text" placeholder="Total Length" [(ngModel)]="total_length_produced" readonly></ion-input>
   </ion-item>
 
-  <ion-card class="ion-card-list" *ngFor="let inward of greige_item">
+  <ion-card class="ion-card-list" *ngFor="let prod of greige_item">
     <ion-card-content *ngIf="!view">
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Greige Roll No.</ion-title>
-        <ion-label>{{ inward.qr_code}}</ion-label>
+        <ion-label>{{ prod.qr_code}}</ion-label>
       </ion-item>
 
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Greige Roll Width.</ion-title>
-        <ion-label>{{ inward.roll_width }}</ion-label>
+        <ion-label>{{ prod.roll_width }}</ion-label>
       </ion-item>
 
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Greige Roll Length</ion-title>
-        <ion-label>{{ inward.length_in_meter }}</ion-label>
+        <ion-label>{{ prod.length_in_meter }}</ion-label>
       </ion-item>
 
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Greige Roll Weight</ion-title>
-        <ion-label>{{ inward.weight_in_kg }}</ion-label>
+        <ion-label>{{ prod.weight_in_kg }}</ion-label>
       </ion-item>
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Lot No.</ion-title>
-        <ion-label>{{ inward.width_unit }}</ion-label>
+        <ion-label>{{ prod.width_unit }}</ion-label>
       </ion-item>
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">QR Code</ion-title>
-        <ion-label class="font_22" (click)="openIonModal(inward.qr_code)"><ion-icon name="barcode"></ion-icon>
+        <ion-label class="font_22" (click)="openIonModal(prod.qr_code)"><ion-icon name="barcode"></ion-icon>
         </ion-label>
       </ion-item>
       </ion-card-content>
