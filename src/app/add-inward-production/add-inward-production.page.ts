@@ -38,14 +38,15 @@ export class AddInwardProductionPage implements OnInit {
   lot_no = 0;
   total_length_produced: any;
   total_qty_produced: any;
-  roll_cut_A: any;
+  roll_cut_A: number =0;
   end_meter_A: any;
   weight_A: any;
+  weight_B:any;
   start_greige_production_machine: any;
   process_status_display: any;
   lot_no_A: any;
   lot_no_B: any;
-  roll_cut_B: number;
+  roll_cut_B: number =0;
   end_meter_B: any;
   sameendflag:boolean = true;
 
@@ -68,9 +69,8 @@ export class AddInwardProductionPage implements OnInit {
       this.api.inward_production_log_view(this.id).subscribe(
         data => {
           this.inward_data = data;
-          console.log(this.inward_data);
           this.operator_name = data['data']['operator_name'];
-          this.quantity = data['data']['production_info']['quantity'];
+          this.quantity = data['data']['production_info']['quantity']+' Kg';
           this.greige_color_name = data['data']['production_info']['greige_color_name'];
           this.greige_article_name = data['data']['production_info']['greige_article_name'];
           this.greige_production_transaction_number = data['data']['production_info']['greige_production_order_transaction_number'];
@@ -80,7 +80,14 @@ export class AddInwardProductionPage implements OnInit {
           this.process_status_display = data['data']['process_status_display'];
           this.lot_no_A = this.id;
           this.lot_no_B = this.id;
-          console.log(this.transaction_number);
+          this.start_meter_A =  data['data']['start_meter_A'];
+          this.start_meter_B =  data['data']['start_meter_B'];
+          this.end_meter_A=0;
+          this.end_meter_B=0; 
+          this.weight_A =0;
+          this.weight_B=0;
+          this.roll_cut_A=0;
+          this.roll_cut_B =0;
         })
     }
   }
@@ -123,12 +130,7 @@ export class AddInwardProductionPage implements OnInit {
           this.width_B = data['data']['results'][0]['width_B'];
           this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
           this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
-
-
-
-
         }
-
       })
   }
 
@@ -140,8 +142,8 @@ export class AddInwardProductionPage implements OnInit {
           this.total_length_produced = data['data']['results'][0]['total_length_produced'];
           this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
           this.start_greige_production_machine = data['data']['results'][0]['id'];
-          this.lot_no_A = data['data']['id'];
-          this.lot_no_B = data['data']['id'];
+          // this.lot_no_A = data['data']['id'];
+          // this.lot_no_B = data['data']['id'];
           console.log(this.total_length_produced, this.total_qty_produced);
         }
 
@@ -149,12 +151,33 @@ export class AddInwardProductionPage implements OnInit {
   }
 
   stickerA() {
+    if(this.end_meter_A || this.end_meter_A > 0){
+    if(this.weight_A || this.weight_A >0 ){
     var insert_roll_inventory_item = [];
     insert_roll_inventory_item.push({
       "roll_width": this.width_A, "length_in_meter": this.roll_cut_A, "end_meter": this.end_meter_A,
-      "start_meter": this.start_meter_A, 'weight_in_kg': this.weight_A, 'greige_inward_production': '', 'taaka_or_piece_number': 'A'
+      "start_meter": this.start_meter_A, 'weight_in_kg': this.weight_A, 'greige_inward_production': null, 'taaka_or_piece_number': 'A'
     });
     if (this.end_meter_A && this.weight_A) {
+      if(this.id && this.id >0){
+       let post = {
+        roll_width:this.width_A,
+        length_in_meter:this.roll_cut_A,
+        end_meter:this.end_meter_A,
+        start_meter:this.start_meter_A,
+        weight_in_kg:this.weight_A,
+        greige_inward_production:this.id,
+        taaka_or_piece_number: "A"
+       }
+       this.api.greige_inward_roll_inventory(post).subscribe(
+        (data: any) => {
+          if (data) {
+            this.inward_data_log_view();
+            this.machine_master();
+          }
+        })
+      }
+      else{
       let post = {
         insert_roll_inventory_item: insert_roll_inventory_item[0],
         start_greige_production_machine: this.start_greige_production_machine
@@ -162,16 +185,76 @@ export class AddInwardProductionPage implements OnInit {
       this.api.get_greige_inward_card(post).subscribe(
         (data: any) => {
           if ((data['status'] == 200)) {
-            // this.total_length_produced = data['data']['results'][0]['total_length_produced'];
-            // this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
           }
-
         })
+      }
+    }
+    }
+    else{
+      this.popup.showAlert("Greige Inward Production","Please enter the weight");      
+    }
+    }
+    else{
+      this.popup.showAlert("Greige Inward Production","Please enter the end meter");      
+    }
+  }
+
+  stickerB() {
+    if(this.end_meter_B || this.end_meter_B > 0){
+    if(this.weight_B || this.weight_B >0 ){
+    if(this.end_meter_B > this.start_meter_A){
+    var insert_roll_inventory_item = [];
+    insert_roll_inventory_item.push({
+      "roll_width": this.width_B, "length_in_meter": this.roll_cut_B, "end_meter": this.end_meter_B,
+      "start_meter": this.start_meter_B, 'weight_in_kg': this.weight_B, 'greige_inward_production': null, 'taaka_or_piece_number': 'B'
+    });
+    if (this.end_meter_B && this.weight_B) {
+      if(this.id && this.id >0){
+       let post = {
+        roll_width:this.width_B,
+        length_in_meter:this.roll_cut_B,
+        end_meter:this.end_meter_B,
+        start_meter:this.start_meter_B,
+        weight_in_kg:this.weight_B,
+        greige_inward_production:this.id,
+        taaka_or_piece_number: "B"
+       }
+       this.api.greige_inward_roll_inventory(post).subscribe(
+        (data: any) => {
+          if (data) {
+            this.inward_data_log_view();
+            this.machine_master();
+          }
+        })
+      }
+      else{
+      let post = {
+        insert_roll_inventory_item: insert_roll_inventory_item[0],
+        start_greige_production_machine: this.start_greige_production_machine
+      }
+      this.api.get_greige_inward_card(post).subscribe(
+        (data: any) => {
+          if ((data['status'] == 200)) {
+          }
+        })
+      }
+    }
+    }
+    else{
+      this.popup.showAlert("Greige Inward Production","End meter should not be less than start meter");      
+    }
+    }
+    else{
+      this.popup.showAlert("Greige Inward Production","Please enter the weight");      
+    }
+    }
+    else{
+      this.popup.showAlert("Greige Inward Production","Please enter the end meter");      
     }
   }
 
   get_rollcut(type) {
-    console.log(this.start_meter_A,this.end_meter_A);
+    console.log(this.start_meter_A,this.end_meter_A/this.start_meter_B,this.end_meter_B);
     if (type == 'A' && this.end_meter_A >= this.start_meter_A) {
       this.roll_cut_A = this.end_meter_A - this.start_meter_A;
     }
@@ -179,6 +262,9 @@ export class AddInwardProductionPage implements OnInit {
       this.roll_cut_B = this.end_meter_B - this.start_meter_B;
     }
     if(this.sameendflag==true){
+      if(type == 'B'){
+        this.end_meter_A = this.end_meter_B;
+      }
       this.end_meter_B = this.end_meter_A;
       this.roll_cut_B = this.end_meter_B - this.start_meter_B;
     }

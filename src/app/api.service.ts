@@ -101,6 +101,22 @@ export class ApiService {
     }));
   }
 
+  public greige_inward_roll_inventory(postData) {
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.post(environment.apiURL + 'erp/api/transactions/greige_inward_roll_inventory/',postData,{'headers':headers}).pipe(map((res: Response) => {
+      return res;
+    })).pipe(catchError((error: any) => {
+      console.log(error);
+      if (error.status === 500) {
+        return throwError(new Error(error.status));
+      }
+      else if (error.message) {
+        this.popup.showAlert('Error',error.error.message);
+      }
+    }));
+  }
+
   public greige_production_log(postData){
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
