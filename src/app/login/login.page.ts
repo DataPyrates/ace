@@ -26,7 +26,7 @@ password:any;
       this.api.login(this.username,this.password).subscribe(
       (data :any )=> {
        if((data['status'] == 200)){
-            localStorage.clear();
+            // localStorage.clear();
             localStorage.setItem('user_data',JSON.stringify(data));
             localStorage.setItem('username',this.username);
             localStorage.setItem('access',data['data']['access']);

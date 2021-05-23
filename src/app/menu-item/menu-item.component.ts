@@ -18,23 +18,40 @@ export class MenuItemComponent implements OnInit {
   constructor(private route: Router, public menuCtrl: MenuController) {}
 
   ngOnInit() {
-
   }
-
 
   onMenuItemSelected(menuItem: MenuItem): void {
     if(menuItem.url){
       if(menuItem.url == 'login'){
-        localStorage.clear();
+        localStorage.setItem('username','');
       }
       this.route.navigate(['/'+menuItem.url+'']);
     }
   }
+
   toggleMenu() {
     this.menuCtrl.toggle(); //Add this method to your button click function
   }
-
-  ionViewWillEnter(){
-    $(".ion-color-primary").click();
+  
+  openclosedmenu(name){
+    console.log(name);
+    if(name == 'Commmon Master'){
+    var firstmenu = localStorage.getItem('firstmenu');
+    if(firstmenu == 'open'){
+      localStorage.setItem('firstmenu','closed');
     }
+    else{
+      localStorage.setItem('firstmenu','open');
+    }
+    }
+    else if(name == 'Transaction'){
+      var secondmenu = localStorage.getItem('secondmenu');
+      if(secondmenu == 'open'){
+        localStorage.setItem('secondmenu','closed');
+      }
+      else{
+        localStorage.setItem('secondmenu','open');
+      }
+    }
+  }
 }

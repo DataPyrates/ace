@@ -19,7 +19,14 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-  $(".ion-color-primary").click();
+  var firstmenu = localStorage.getItem('firstmenu');
+  var secondmenu = localStorage.getItem('secondmenu');
+  if(firstmenu == 'open'){
+  $(".menu_list .ion-color-primary:nth-child(1)").click();
+  }
+  if(secondmenu == 'open'){
+  $(".menu_list .ion-color-primary:nth-child(2)").click();
+  }
   }
 
 }
