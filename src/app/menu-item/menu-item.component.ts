@@ -18,6 +18,7 @@ export class MenuItemComponent implements OnInit {
   constructor(private route: Router, public menuCtrl: MenuController) {}
 
   ngOnInit() {
+
   }
 
 
@@ -32,4 +33,8 @@ export class MenuItemComponent implements OnInit {
   toggleMenu() {
     this.menuCtrl.toggle(); //Add this method to your button click function
   }
+
+  ionViewWillEnter(){
+    $(".ion-color-primary").click();
+    }
 }

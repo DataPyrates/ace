@@ -123,10 +123,6 @@ export class AddInwardProductionPage implements OnInit {
           this.width_B = data['data']['results'][0]['width_B'];
           this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
           this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
-
-
-
-
         }
 
       })
