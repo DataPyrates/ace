@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import {ApiService} from './../api.service';
 import { Router,NavigationExtras } from '@angular/router';
 import { JwPaginationModule } from 'jw-angular-pagination';
-
 
 @Component({
   selector: 'app-production-dashboard',
@@ -18,6 +17,7 @@ export class ProductionDashboardPage implements OnInit {
   page:any;
   
   collection = [];
+  term: any = '';
   constructor(private route: Router,private api: ApiService) { 
    
   }
@@ -28,7 +28,8 @@ export class ProductionDashboardPage implements OnInit {
   
   greige_production_log(){
    this.page=1;  
-    this.api.greige_production_log_data(this.page).subscribe(
+   let start_greige_production__machine_master__number__icontains = this.term;
+    this.api.greige_production_log_data(this.page,start_greige_production__machine_master__number__icontains).subscribe(
     (data :any )=> {
      if((data['status'] == 200)){
       var month = new Array();
@@ -45,10 +46,10 @@ export class ProductionDashboardPage implements OnInit {
       month[10] = "November";
       month[11] = "December";
        this.collection=data['data']['results'];
+       var dd = today.getDate();
        for(let i= 0;i<this.collection.length;i++){
         var c_date = this.collection[i]['created_date'];
         var today = new Date(c_date);
-        var dd = today.getDate();
         var mm = month[today.getMonth()];
         var year = today.getFullYear();
         this.collection[i]['created_date'] = dd+'-'+mm+'-'+year;
@@ -66,5 +67,8 @@ export class ProductionDashboardPage implements OnInit {
     };
     this.route.navigate(['/production-log'],navigationExtras);
   }
-
+  getFilterdata(){
+    this.greige_production_log();
+  }
+ 
 }

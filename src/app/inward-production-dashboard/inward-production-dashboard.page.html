@@ -11,6 +11,8 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-searchbar placeholder="Search Machine No." [(ngModel)]="term" animated="true" (click)="getFilterdata()"></ion-searchbar>
   <ion-card class="ion-card-list" *ngFor="let inward of product | paginate: { itemsPerPage: 10, currentPage: p }">
     <ion-card-content >
       <ion-item class="content_card">

@@ -43,16 +43,17 @@ export class ApiService {
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?machine_master=' + machine_no,{'headers':headers});
   }
-  public  greige_production_log_data(page) {
-    let headers = new HttpHeaders();
-    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
-    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/?action=table_list&page_size=10&page='+page,{'headers':headers});
+  public  greige_production_log_data(page,start_greige_production__machine_master__number__icontains) {
+  let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));   
+    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/?action=table_list&page_size=10&page='+page+'&start_greige_production__machine_master__number__icontains='+start_greige_production__machine_master__number__icontains,{'headers':headers});
+    
   }
 
-  public  inward_production_log_data(page) {
+  public  inward_production_log_data(page,start_greige_production_machine__machine_master__number__icontains) {
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
-    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_inward_production/?action=table_list&page_size=10&page='+page,{'headers':headers});
+    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_inward_production/?action=table_list&page_size=10&page='+page+'&start_greige_production_machine__machine_master__number__icontains='+start_greige_production_machine__machine_master__number__icontains,{'headers':headers});
   }
 
   public  inward_production_log_view(id) {
