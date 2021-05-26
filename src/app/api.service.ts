@@ -86,6 +86,16 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?machine_master=' + machine_master,{'headers':headers});
   }
 
+  public greige_inward_save(id,process_status) {
+    let post = {
+      id:id,
+      process_status:process_status
+    }
+    let headers = new HttpHeaders();
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.post(environment.apiURL + 'erp/api/transactions/greige_inward_production/'+id+'/',post,{'headers':headers});
+  }
+
   public get_greige_inward_card(postData) {
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));

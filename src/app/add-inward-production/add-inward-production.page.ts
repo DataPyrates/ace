@@ -279,4 +279,16 @@ uncheck(e){
     this.sameendflag = false;
   }
 }
+
+save(){
+  var process_status = 2;
+  this.api.greige_inward_save(this.id,process_status).subscribe(
+    (data: any) => {
+      if (data) {
+        this.inward_data_log_view();
+        this.machine_master();
+      }
+    })
+
+}
 }

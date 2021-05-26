@@ -135,6 +135,43 @@
         </ion-grid>
         
         </div>
+        <div *ngIf="view && production_log_details && production_log_details.length > 0">
+        <ion-card class="ion-card-list" *ngFor="let product of production_log_details">
+          <ion-card-content>
+            <ion-item class="content_card">
+              <ion-title class="content_card" slot="start">Stop Time</ion-title>
+              <ion-label>{{ product.stop_time}}</ion-label>
+            </ion-item>
+      
+            <ion-item class="content_card">
+              <ion-title class="content_card" slot="start">Start Time</ion-title>
+              <ion-label>{{ product.start_time }}</ion-label>
+            </ion-item>
+      
+            <ion-item class="content_card">
+              <ion-title class="content_card" slot="start">Stop Duration</ion-title>
+              <ion-label>{{ product.stop_duration_minutes }} Min</ion-label>
+            </ion-item>
+      
+            <ion-item class="content_card">
+              <ion-title class="content_card" slot="start">Takka No.</ion-title>
+              <ion-label>{{ product.taaka_error_list }}</ion-label>
+            </ion-item>
+
+            <ion-item class="content_card">
+              <ion-title class="content_card" slot="start">Meter Reading</ion-title>
+              <ion-label>{{ product.meter_reading }}</ion-label>
+            </ion-item>
+
+            <ion-item class="content_card">
+              <ion-title class="content_card" slot="start">Fields</ion-title>
+              <ion-label>{{ product.field }}</ion-label>
+            </ion-item>
+      
+            
+          </ion-card-content>
+        </ion-card>
+      </div>
         <div padding class="register_btn">
           <ion-button size="large" (click)="register()" *ngIf="!view">Submit</ion-button>
         </div>

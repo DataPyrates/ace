@@ -203,6 +203,6 @@
   </ion-card>
   <div padding class="register_btn" *ngIf="(machine_number && !view ) || (process_status_display=='Running')">
     <ion-button (click)="save()">Save</ion-button>
-    <ion-button (click)="endprod()">End Production Order And Save</ion-button>
+    <ion-button (click)="save()">End Production Order And Save</ion-button>
   </div>
 </ion-content>
