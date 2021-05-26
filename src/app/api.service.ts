@@ -128,9 +128,23 @@ export class ApiService {
     }));
   }
 
-  public greige_production_log(postData){
+  public greige_production_log(postData,id){
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    if(id){
+      return this.http.patch(environment.apiURL + 'erp/api/transactions/greige_production_log/'+id+'/',postData,{'headers':headers}).pipe(map((res: Response) => {
+        return res;
+      })).pipe(catchError((error: any) => {
+        console.log(error);
+        if (error.status === 500) {
+          return throwError(new Error(error.status));
+        }
+        else if (error.message) {
+          this.popup.showAlert('Error',error.error.message);
+        }
+      }));
+    }
+    else{
     return this.http.post(environment.apiURL + 'erp/api/transactions/greige_production_log/',postData,{'headers':headers}).pipe(map((res: Response) => {
       return res;
     })).pipe(catchError((error: any) => {
@@ -142,6 +156,7 @@ export class ApiService {
         this.popup.showAlert('Error',error.error.message);
       }
     }));
+  }
   }
 
   public greige_production_log_details(postData){

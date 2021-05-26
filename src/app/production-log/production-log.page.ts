@@ -20,13 +20,13 @@ export class ProductionLogPage implements OnInit {
   operator: any;
   production_data: any;
   machine_number: any;
-  id: any;
+  id: any ="";
   view: boolean = false;
   production_log_details: any;
   machine_flag: boolean = false;
   start_time:any = '';
   end_time:any = '';
-  start_greige_production:any;
+  start_greige_production:any = 0;
   taka_no_flag:boolean = true;
   process_status_display: any;
   meter_reading: any;
@@ -109,7 +109,9 @@ export class ProductionLogPage implements OnInit {
             now.getMinutes(),
             now.getSeconds() || '00'].join(':') +
               (isPM ? 'pm' : 'am');
-          // this.end_time = time;
+          if(this.process_status_display == 'Paused'){
+          this.end_time = time;
+          }
           this.end_time_without = [now.getHours() - (isPM && !isMidday ? 12 : 0),
             now.getMinutes(),
             now.getSeconds() || '00'].join(':');
@@ -177,7 +179,7 @@ export class ProductionLogPage implements OnInit {
   }
 
   startprocess() {
-    if (this.process_status_display == 'Paused') {
+    if (this.process_status_display == 'Paused' || this.process_status_display=="Running") {
     if(this.taka_no){
     if(this.meter_reading){
       var now = new Date();
@@ -221,6 +223,7 @@ export class ProductionLogPage implements OnInit {
           this.meter_reading="";
           this.taka_no="";
           this.fields="";
+          this.stop_duration_minutes="";
 
           
       });
@@ -249,7 +252,7 @@ export class ProductionLogPage implements OnInit {
   }
 
   stopprocess() {
-    if(this.start_time == '' && (this.process_status_display == 'Paused')){
+    if(this.start_time == '' && (this.process_status_display == 'Paused' || this.process_status_display =='Running')){
       var now = new Date();
       now.setHours(now.getHours());
       var isPM = now.getHours() >= 12;
@@ -263,7 +266,7 @@ export class ProductionLogPage implements OnInit {
       let action='stop'; 
       let branch=0;
       let department=0;
-      let id='';
+      let id=this.id;
       let postData = {
         action:action,
         branch:branch,
@@ -271,7 +274,7 @@ export class ProductionLogPage implements OnInit {
         id:id,
         start_greige_production:this.start_greige_production
       }
-      this.api.greige_production_log(postData).subscribe(
+      this.api.greige_production_log(postData,this.id).subscribe(
         data => {
           this.taka_no_flag = false;
       });
