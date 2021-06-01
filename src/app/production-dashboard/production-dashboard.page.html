@@ -41,8 +41,8 @@
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Action</ion-title>
         <ion-label class="font_18">
-          <ion-icon class="pr3" name="eye-outline" (click)="view(product.id)"></ion-icon>
-          <ion-icon  name="create-outline" (click)="view(product.id)" *ngIf="product.process_status_display=='Paused'"></ion-icon>
+          <ion-icon class="pr3" name="eye-outline" (click)="view(product.id,'view')"></ion-icon>
+          <ion-icon  name="create-outline" (click)="view(product.id,'edit')" *ngIf="product.process_status_display=='Paused'"></ion-icon>
         </ion-label>
       </ion-item>
     </ion-card-content>

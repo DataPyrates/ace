@@ -38,12 +38,20 @@ export class ProductionLogPage implements OnInit {
   endminutes: number;
   startminutes: number;
   transaction_number: any;
+  show:boolean;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService) { }
   ngOnInit() {
     this.get_machine_data();
     this.activatedRoute.queryParams.subscribe(params => {
       this.id = params['id'];
+      var type = params['type'];
+      if(type=='view'){
+        this.show = false;
+      }
+      else{
+        this.show=true;
+      }
     });
     if (this.id) {
       this.view = true;

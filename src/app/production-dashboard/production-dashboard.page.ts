@@ -58,10 +58,11 @@ export class ProductionDashboardPage implements OnInit {
     })
   }
 
-  view(id){
+  view(id,type){
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: id,
+        type:type,
       }
     };
     this.route.navigate(['/production-log'],navigationExtras);
