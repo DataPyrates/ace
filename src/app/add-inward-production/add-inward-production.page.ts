@@ -49,6 +49,7 @@ export class AddInwardProductionPage implements OnInit {
   roll_cut_B: number =0;
   end_meter_B: any;
   sameendflag:boolean = true;
+  show:boolean;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -56,6 +57,13 @@ export class AddInwardProductionPage implements OnInit {
     this.get_all_inward_data();
     this.activatedRoute.queryParams.subscribe(params => {
       this.id = params['id'];
+      var type = params['type'];
+      if(type == 'view'){
+        this.show = false;
+      }
+      else{
+        this.show = true;
+      }
     });
     if (this.id) {
       this.view = true;

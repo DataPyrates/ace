@@ -58,10 +58,11 @@ export class InwardProductionDashboardPage implements OnInit {
      })
    }
  
- view(id){
+ view(id,type){
   let navigationExtras: NavigationExtras = {
     queryParams: {
       id: id,
+      type:type,
     }
   };
   this.route.navigate(['/add-inward-production'],navigationExtras);
