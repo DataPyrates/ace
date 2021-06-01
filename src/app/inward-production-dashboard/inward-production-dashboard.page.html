@@ -50,10 +50,42 @@
         <ion-label class="font_18">
           <ion-icon class="pr3" name="eye-outline"  (click)="view(inward.id,'view')"></ion-icon>
           <ion-icon name="create-outline" class="edit_icon" (click)="view(inward.id,'edit');machine_master()" *ngIf="inward.process_status_display=='Running'"></ion-icon>
+          <ion-icon class="pr3" name="barcode-outline" (click)="qrmodal()"></ion-icon>
+
         </ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <!-- <ion-card class="ion-card-list" *ngFor="let qrcode of qrdata">
+    <ion-card-content *ngIf="qrmodal()">
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">QR Code</ion-title>
+        <ion-label>{{ qrcode.qr_code}}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Lot No.</ion-title>
+        <ion-label>{{ qrcode.lot_number }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Roll Width</ion-title>
+        <ion-label>{{ qrcode.roll_width }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Article</ion-title>
+        <ion-label>{{ qrcode.greige_article_name }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Color</ion-title>
+        <ion-label>{{ qrcode.greige_color_name }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+ -->
 
 <div class="list">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -14,7 +14,7 @@ export class InwardProductionDashboardPage implements OnInit {
   page:any;
   term: any = '';
 
-  
+  qrdata=[];
   product = [];
   total_length_produced: any;
   total_qty_produced: any;
@@ -84,6 +84,18 @@ machine_master(){
  
 getFilterdata(){
   this.inward_production_log();
+}
+
+qrmodal(){
+  var inward_from_production_id = 12;
+  this.api.get_qr_data(inward_from_production_id).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+        this.qrdata=data['data']['results'][0];
+        
+      }
+
+    })
 }
  }
  
