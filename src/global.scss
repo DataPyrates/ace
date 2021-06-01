@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,38 +25,56 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.pr3{
+.pr3 {
     padding-right: 3%;
 }
-ion-toolbar{
-    --background: #fe5f55;
-    color:white;  
+ion-toolbar {
+    --background: #292e32;
+    color: white;
     text-align: center;
 }
-.yellow_color{
-    color:orange !important;
+.yellow_color {
+    color: orange !important;
 }
-.font_18
-{
-    font-size: 18px !important;
+.font_18 {
+    font-size: 20px !important;
 }
-.font_22{
+.font_22 {
     font-size: 22px !important;
 }
-.primary_btn{
+.primary_btn {
     --ion-color-base: var(--ion-color-primary, #3880ff) !important;
     --ion-color-contrast: var(--ion-color-primary-contrast, #fff) !important;
 }
-.hideclass{
+.hideclass {
     display: none !important;
 }
-.red_color
-{
- color: #e71b1b !important;
+.red_color {
+    color: #e71b1b !important;
 }
-.green_color{
+.green_color {
     color: green !important;
 }
-.edit_icon{
-    color:#008b8b !important
+.edit_icon {
+    color: #008b8b !important;
+}
+.grey_color {
+    color: #888da8 !important;
+}
+.ion-color-primary {
+    --ion-color-base: #7774e7 !important;
+    --ion-color-contrast:  #fff !important;
+}
+// background-color: #292e32!important;
+//     z-index: 1000;
+.content_card{
+    color: #4b4f68 !important;
+    line-height: 1.8;
+    border-color: #e6ecf5;
+    vertical-align: middle!important;
+}
+.disabled{
+cursor: default;
+opacity: .4;
+pointer-events: none;
 }

@@ -1,30 +1,29 @@
-.center{
-    text-align: center;
-    color:grey ;
+.center {
+  text-align: center;
+  color: #515365;
 }
-.register_btn{
-  text-align: center;  
+.register_btn {
+  text-align: center;
   --background: #607d8b;
   margin-top: 3%;
   width: 100%;
   color: white;
 }
-.scroll-content{
-    --background:white;
-  }
-ion-item{
-      --background: white;
-      color:grey ;
+.scroll-content {
+  --background: white;
 }
-ion-icon{
-    color:#7a9e9f ;
+ion-item {
+  --background: white;
+  color: grey;
 }
-ion-button{
-    --background: #607d8b; 
-    color:white;
-    font-size: 15px;
-
+ion-icon {
+  color: #7a9e9f;
 }
-.content_card{
+ion-button {
+  --background: #7774e7;
+  color: white;
+  font-size: 15px;
+}
+.content_card {
   font-size: 11px;
 }

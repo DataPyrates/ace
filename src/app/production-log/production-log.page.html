@@ -12,8 +12,8 @@
     <ion-row color="primary" justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
-          <h1 class="center">Add W.K. Production Log</h1>
-          <ion-label *ngIf="view" class="center">Transaction Number {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
+          <h4 class="center">W.K. Production Log</h4>
+          <ion-label *ngIf="view" class="center">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
         </div>
         <div padding>
           <ion-item>
@@ -38,12 +38,13 @@
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
           </ion-item>
-          <ion-grid *ngIf="((!view && machine_flag) || (process_status_display == 'Paused')) && show" class="production_detail">
+          <ion-grid *ngIf="((!view && machine_flag) || (process_status_display == 'Paused' || process_status_display=='Running')) && show" class="production_detail">
           <ion-item>
             <ion-icon name="list-circle-outline" class="pr3"></ion-icon>
-            <!-- <ion-text class="pr3">Timer</ion-text> -->
-            <ion-icon name="caret-forward-circle-outline" color="success" class="pr3" (click)="startprocess()"></ion-icon>
-            <ion-icon name="pause-circle-outline" color="danger" class="pr3" (click)="stopprocess()"></ion-icon>
+            <ion-icon name="caret-forward-circle-outline" color="success" class="pr3" (click)="startprocess()"
+            [ngClass]="{'disabled':process_status_display=='Running'}"></ion-icon>
+            <ion-icon name="pause-circle-outline" color="danger" class="pr3" (click)="stopprocess()" 
+            [ngClass]="{'disabled':process_status_display=='Paused'}"></ion-icon>
           </ion-item>
           <ion-item>
             <ion-icon name="timer-outline" class="pr3"></ion-icon>

@@ -59,10 +59,6 @@ export class ProductionLogPage implements OnInit {
     }
   }
 
-  opengrid() {
-    this.secondgrid = true;
-  }
-
   get_machine_data() {
     var machine_role = 2;
     this.api.get_machine_data(machine_role).subscribe(

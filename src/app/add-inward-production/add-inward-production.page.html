@@ -12,8 +12,8 @@
     <ion-row color="primary" justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
-          <h1 class="center">Add W.K. Inward From Production</h1>
-          <ion-label *ngIf="view">Transaction Number {{ transaction_number }} <ion-icon name="copy-outline"
+          <h4 class="center">W.K. Inward From Production</h4>
+          <ion-label *ngIf="view">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline"
               (click)="copyTransaction(transaction_number)"></ion-icon>
           </ion-label>
         </div>
@@ -63,23 +63,23 @@
             </ion-item>
             <ion-item>
               <ion-icon name="timer-outline"></ion-icon>
-              <ion-input name="roll_width" type="number" placeholder="Roll Width" [(ngModel)]="width_A" readonly>
+              <ion-input name="roll_width" type="number" min="0" placeholder="Roll Width" [(ngModel)]="width_A" readonly>
               </ion-input>
               <ion-icon name="timer-outline"></ion-icon>
-              <ion-input name="start_meter" type="number" placeholder="Start Meter" [(ngModel)]="start_meter_A"
+              <ion-input name="start_meter" type="number" min="0" placeholder="Start Meter" [(ngModel)]="start_meter_A"
               readonly></ion-input>
               <ion-icon name="time-outline"></ion-icon>
-              <ion-input name="end_meter" type="number" placeholder="End Meter" (keyup)="get_rollcut('A')"
+              <ion-input name="end_meter" type="number" min="0" placeholder="End Meter" (keyup)="get_rollcut('A')"
                 [(ngModel)]="end_meter_A" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="cut-outline" class="pr3"></ion-icon>
-              <ion-input name="roll_cut" type="number" placeholder="Roll Cut" [(ngModel)]="roll_cut_A" readonly>
+              <ion-input name="roll_cut" type="number" min="0" placeholder="Roll Cut" [(ngModel)]="roll_cut_A" readonly>
               </ion-input>
               <ion-icon name="grid-outline" class="pr3"></ion-icon>
-              <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="weight_A" required></ion-input>K
+              <ion-input name="weight" type="number" min="0" placeholder="Weight" [(ngModel)]="weight_A" required></ion-input>K
               <ion-icon name="grid-outline" class="pr3"></ion-icon>
-              <ion-input name="lot_no" type="number" placeholder="Lot No." [(ngModel)]="lot_no_A" readonly></ion-input>
+              <ion-input name="lot_no" type="number" min="0" placeholder="Lot No." [(ngModel)]="lot_no_A" readonly></ion-input>
             </ion-item>
             <div padding class="register_btn" *ngIf="((machine_number && !view ) || (process_status_display=='Running')) && show">
               <ion-button size="large" (click)="stickerA()">Add and Generate Sticker</ion-button>
@@ -91,23 +91,23 @@
             </ion-item>
             <ion-item>
               <ion-icon name="timer-outline"></ion-icon>
-              <ion-input name="roll_width" type="number" placeholder="Roll Width" [(ngModel)]="width_B" readonly>
+              <ion-input name="roll_width" type="number" min="0" placeholder="Roll Width" [(ngModel)]="width_B" readonly>
               </ion-input>
               <ion-icon name="timer-outline"></ion-icon>
-              <ion-input name="start_meter" type="number" placeholder="Start Meter" [(ngModel)]="start_meter_B"
+              <ion-input name="start_meter" type="number" min="0" placeholder="Start Meter" [(ngModel)]="start_meter_B"
               readonly></ion-input>
               <ion-icon name="time-outline"></ion-icon>
-              <ion-input name="end_meter" type="number" placeholder="End Meter" (keyup)="get_rollcut('B')"
+              <ion-input name="end_meter" type="number" min="0" placeholder="End Meter" (keyup)="get_rollcut('B')"
                 [(ngModel)]="end_meter_B" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="cut-outline" class="pr3"></ion-icon>
-              <ion-input name="roll_cut" type="number" placeholder="Roll Cut" [(ngModel)]="roll_cut_B" readonly>
+              <ion-input name="roll_cut" type="number" min="0" placeholder="Roll Cut" [(ngModel)]="roll_cut_B" readonly>
               </ion-input>
               <ion-icon name="grid-outline" class="pr3"></ion-icon>
-              <ion-input name="weight" type="number" placeholder="Weight" [(ngModel)]="weight_B" required></ion-input>K
+              <ion-input name="weight" type="number" min="0" placeholder="Weight" [(ngModel)]="weight_B" required></ion-input>K
               <ion-icon name="grid-outline" class="pr3"></ion-icon>
-              <ion-input name="lot_no" type="number" placeholder="Lot No." [(ngModel)]="lot_no_B" readonly></ion-input>
+              <ion-input name="lot_no" type="number" min="0" placeholder="Lot No." [(ngModel)]="lot_no_B" readonly></ion-input>
             </ion-item>
           </ion-grid>
 
@@ -149,7 +149,7 @@
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">QR Code</ion-title>
         <ion-label class="font_22" (click)="openIonModal(inward.qr_code)">
-          <ion-icon name="barcode"></ion-icon>
+          <ion-icon name="qr-code-outline"></ion-icon>
         </ion-label>
       </ion-item>
     </ion-card-content>

@@ -13,8 +13,11 @@
 <ion-content>
   <ion-searchbar placeholder="Search Machine No." [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
   </ion-searchbar> 
-  <ion-card class="ion-card-list" *ngFor="let product of collection | paginate: { itemsPerPage: 10, currentPage: p }">
-    <ion-card-content>
+  <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }" pager>
+  <ion-slide *ngFor="let product of collection | paginate: { itemsPerPage: 10, currentPage: p }" style="width: 100%; height: 300px; border: 2px solid #f8f8f8">
+  <ion-col>
+  <!-- <ion-card class="ion-card-list" *ngFor="let product of collection | paginate: { itemsPerPage: 10, currentPage: p }"> -->
+    <!-- <ion-card-content> -->
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Start Date</ion-title>
         <ion-label>{{ product.created_date}}</ion-label>
@@ -47,8 +50,11 @@
           <ion-icon  name="create-outline" class="edit_icon" (click)="view(product.id,'edit')" *ngIf="product.process_status_display=='Paused'|| product.process_status_display=='Running'"></ion-icon>
         </ion-label>
       </ion-item>
-    </ion-card-content>
-  </ion-card>
+    <!-- </ion-card-content> -->
+  <!-- </ion-card> -->
+  </ion-col>
+  </ion-slide>
+  </ion-slides>
 
 <div class="list">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

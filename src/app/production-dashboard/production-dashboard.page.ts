@@ -46,10 +46,10 @@ export class ProductionDashboardPage implements OnInit {
       month[10] = "November";
       month[11] = "December";
        this.collection=data['data']['results'];
-       var dd = today.getDate();
        for(let i= 0;i<this.collection.length;i++){
         var c_date = this.collection[i]['created_date'];
         var today = new Date(c_date);
+        var dd = today.getDate();
         var mm = month[today.getMonth()];
         var year = today.getFullYear();
         this.collection[i]['created_date'] = dd+'-'+mm+'-'+year;
