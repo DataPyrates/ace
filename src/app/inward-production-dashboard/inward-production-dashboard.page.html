@@ -11,6 +11,8 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-searchbar placeholder="Search Machine No." [(ngModel)]="term" animated="true" (click)="getFilterdata()"></ion-searchbar>
   <ion-card class="ion-card-list" *ngFor="let inward of product | paginate: { itemsPerPage: 10, currentPage: p }">
     <ion-card-content >
       <ion-item class="content_card">
@@ -46,8 +48,8 @@
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Action</ion-title>
         <ion-label class="font_18">
-          <ion-icon name="eye-outline"  (click)="view(inward.id)"></ion-icon>
-          <ion-icon  name="create-outline" (click)="view(inward.id);machine_master()" *ngIf="inward.process_status_display=='Running'"></ion-icon>
+          <ion-icon class="pr3" name="eye-outline"  (click)="view(inward.id)"></ion-icon>
+          <ion-icon name="create-outline" class="edit_icon" (click)="view(inward.id);machine_master()" *ngIf="inward.process_status_display=='Running'"></ion-icon>
         </ion-label>
       </ion-item>
     </ion-card-content>

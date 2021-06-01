@@ -12,7 +12,8 @@ export class InwardProductionDashboardPage implements OnInit {
  
   operator:any;
   page:any;
-  
+  term: any = '';
+
   
   product = [];
   total_length_produced: any;
@@ -26,7 +27,8 @@ export class InwardProductionDashboardPage implements OnInit {
 
   inward_production_log(){
     this.page=1;  
-     this.api.inward_production_log_data(this.page).subscribe(
+    let start_greige_production_machine__machine_master__number__icontains = this.term;
+     this.api.inward_production_log_data(this.page,start_greige_production_machine__machine_master__number__icontains).subscribe(
      (data :any )=> {
       if((data['status'] == 200)){
        var month = new Array();
@@ -79,6 +81,9 @@ machine_master(){
     })
 }
  
+getFilterdata(){
+  this.inward_production_log();
+}
  }
  
 

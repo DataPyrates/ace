@@ -3,7 +3,7 @@
     <ion-button
       [color]="isRoot ? 'primary' : 'secondary'"
       [expand]="isRoot ? 'full' : 'block'"
-      (click)="isOpen = !isOpen;" 
+      (click)="isOpen = !isOpen;openclosedmenu(menuItem.name)" 
     >
       {{ menuItem.name }}
     </ion-button>

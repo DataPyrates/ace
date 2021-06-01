@@ -20,13 +20,13 @@ export class ProductionLogPage implements OnInit {
   operator: any;
   production_data: any;
   machine_number: any;
-  id: any;
+  id: any ="";
   view: boolean = false;
   production_log_details: any;
   machine_flag: boolean = false;
   start_time:any = '';
   end_time:any = '';
-  start_greige_production:any;
+  start_greige_production:any = 0;
   taka_no_flag:boolean = true;
   process_status_display: any;
   meter_reading: any;
@@ -117,19 +117,77 @@ export class ProductionLogPage implements OnInit {
             now.getMinutes(),
             now.getSeconds() || '00'].join(':') +
               (isPM ? 'pm' : 'am');
+          if(this.process_status_display == 'Paused'){
           this.end_time = time;
+          }
           this.end_time_without = [now.getHours() - (isPM && !isMidday ? 12 : 0),
             now.getMinutes(),
             now.getSeconds() || '00'].join(':');
           this.endminutes = now.getMinutes();
           }
           this.created_by = data['data']['created_by'];
+          if(this.production_log_details && this.production_log_details.length >0){
+            for(let i=0;i < this.production_log_details.length;i++){
+              var field ="";
+              this.production_log_details[i]['stop_time'] = this.convert(this.production_log_details[i]['stop_time']);
+              this.production_log_details[i]['start_time'] = this.convert(this.production_log_details[i]['start_time']);
+              if(this.production_log_details[i]['field1_is_error']==true){
+                field += "Field 1, ";
+              }
+              if(this.production_log_details[i]['field2_is_error']==true){
+                field += "Field 2, ";
+              }
+              if(this.production_log_details[i]['field3_is_error']==true){
+                field += "Field 3, ";
+              }
+              if(this.production_log_details[i]['field4_is_error']==true){
+                field += "Field 4, ";
+              }
+              if(this.production_log_details[i]['field5_is_error']==true){
+                field += "Field 5, ";
+              }
+              if(this.production_log_details[i]['field6_is_error']==true){
+                field += "Field 6, ";
+              }
+              if(this.production_log_details[i]['field7_is_error']==true){
+                field += "Field 7, ";
+              }
+              if(this.production_log_details[i]['field8_is_error']==true){
+                field += "Field 8, ";
+              }
+              if(this.production_log_details[i]['field9_is_error']==true){
+                field += "Field 9, ";
+              }
+              if(this.production_log_details[i]['field10_is_error']==true){
+                field += "Field 10, ";
+              }
+              if(this.production_log_details[i]['field11_is_error']==true){
+                field += "Field 11, ";
+              }
+              if(this.production_log_details[i]['field12_is_error']==true){
+                field += "Field 12, ";
+              }
+              this.production_log_details[i]['field']= field;
+            }
+          }
         })
     }
   }
 
+  convert(dates){
+    var now = new Date(dates);
+    now.setHours(now.getHours());
+    var isPM = now.getHours() >= 12;
+    var isMidday = now.getHours() == 12;
+    var time = [now.getHours() - (isPM && !isMidday ? 12 : 0),
+    now.getMinutes(),
+    now.getSeconds() || '00'].join(':') +
+      (isPM ? 'pm' : 'am');
+    return time;
+  }
+
   startprocess() {
-    if (this.process_status_display == 'Paused') {
+    if (this.process_status_display == 'Paused' || this.process_status_display=="Running") {
     if(this.taka_no){
     if(this.meter_reading){
       var now = new Date();
@@ -167,6 +225,15 @@ export class ProductionLogPage implements OnInit {
       this.api.greige_production_log_details(postData).subscribe(
         data => {
           this.taka_no_flag = false;
+          this.production_data_log_view();
+          this.start_time ="";
+          this.end_time="";
+          this.meter_reading="";
+          this.taka_no="";
+          this.fields="";
+          this.stop_duration_minutes="";
+
+          
       });
     }
     else{
@@ -193,7 +260,7 @@ export class ProductionLogPage implements OnInit {
   }
 
   stopprocess() {
-    if(this.start_time == '' && this.process_status_display != 'Paused'){
+    if(this.start_time == '' && (this.process_status_display == 'Paused' || this.process_status_display =='Running')){
       var now = new Date();
       now.setHours(now.getHours());
       var isPM = now.getHours() >= 12;
@@ -207,7 +274,7 @@ export class ProductionLogPage implements OnInit {
       let action='stop'; 
       let branch=0;
       let department=0;
-      let id='';
+      let id=this.id;
       let postData = {
         action:action,
         branch:branch,
@@ -215,7 +282,7 @@ export class ProductionLogPage implements OnInit {
         id:id,
         start_greige_production:this.start_greige_production
       }
-      this.api.greige_production_log(postData).subscribe(
+      this.api.greige_production_log(postData,this.id).subscribe(
         data => {
           this.taka_no_flag = false;
       });
