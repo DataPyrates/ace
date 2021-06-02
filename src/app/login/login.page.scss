@@ -17,7 +17,7 @@
 
 .row1 {
     height: 50%;
-    background: linear-gradient(137deg, #fe5f55, #ffc107);
+    background:linear-gradient(137deg, #b4d9eb, #040c0f);
 }
 
 .row2 {
@@ -26,13 +26,13 @@
 
 ion-icon {
     margin-right: 15px;
-    color:#7774e7;
+    color:#607d8b;
 }
 
 ion-button {
     margin-top: 5px;
     margin-bottom: 15px;
-    --background:linear-gradient(137deg, #fe5f55, #ffc107);;
+    --background:linear-gradient(137deg, #b4d9eb, #040c0f);
 }
 
 ion-slide {
@@ -48,8 +48,8 @@ ion-slide {
     // align-items: center;
  }
  h1,h3{
-     color:#7774e7;
+     color:#607d8b;
  }
  ion-input{
-    color:#7774e7;
+    color:#607d8b;
  }
