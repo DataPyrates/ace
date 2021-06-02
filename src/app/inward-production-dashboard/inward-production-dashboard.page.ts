@@ -19,6 +19,11 @@ export class InwardProductionDashboardPage implements OnInit {
   total_length_produced: any;
   total_qty_produced: any;
   start_greige_production_machine: any;
+  qrcode: any;
+  qrlot: any;
+  qrwidth: any;
+  qrcolor: any;
+  qrcarticle: any;
   constructor(private route: Router, private api: ApiService) { }
 
   ngOnInit() {
@@ -90,7 +95,12 @@ export class InwardProductionDashboardPage implements OnInit {
     this.api.get_qr_data(inward_from_production_id).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
-          this.qrdata = data['data']['results'][0];
+          this.qrcode = data['data']['results'][0]['qr_code'];
+          this.qrlot = data['data']['results'][0]['lot_number'];
+          this.qrwidth = data['data']['results'][0]['roll_width'];
+          this.qrcarticle = data['data']['results'][0]['greige_article_name'];
+          this.qrcolor = data['data']['results'][0]['greige_color_name'];
+          
         }
       })
   }
