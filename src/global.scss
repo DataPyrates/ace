@@ -43,7 +43,7 @@ ion-toolbar {
     font-size: 22px !important;
 }
 .primary_btn {
-    --ion-color-base: var(--ion-color-primary, #3880ff) !important;
+    --ion-color-base: #7774e7 !important;
     --ion-color-contrast: var(--ion-color-primary-contrast, #fff) !important;
 }
 .hideclass {
@@ -63,18 +63,19 @@ ion-toolbar {
 }
 .ion-color-primary {
     --ion-color-base: #7774e7 !important;
-    --ion-color-contrast:  #fff !important;
+    --ion-color-contrast: #fff !important;
 }
 // background-color: #292e32!important;
 //     z-index: 1000;
-.content_card{
+.content_card {
+    font-size: 11px !important;
     color: #4b4f68 !important;
     line-height: 1.8;
     border-color: #e6ecf5;
-    vertical-align: middle!important;
+    vertical-align: middle !important;
 }
-.disabled{
-cursor: default;
-opacity: .4;
-pointer-events: none;
+.disabled {
+    cursor: default;
+    opacity: 0.4;
+    pointer-events: none;
 }

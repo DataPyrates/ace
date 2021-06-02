@@ -1,106 +1,147 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ACE</ion-title>
+    <ion-title>QR Code</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row *ngIf="flag_qr == 'inward_view'">
+    <ion-col></ion-col>
+    <ion-col>
+      <!-- <ngx-barcode [bc-value]="qr_code" [bc-display-value]="true"></ngx-barcode> -->
+      <qrcode [qrdata]="qr_code" [size]="256" [level]="'M'"></qrcode>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+  </ion-row>
+  <div *ngIf="flag_qr == 'inward_dashboard'">
+   <ion-card class="ion-card-list" *ngFor="let data_inward_production of inward_production">
+    <ion-card-content>
+      <ion-item class="content_card">
+        <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+        <qrcode [qrdata]="data_inward_production.qr_code" [size]="256" [level]="'M'"></qrcode>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">QR Code</ion-title>
+        <ion-label>{{ data_inward_production.qr_code }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Lot No.</ion-title>
+        <ion-label>{{ data_inward_production.lot_number }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Roll Width</ion-title>
+        <ion-label>{{ data_inward_production.roll_width }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Article</ion-title>
+        <ion-label>{{ data_inward_production.greige_article_name }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Greige Color</ion-title>
+        <ion-label>{{ data_inward_production.greige_color_name }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>  
+  </div>
+
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-6>
+      <ion-label>Roll Number</ion-label>
+    </ion-col>
+    <ion-col col-6>
+      <ion-label>{{roll_no}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-6>
+      <ion-label>Roll Cut</ion-label>
+    </ion-col>
+    <ion-col col-6>
+      <ion-label>{{roll_no}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-6>
+      <ion-label>Roll Weight</ion-label>
+    </ion-col>
+    <ion-col col-6>
+      <ion-label>{{roll_weight}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-6>
+      <ion-label>Lot Number</ion-label>
+    </ion-col>
+    <ion-col col-6>
+      <ion-label>{{lot_no}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-6>
+      <ion-label>Roll Number</ion-label>
+    </ion-col>
+    <ion-col col-6>
+      <ion-label>{{roll_no}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-3>
+      <ion-label>Takka Number</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{taka_no}}</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>Color</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{color}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-3>
+      <ion-label>Greige Article</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{article}}</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>Width</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{color}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: groove;" *ngIf="flag_qr == 'inward_view'">
+    <ion-col col-3>
+      <ion-label>Operator</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{operator}}</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>Shift</ion-label>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{shift}}</ion-label>
+    </ion-col>
+  </ion-row>
+
   <ion-row>
     <ion-col></ion-col>
     <ion-col>
-  <!-- <ngx-barcode [bc-value]="qr_code" [bc-display-value]="true"></ngx-barcode> -->
-  <qrcode [qrdata]="qr_code" [size]="256" [level]="'M'"></qrcode>
-</ion-col>
-  <ion-col>
-  </ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-6>
-  <ion-label >Roll Number</ion-label>
-</ion-col>
-<ion-col col-6>
-  <ion-label >{{roll_no}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-6>
-  <ion-label >Roll Cut</ion-label>
-</ion-col>
-<ion-col col-6>
-  <ion-label >{{roll_no}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-6>
-  <ion-label >Roll Weight</ion-label>
-</ion-col>
-<ion-col col-6>
-  <ion-label >{{roll_weight}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-6>
-  <ion-label >Lot Number</ion-label>
-</ion-col>
-<ion-col col-6>
-  <ion-label >{{lot_no}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-6>
-  <ion-label >Roll Number</ion-label>
-</ion-col>
-<ion-col col-6>
-  <ion-label >{{roll_no}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-3>
-  <ion-label >Takka Number</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >{{taka_no}}</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >Color</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >{{color}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-3>
-  <ion-label >Greige Article</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >{{article}}</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >Width</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >{{color}}</ion-label>
-</ion-col>
-</ion-row>
-<ion-row style="border-bottom: groove;">
-  <ion-col col-3>
-  <ion-label >Operator</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >{{operator}}</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >Shift</ion-label>
-</ion-col>
-<ion-col col-3>
-  <ion-label >{{shift}}</ion-label>
-</ion-col>
-</ion-row>
-
- <ion-row>
-    <ion-col>
-  <ion-button class="modal_button" (click)="closeModel()">Close</ion-button>
-</ion-col>
-<ion-col></ion-col>
-</ion-row>
+      <ion-button class="modal_button" (click)="closeModel()">Close</ion-button>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
 </ion-content>

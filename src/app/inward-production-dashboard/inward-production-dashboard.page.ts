@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { ModalController } from '@ionic/angular';
+import { OpenBarcodePage } from './../open-barcode/open-barcode.page';
 
 @Component({
   selector: 'app-inward-production-dashboard',
@@ -19,12 +21,8 @@ export class InwardProductionDashboardPage implements OnInit {
   total_length_produced: any;
   total_qty_produced: any;
   start_greige_production_machine: any;
-  qrcode: any;
-  qrlot: any;
-  qrwidth: any;
-  qrcolor: any;
-  qrcarticle: any;
-  constructor(private route: Router, private api: ApiService) { }
+
+  constructor(private route: Router, private api: ApiService,  public modalController: ModalController) { }
 
   ngOnInit() {
     this.inward_production_log();
@@ -95,14 +93,28 @@ export class InwardProductionDashboardPage implements OnInit {
     this.api.get_qr_data(inward_from_production_id).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
-          this.qrcode = data['data']['results'][0]['qr_code'];
-          this.qrlot = data['data']['results'][0]['lot_number'];
-          this.qrwidth = data['data']['results'][0]['roll_width'];
-          this.qrcarticle = data['data']['results'][0]['greige_article_name'];
-          this.qrcolor = data['data']['results'][0]['greige_color_name'];
-          
+          localStorage.setItem('data_inward_production', JSON.stringify(data['data']['results']));
+          localStorage.setItem('flag_qr', 'inward_dashboard');
+
+          this.openIonModal();
         }
       })
+  }
+
+  async openIonModal() {
+    const modal = await this.modalController.create({
+      component: OpenBarcodePage,
+      componentProps: {
+        'model_title': "Inward Production Dashboard"
+      }
+    });
+
+    modal.onDidDismiss().then((modelData) => {
+      if (modelData !== null) {
+      }
+    });
+
+    return await modal.present();
   }
 }
 
