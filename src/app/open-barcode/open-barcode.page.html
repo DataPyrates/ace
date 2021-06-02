@@ -8,12 +8,36 @@
   <ion-row>
     <ion-col></ion-col>
     <ion-col>
-  <ngx-barcode [bc-value]="qr_code" [bc-display-value]="true"></ngx-barcode>
+  <!-- <ngx-barcode [bc-value]="qr_code" [bc-display-value]="true"></ngx-barcode> -->
+  <qrcode [qrdata]="qr_code" [size]="256" [level]="'M'"></qrcode>
 </ion-col>
-  <ion-col></ion-col>
+  <ion-col>
+  </ion-col>
 </ion-row>
-  <ion-row>
- <ion-col></ion-col>
+<ion-row style="border-bottom: groove;">
+  <ion-col col-4>
+  <ion-label >header</ion-label>
+</ion-col>
+<ion-col col-4>
+  <ion-label >header</ion-label>
+</ion-col>
+  <ion-col col-4>
+  <ion-label >header</ion-label>
+</ion-col>
+</ion-row>
+<ion-row style="border-bottom: groove;">
+  <ion-col col-4>
+  <ion-label >row</ion-label>
+</ion-col>
+<ion-col col-4>
+  <ion-label >02/02/2018</ion-label>
+</ion-col>
+  <ion-col col-4>
+  <ion-label >row</ion-label>
+</ion-col>
+</ion-row>
+
+ <ion-row>
     <ion-col>
   <ion-button class="modal_button" (click)="closeModel()">Close</ion-button>
 </ion-col>

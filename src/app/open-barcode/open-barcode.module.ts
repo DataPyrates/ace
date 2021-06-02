@@ -8,8 +8,8 @@ import { OpenBarcodePageRoutingModule } from './open-barcode-routing.module';
 
 import { OpenBarcodePage } from './open-barcode.page';
 
-import { NgxBarcodeModule } from 'ngx-barcode';
-
+// import { NgxBarcodeModule } from 'ngx-barcode';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
@@ -17,7 +17,8 @@ import { NgxBarcodeModule } from 'ngx-barcode';
     FormsModule,
     IonicModule,
     OpenBarcodePageRoutingModule,
-    NgxBarcodeModule
+    QRCodeModule
+    // NgxBarcodeModule
 
   ],
   declarations: [OpenBarcodePage]
