@@ -99,8 +99,10 @@ export class AddInwardProductionPage implements OnInit {
         })
     }
   }
-  async openIonModal(qr_code) {
+  async openIonModal(qr_code,inward) {
     localStorage.setItem('qr_code', qr_code);
+    localStorage.setItem('data_inward_view', JSON.stringify(inward));
+    localStorage.setItem('flag_qr', 'inward_view');
     const modal = await this.modalController.create({
       component: OpenBarcodePage,
       componentProps: {

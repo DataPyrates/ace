@@ -11,6 +11,7 @@ export class OpenBarcodePage implements OnInit {
   qr_code:any;
   flag_qr: string;
   inward_production: any;
+  inward_view: any;
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
@@ -18,6 +19,8 @@ export class OpenBarcodePage implements OnInit {
     this.flag_qr= localStorage.getItem('flag_qr');
     this.inward_production = JSON.parse(localStorage.getItem('data_inward_production'));
     console.log(this.inward_production);
+    this.inward_view  = JSON.parse(localStorage.getItem('data_inward_view'));
+    console.log(this.inward_view);
   }
   async closeModel() {
     const close: string = "Modal Removed";
