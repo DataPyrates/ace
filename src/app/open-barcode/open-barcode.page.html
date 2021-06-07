@@ -17,9 +17,9 @@
   <div *ngIf="flag_qr == 'inward_dashboard'">
    <ion-card class="ion-card-list" *ngFor="let data_inward_production of inward_production">
     <ion-card-content>
-      <ion-item class="qrcode">
+      <div class="qrcode">
         <qrcode [qrdata]="data_inward_production.qr_code" [size]="256" [level]="'M'"></qrcode>
-      </ion-item>
+      </div>
 
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">QR Code</ion-title>
@@ -52,9 +52,9 @@
   <div *ngIf="flag_qr == 'inward_view'">
     <ion-card class="ion-card-list">
      <ion-card-content>
-       <ion-item class="qrcode">
+       <div class="qrcode">
          <qrcode [qrdata]="inward_view.qr_code" [size]="256" [level]="'M'"></qrcode>
-       </ion-item>
+       </div>
  
        <ion-item class="content_card">
          <ion-title class="content_card" slot="start">Roll No.</ion-title>
