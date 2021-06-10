@@ -21,14 +21,15 @@ export class InwardProductionDashboardPage implements OnInit {
   total_length_produced: any;
   total_qty_produced: any;
   start_greige_production_machine: any;
+  total: any;
 
   constructor(private route: Router, private api: ApiService,  public modalController: ModalController) { }
 
   ngOnInit() {
-    this.inward_production_log();
+    this.inward_production_log(1);
   }
 
-  inward_production_log() {
+  inward_production_log(page) {
     this.page = 1;
     let start_greige_production_machine__machine_master__number__icontains = this.term;
     this.api.inward_production_log_data(this.page, start_greige_production_machine__machine_master__number__icontains).subscribe(
@@ -48,6 +49,7 @@ export class InwardProductionDashboardPage implements OnInit {
           month[10] = "November";
           month[11] = "December";
           this.product = data['data']['results'];
+          this.total = data['data']['count'];
           for (let i = 0; i < this.product.length; i++) {
             var c_date = this.product[i]['created_date'];
             var today = new Date(c_date);
@@ -86,7 +88,7 @@ export class InwardProductionDashboardPage implements OnInit {
   }
 
   getFilterdata() {
-    this.inward_production_log();
+    this.inward_production_log(this.page);
   }
 
   qrmodal(inward_from_production_id) {
@@ -116,6 +118,9 @@ export class InwardProductionDashboardPage implements OnInit {
 
     return await modal.present();
   }
+  pageChanged(event){
+    this.inward_production_log(event);
+   }
 }
 
 

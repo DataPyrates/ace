@@ -50,6 +50,14 @@ export class ApiService {
     
   }
 
+  public fabric_order_data(page){
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    console.log(headers);
+    return this.http.get(environment.apiURL + 'erp/api/transactions/fabric_sales_order/?action=table_list&page_size=10&page='+page,{'headers':headers});
+  }
+
   public  inward_production_log_data(page,start_greige_production_machine__machine_master__number__icontains) {
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));

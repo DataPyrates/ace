@@ -10,14 +10,15 @@ import { Router,NavigationExtras } from '@angular/router';
 export class MachineMasterPage implements OnInit {
   page: number;
   collection = [];
+  total: any;
 
   constructor(private route: Router,private api: ApiService) { }
 
   ngOnInit() {
-    this.get_machine_data();
+    this.get_machine_data(1);
   }
   
-  get_machine_data(){
+  get_machine_data(page){
     this.page=1;  
     this.api.machine_data(this.page).subscribe(
       (data :any )=> {
@@ -36,6 +37,7 @@ export class MachineMasterPage implements OnInit {
         month[10] = "November";
         month[11] = "December";
          this.collection=data['data']['results'];
+         this.total = data['data']['count'];
          for(let i= 0;i<this.collection.length;i++){
           var c_date = this.collection[i]['machine_installation_date'];
           var today = new Date(c_date);
@@ -49,5 +51,8 @@ export class MachineMasterPage implements OnInit {
       
       })
   }
+  pageChanged(event){
+    this.get_machine_data(event);
+   }
 
 }

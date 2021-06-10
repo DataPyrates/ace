@@ -1,6 +1,6 @@
 <div>
   <p *ngIf="menuItem.children; else finalItem">
-    <ion-button
+    <ion-button *ngIf="menuItem.class==department"
       [color]="isRoot ? 'primary' : 'secondary'"
       [expand]="isRoot ? 'full' : 'block'"
       (click)="isOpen = !isOpen;openclosedmenu(menuItem.name)" 

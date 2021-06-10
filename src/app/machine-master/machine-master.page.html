@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="ion-card-list" *ngFor="let machine of collection | paginate: { itemsPerPage: 10, currentPage: p }">
+  <ion-card class="ion-card-list" *ngFor="let machine of collection | paginate: { itemsPerPage: 10, currentPage: p,totalItems: total }">
     <ion-card-content>
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Machine Number</ion-title>
@@ -48,6 +48,6 @@
   </ion-card>
 
 <div class="list">
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
 </ion-content>

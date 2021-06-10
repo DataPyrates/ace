@@ -13,7 +13,7 @@
 <ion-content>
 
   <ion-searchbar placeholder="Search Machine No." [(ngModel)]="term" animated="true" (click)="getFilterdata()"></ion-searchbar>
-  <ion-card class="ion-card-list" *ngFor="let inward of product | paginate: { itemsPerPage: 10, currentPage: p }">
+  <ion-card class="ion-card-list" *ngFor="let inward of product | paginate: { itemsPerPage: 10, currentPage: p,totalItems: total }">
     <ion-card-content >
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">GIP No.</ion-title>
@@ -58,6 +58,6 @@
   </ion-card>
 
 <div class="list">
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
 </ion-content>

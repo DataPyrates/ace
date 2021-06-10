@@ -18,16 +18,17 @@ export class ProductionDashboardPage implements OnInit {
   
   collection = [];
   term: any = '';
+  total: any;
   constructor(private route: Router,private api: ApiService) { 
    
   }
 
   ngOnInit() {
-    this.greige_production_log();
+    this.greige_production_log(1);
   }
   
-  greige_production_log(){
-   this.page=1;  
+  greige_production_log(page){
+   this.page=page;  
    let start_greige_production__machine_master__number__icontains = this.term;
     this.api.greige_production_log_data(this.page,start_greige_production__machine_master__number__icontains).subscribe(
     (data :any )=> {
@@ -46,6 +47,7 @@ export class ProductionDashboardPage implements OnInit {
       month[10] = "November";
       month[11] = "December";
        this.collection=data['data']['results'];
+       this.total = data['data']['count'];
        for(let i= 0;i<this.collection.length;i++){
         var c_date = this.collection[i]['created_date'];
         var today = new Date(c_date);
@@ -69,7 +71,9 @@ export class ProductionDashboardPage implements OnInit {
     this.route.navigate(['/production-log'],navigationExtras);
   }
   getFilterdata(){
-    this.greige_production_log();
+    this.greige_production_log(this.page);
   }
- 
+  pageChanged(event){
+    this.greige_production_log(event);
+   }
 }

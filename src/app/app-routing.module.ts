@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'open-barcode',
     loadChildren: () => import('./open-barcode/open-barcode.module').then( m => m.OpenBarcodePageModule)
   },
+  {
+    path: 'order-dashboard',
+    loadChildren: () => import('./order-dashboard/order-dashboard.module').then( m => m.OrderDashboardPageModule)
+  },
 ];
 
 @NgModule({

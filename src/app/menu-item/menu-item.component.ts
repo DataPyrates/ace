@@ -14,10 +14,12 @@ export class MenuItemComponent implements OnInit {
   @Input() isRoot: boolean;
 
   isOpen = false;
+  department: string;
 
   constructor(private route: Router, public menuCtrl: MenuController) {}
 
   ngOnInit() {
+    this.department = localStorage.getItem('department');
   }
 
   onMenuItemSelected(menuItem: MenuItem): void {

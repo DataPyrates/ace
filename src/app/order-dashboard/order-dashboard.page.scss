@@ -1,0 +1,36 @@
+ion-grid {
+    --ion-grid-column-padding: 10px;
+    border-collapse: collapse;
+    border-style: hidden;
+    
+    ion-row:first-child {
+      --ion-grid-column-padding: 10px;
+      background-color:  #1a181f;
+      font-weight: bold;
+      color:white;
+      display:flex;
+     
+    }
+   
+    ion-col {
+      border: 1px solid black;
+      border-bottom: 0;
+      border-right: 0;
+      display:flex;
+      
+    }
+    ion-col:last-child {
+       border-right: 1px solid black;
+      display:flex;
+     
+    }
+    
+    ion-row:last-child {
+      border-bottom: 1px solid black;
+      display:flex;
+    }
+  }
+  ion-button{
+    --background: #1a181f;
+  }
+ 
