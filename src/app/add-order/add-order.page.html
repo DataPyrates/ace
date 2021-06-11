@@ -1,0 +1,167 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      ACE
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-grid>
+    <h4 class="center">Basic Details</h4>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <ion-label *ngIf="view">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline"
+              (click)="copyTransaction(transaction_number)"></ion-icon>
+          </ion-label>
+        </div>
+        <div padding>
+          <ion-item>
+            <ion-searchbar placeholder="Search Client Name" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="gst_no" type="text" placeholder="GST No."
+              [(ngModel)]="gst_no" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="address" type="text" placeholder="Address"
+              [(ngModel)]="address" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="po_no" type="text" placeholder="Client PO No."
+              [(ngModel)]="po_no"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Delivery Address" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Sales User" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Transport Name" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          
+          <ion-item>
+            <ion-icon name="settings-outline" class="pr3"></ion-icon>
+            <ion-label *ngIf="!view">Dispatch from Branch</ion-label>
+            <ion-select [(ngModel)]="dispatch" *ngIf="!view">
+              <ion-select-option value="">--Select--</ion-select-option>
+              <ion-select-option [value]="batch.id" *ngFor="let branch of dispatch">
+                {{branch.machine_number}}</ion-select-option>
+            </ion-select>
+            <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <h4 class="center">Item Details</h4>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div padding>
+          <ion-item>
+            <ion-searchbar placeholder="Search Article Code" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Quality Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Design Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Chart Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-searchbar placeholder="Search Color Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+            </ion-searchbar>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="quantity" type="text" placeholder="Quantity"
+              [(ngModel)]="quantity"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="settings-outline" class="pr3"></ion-icon>
+            <ion-label *ngIf="!view">Unit</ion-label>
+            <ion-select [(ngModel)]="dispatch" *ngIf="!view">
+              <ion-select-option value="">--Select--</ion-select-option>
+              <ion-select-option [value]="batch.id" *ngFor="let branch of dispatch">
+                {{branch.machine_number}}</ion-select-option>
+            </ion-select>
+            <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="rate" type="text" placeholder="Rate Per Unit"
+              [(ngModel)]="rate"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="date" placeholder="Required on Date" [(ngModel)]="date"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="discount" type="text" placeholder="Discount"
+              [(ngModel)]="discount"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="hsn" type="text" placeholder="HSN"
+              [(ngModel)]="hsn" readonly></ion-input>
+              <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="igst" type="text" placeholder="IGST"
+              [(ngModel)]="igst" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="sgst" type="text" placeholder="SGST"
+              [(ngModel)]="sgst" readonly></ion-input>
+              <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="cgst" type="text" placeholder="CGST"
+              [(ngModel)]="cgst" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <button class="danger">RESET</button>
+            <button class="Success">ADD</button>
+          </ion-item>         
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <h4 class="center">Additional Details</h4>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div padding>
+          <ion-item>
+            <ion-icon name="settings-outline" class="pr3"></ion-icon>
+            <ion-label *ngIf="!view">Currency</ion-label>
+            <ion-select [(ngModel)]="dispatch" *ngIf="!view">
+              <ion-select-option value="">--Select--</ion-select-option>
+              <ion-select-option [value]="batch.id" *ngFor="let branch of dispatch">
+                {{branch.machine_number}}</ion-select-option>
+            </ion-select>
+            <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="remark" type="text" placeholder="Remarks"
+              [(ngModel)]="remark"></ion-input>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
