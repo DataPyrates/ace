@@ -14,5 +14,6 @@ npm install ngx-barcode --save
 npm i angularx-qrcode
 npm install ngx-bootstrap-modal --save // modal
 npm install ngx-bootstrap-modal --save
+npm i @ng-bootstrap/ng-bootstrap
 menu :- https://www.crojach.com/blog/2019/6/6/simple-multi-level-menu-in-ionicangular
 

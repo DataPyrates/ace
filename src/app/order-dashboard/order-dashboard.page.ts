@@ -16,6 +16,7 @@ export class OrderDashboardPage implements OnInit, AfterViewInit {
   total:any;
   modalRef: BsModalRef;
     @ViewChild('template') templateRef: TemplateRef<any>;
+  sales: any;
   constructor(private route: Router,private api: ApiService,public modalService: BsModalService) { }
 
   ngOnInit() {
@@ -69,7 +70,8 @@ export class OrderDashboardPage implements OnInit, AfterViewInit {
       initialState : user
     });
   }
-   openModal(template: TemplateRef<any>) {
+   openModal(template: TemplateRef<any>,sales) {
+     this.sales = sales;
     const user = {
       id: 10
     };
