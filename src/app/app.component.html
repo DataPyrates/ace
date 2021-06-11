@@ -12,7 +12,7 @@
           <ion-label class="branch grey_color"></ion-label>
         </ion-col>
         <ion-col>
-          <ion-select class="grey_color" (ionChange)="get_department($event)">
+          <ion-select class="grey_color" (ionChange)="get_department($event)" [value]='department'>
           <ion-select-option class="department"></ion-select-option>
           <ion-select-option class="department1"></ion-select-option>
         </ion-select>

@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild,AfterViewInit } from '@angular/core';
 import {ApiService} from './../api.service';
 import { Router,NavigationExtras } from '@angular/router';
 import { JwPaginationModule } from 'jw-angular-pagination';
@@ -10,7 +10,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './order-dashboard.page.html',
   styleUrls: ['./order-dashboard.page.scss'],
 })
-export class OrderDashboardPage implements OnInit {
+export class OrderDashboardPage implements OnInit, AfterViewInit {
   page: number;
   order_data=[];
   total:any;
@@ -70,9 +70,12 @@ export class OrderDashboardPage implements OnInit {
     });
   }
    openModal(template: TemplateRef<any>) {
-
+    const user = {
+      id: 10
+    };
     this.modalRef = this.modalService.show(template, {
-      // initialState : user
+       initialState : user
     });
   }
+  
 }

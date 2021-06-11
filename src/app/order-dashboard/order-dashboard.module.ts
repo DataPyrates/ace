@@ -20,7 +20,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     IonicModule,
     OrderDashboardPageRoutingModule,
     NgxPaginationModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   declarations: [OrderDashboardPage]
 })

@@ -27,9 +27,12 @@ password:any;
       (data :any )=> {
        if((data['status'] == 200)){
             // localStorage.clear();
+            let department = data['data']['departments'][0]['name'];
+            localStorage.setItem('department',department);
             localStorage.setItem('user_data',JSON.stringify(data));
             localStorage.setItem('username',this.username);
             localStorage.setItem('access',data['data']['access']);
+            localStorage.setItem('department_master',JSON.stringify(data['data']['departments']));
             this.route.navigate(['/home']);
        }
       })

@@ -12,6 +12,7 @@ npm install ngx-pagination --save
 npm i text-copy
 npm install ngx-barcode --save
 npm i angularx-qrcode
-
+npm install ngx-bootstrap-modal --save // modal
+npm install ngx-bootstrap-modal --save
 menu :- https://www.crojach.com/blog/2019/6/6/simple-multi-level-menu-in-ionicangular
 
