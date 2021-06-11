@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { menuItems } from '../assets/data/menu-items';
 
@@ -7,12 +7,16 @@ import { menuItems } from '../assets/data/menu-items';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private menu = menuItems;
+  department: string;
   constructor(private route: Router) {
   }
 
-
+  ngOnInit(){
+    this.department = localStorage.getItem('department');
+    console.log(this.department);
+  }
   get_department(event) {
     console.log(event.target.value);
     localStorage.setItem('department', event.target.value);

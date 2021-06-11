@@ -15,7 +15,6 @@ export class HomePage {
    var userdata= JSON.parse(localStorage.getItem('user_data'));
    console.log(userdata);
    $(".branch").html(userdata.data.branches[0]['short_name']);
-   localStorage.setItem('department_master',JSON.stringify(userdata.data.departments));
    $(".department").html(userdata.data.departments[0]['name']);
    $(".department1").html(userdata.data.departments[1]['name']);
   }

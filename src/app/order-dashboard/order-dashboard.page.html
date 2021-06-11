@@ -14,6 +14,7 @@
       <ion-col size="5">Company</ion-col>
       <ion-col size="3"> Date</ion-col>
     </ion-row>
+    
     <ion-row *ngFor="let sales of order_data | paginate: { itemsPerPage: 10, currentPage: p ,totalItems: total}" (click)="openModal(template)">
       <ion-col size="4">{{ sales.transaction_number }}</ion-col>
       <ion-col size="5">{{ sales.company_ledger_name }}</ion-col>
