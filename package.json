@@ -29,6 +29,7 @@
     "jw-angular-pagination": "^1.2.0",
     "ngx-barcode": "^0.3.0",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-bootstrap-modal": "^2.0.1",
     "ngx-pagination": "^5.1.0",
     "rxjs": "~6.6.0",
     "text-copy": "^1.0.6",
