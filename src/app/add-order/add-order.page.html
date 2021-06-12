@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back" (click)="history.go(-1);"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       ACE
     </ion-title>

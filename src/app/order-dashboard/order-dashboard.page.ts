@@ -10,7 +10,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './order-dashboard.page.html',
   styleUrls: ['./order-dashboard.page.scss'],
 })
-export class OrderDashboardPage implements OnInit, AfterViewInit {
+export class OrderDashboardPage implements OnInit {
   page: number;
   order_data=[];
   total:any;
@@ -62,14 +62,14 @@ export class OrderDashboardPage implements OnInit, AfterViewInit {
    pageChanged(event){
     this.sales_order_data(event);
    }
-   ngAfterViewInit() {
-    const user = {
-        id: 10
-      };
-    this.modalRef = this.modalService.show(this.templateRef, {
-      initialState : user
-    });
-  }
+  //  ngAfterViewInit() {
+  //   const user = {
+  //       id: 10
+  //     };
+  //   this.modalRef = this.modalService.show(this.templateRef, {
+  //     initialState : user
+  //   });
+  // }
    openModal(template: TemplateRef<any>,sales) {
      this.sales = sales;
     const user = {

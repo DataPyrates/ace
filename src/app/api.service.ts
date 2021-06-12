@@ -38,6 +38,19 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?machine_type__machine_role=' + machine_role,{'headers':headers});
   }
 
+  public order_design_master_data() {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/design_master/',{'headers':headers});
+  }
+  public order_currency_data() {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/currency/',{'headers':headers});
+  }
+
   public get_machine_detail(machine_no) {
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));

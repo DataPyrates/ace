@@ -4,6 +4,9 @@
       <ion-menu-button></ion-menu-button>
       </ion-buttons>
     <ion-title>Fabric Sales Order</ion-title>
+    <ion-button slot="end" [routerLink]="['/add-order']" large >
+      <ion-icon name="add-circle" ></ion-icon>
+      </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -45,7 +48,7 @@
         </ion-item>
         <ion-item class="content_card">
           <ion-title class="content_card" slot="start">Dispatch No.</ion-title>
-          <ion-label>{{ sales.fabric_sales_dispatches.transaction_number }}</ion-label>
+          <ion-label>{{ sales.fabric_sales_dispatches[0]['transaction_number'] }}</ion-label>
         </ion-item>
         <ion-item class="content_card">
           <ion-title class="content_card" slot="start">Status</ion-title>
