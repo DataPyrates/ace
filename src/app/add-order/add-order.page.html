@@ -20,14 +20,29 @@
           </ion-label>
         </div>
         <div padding>
-          <ion-item>
-            <ion-searchbar placeholder="Search Client Name" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
+          <!-- <ion-item>
+            <ion-searchbar placeholder="Search Client Name" [(ngModel)]="name" animated="true" (click)="getclientdata()" >  
             </ion-searchbar>
-          </ion-item>
+            <ion-list>
+              <button ion-item *ngFor="let names of client_data">
+                  {{names.name}}
+              </button>
+          </ion-list>
+          </ion-item> -->
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+          <input class="datalist" list="browsers" placeholder="Search Client Name" (keyup)="getclientdata($event)" (change)="client_details($event)">
+          
+          <!-- <ion-label>Name</ion-label>  -->
+          <datalist id="browsers" > 
+            <option value="">--Select--</option> 
+            <option [value]="names.name" *ngFor="let names of client_data">{{ names.name }}</option> 
+          </datalist>
+        </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="gst_no" type="text" placeholder="GST No."
-              [(ngModel)]="gst_no" readonly></ion-input>
+            <ion-input name="gst_number" type="text" placeholder="GST No."
+              [(ngModel)]="gst_number" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>

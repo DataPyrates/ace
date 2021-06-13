@@ -51,6 +51,13 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/currency/',{'headers':headers});
   }
 
+  public order_client_data(name__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/company_ledger/?active=true&client_status=true&name__icontains='+name__icontains,{'headers':headers});
+  }
+
   public get_machine_detail(machine_no) {
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));

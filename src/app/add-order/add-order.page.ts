@@ -9,6 +9,9 @@ import {PopupService} from '../../app/popup.service';
   styleUrls: ['./add-order.page.scss'],
 })
 export class AddOrderPage implements OnInit {
+  client_data: any;
+  gst_number: any;
+  address: string;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService
     ) { }
@@ -52,4 +55,24 @@ export class AddOrderPage implements OnInit {
         }
       })
   }
+  getclientdata(event){
+    if(event && event.target.value){
+    this.api.order_client_data(event.target.value).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+           this.client_data = data['data']['results'];
+           console.log(this.client_data);
+        }
+      })
+  }
+}
+client_details(event){
+  console.log(event.target.value);
+  for(let i=0;i<this.client_data.length;i++){
+    if(event.target.value == this.client_data[i]['name']){
+      this.gst_number = this.client_data[i]['gst_number'];
+      this.address = this.client_data[i]['address1']+' '+this.client_data[i]['address2']+' '+this.client_data[i]['pincode']+' '+this.client_data[i]['city_name'];
+    }
+  }
+}
 }
