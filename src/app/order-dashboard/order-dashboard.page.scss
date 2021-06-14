@@ -35,5 +35,40 @@ ion-grid {
   }
   .content_card{
     font-size: 11px !important;
+    padding-right: 2px;
     }
- 
+    #icon{
+     margin-top: 1%;
+     margin-right: 1%;
+     position:absolute;
+     top:0;
+     right:0;
+     padding:3;
+
+ }
+ #icon1{
+  margin-top: 1%;
+  margin-right: 10%;
+  position:absolute;
+  top:0;
+  right:0;
+  padding:3;
+}
+#icon2{
+  margin-top: 1%;
+  margin-right: 20%;
+  position:absolute;
+  top:0;
+  right:0;
+  padding:3;
+}
+.icons{
+  padding:3%;
+}
+ion-card-content{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+ion-label{
+  padding-left:0px ;
+}

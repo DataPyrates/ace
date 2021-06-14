@@ -17,6 +17,16 @@ export class AddOrderPage implements OnInit {
   address: string;
   transport_data: any;
   branch_name: any;
+  article_data: any;
+  quality_data: any;
+  igst: any;
+  hsn: any;
+  cgst: any;
+  sgst: any;
+  name: any;
+  quality_name: any;
+  currency_data: any;
+  design_data: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService
     ) { }
@@ -40,7 +50,7 @@ export class AddOrderPage implements OnInit {
     this.api.order_currency_data().subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
-           // this.inward_production_data = data['data']['results'];
+            this.currency_data = data['data']['results'][0]['symbol']+' - '+data['data']['results'][0]['name'];
         }
       })
   }
@@ -97,5 +107,56 @@ transport(event){
     })
 }
 }
+article(event){
+  if(event && event.target.value){
+  this.api.order_article_data(event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.article_data = data['data']['results'];
+         console.log(this.article_data);
+      }
+    })
+}
+}
+
+quality(event){
+  if(event && event.target.value){
+  this.api.order_quality_data(event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.quality_data = data['data']['results'];
+         console.log(this.quality_data);
+      }
+    })
+}
+}
+article_details(event){
+  if(event && event.target.value){
+  this.api.order_article_details_data(event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.hsn = data['data']['hsn_info']['hsn_code'];
+         this.igst = data['data']['hsn_info']['igst'];
+         this.cgst = data['data']['hsn_info']['cgst'];
+         this.sgst = data['data']['hsn_info']['sgst'];
+         this.name = data['data']['name'];
+         this.quality_name = data['data']['quality_name'];
+         
+      }
+    })
+}
+}
+
+// design(event){
+//   if(event && event.target.value){
+//   this.api.order_design_data(event.target.value).subscribe(
+//     (data: any) => {
+//       if ((data['status'] == 200)) {
+//          this.design_data = data['data']['results'];
+//          console.log(this.design_data);
+//       }
+//     })
+// }
+// }
 
 }

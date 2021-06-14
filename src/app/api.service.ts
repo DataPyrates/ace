@@ -79,6 +79,28 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/transport/?active=true&name__icontains='+first_last_name_contains,{'headers':headers});
   }
 
+  public order_article_data(id__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/design_master/?action=table_list&active=true&id__icontains='+id__icontains,{'headers':headers});
+  }
+
+  public order_quality_data(name__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/quality_master/?action=table_list&active=true&name__icontains='+name__icontains,{'headers':headers});
+  }
+
+  public order_article_details_data(name__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/design_master/'+name__icontains+'/',{'headers':headers});
+  }
+
+
 
   public get_machine_detail(machine_no) {
     let headers = new HttpHeaders();

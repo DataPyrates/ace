@@ -66,8 +66,7 @@
         <option value="">--Select--</option> 
         <option [value]="addr.name" *ngFor="let addr of transport_data">{{ addr.name }}</option> 
       </datalist>
-    </ion-item>
-          
+    </ion-item>         
           <ion-item>
             <ion-icon name="settings-outline" class="pr3"></ion-icon>
             <ion-label *ngIf="!view">Dispatch from Branch</ion-label>
@@ -76,7 +75,6 @@
               <ion-select-option [value]="branch_name">
                 {{ branch_name }}</ion-select-option>
             </ion-select>
-            <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
           </ion-item>
         </div>
       </ion-col>
@@ -88,17 +86,29 @@
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div padding>
           <ion-item>
-            <ion-searchbar placeholder="Search Article Code" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
-          </ion-item>
-          <ion-item>
-            <ion-searchbar placeholder="Search Quality Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
-          </ion-item>
-          <ion-item>
-            <ion-searchbar placeholder="Search Design Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
-          </ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+          <input class="datalist" type="number" list="article_code" placeholder="Search Article Code" (keyup)="article($event)" (change)="article_details($event)">
+          <datalist id="article_code" > 
+            <option value="">--Select--</option> 
+            <option [value]="code.article_code" *ngFor="let code of article_data">{{ code.article_code }}</option> 
+          </datalist>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="search-outline" class="pr3"></ion-icon>
+        <input class="datalist" list="quality" [(ngModel)]="quality_name" placeholder="Search Quality Master" (keyup)="quality($event)" (change)="quality_details($event)">
+        <datalist id="quality"> 
+          <option value="">--Select--</option> 
+          <option [value]="master.name" *ngFor="let master of quality_data">{{ master.name }}</option> 
+        </datalist>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="search-outline" class="pr3"></ion-icon>
+      <input class="datalist" list="design" placeholder="Search Design Master" [(ngModel)]="name" (keyup)="design($event)" (change)="design_details($event)">
+      <datalist id="design"> 
+        <option value="">--Select--</option> 
+        <option [value]="design.name" *ngFor="let design of design_data">{{ design.name }}</option> 
+      </datalist>
+    </ion-item>
           <ion-item>
             <ion-searchbar placeholder="Search Chart Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
             </ion-searchbar>
@@ -117,10 +127,10 @@
             <ion-label *ngIf="!view">Unit</ion-label>
             <ion-select [(ngModel)]="dispatch" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
-              <ion-select-option [value]="batch.id" *ngFor="let branch of dispatch">
-                {{branch.machine_number}}</ion-select-option>
+              <ion-select-option value="yard">Yard</ion-select-option>
+              <ion-select-option value="meter">Meter</ion-select-option>
+              <ion-select-option value="kg">Kg</ion-select-option>
             </ion-select>
-            <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
@@ -132,7 +142,7 @@
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="discount" type="text" placeholder="Discount"
+            <ion-input type="text" placeholder="Discount"
               [(ngModel)]="discount"></ion-input>
           </ion-item>
           <ion-item>
@@ -140,15 +150,15 @@
             <ion-input name="hsn" type="text" placeholder="HSN"
               [(ngModel)]="hsn" readonly></ion-input>
               <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="igst" type="text" placeholder="IGST"
+            <ion-input type="text" placeholder="IGST"
               [(ngModel)]="igst" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="sgst" type="text" placeholder="SGST"
+            <ion-input type="text" placeholder="SGST"
               [(ngModel)]="sgst" readonly></ion-input>
               <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="cgst" type="text" placeholder="CGST"
+            <ion-input type="text" placeholder="CGST"
               [(ngModel)]="cgst" readonly></ion-input>
           </ion-item>
           <ion-item>
@@ -169,10 +179,9 @@
             <ion-label *ngIf="!view">Currency</ion-label>
             <ion-select [(ngModel)]="dispatch" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
-              <ion-select-option [value]="batch.id" *ngFor="let branch of dispatch">
-                {{branch.machine_number}}</ion-select-option>
+              <ion-select-option [value]="currency_data">
+                {{ currency_data }}</ion-select-option>
             </ion-select>
-            <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
