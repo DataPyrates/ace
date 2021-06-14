@@ -11,7 +11,12 @@ import {PopupService} from '../../app/popup.service';
 export class AddOrderPage implements OnInit {
   client_data: any;
   gst_number: any;
+  sales_data: any;
+  address_details: any;
+  address_data: any;
   address: string;
+  transport_data: any;
+  branch_name: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService
     ) { }
@@ -19,21 +24,14 @@ export class AddOrderPage implements OnInit {
   ngOnInit() {
     this.order_design_master();
     this.order_currency();
+    var userdata= JSON.parse(localStorage.getItem('user_data'));
+    this.branch_name = userdata.data.branches[0]['short_name'];
   }
   order_design_master() {
     this.api.order_design_master_data().subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
           // this.inward_production_data = data['data']['results'];
-          // this.greige_article_name = data['data']['results'][0]['greige_article_name'];
-          // this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
-          // this.greige_color_name = data['data']['results'][0]['production_order_info']['greige_color_name'];
-          // this.quantity = data['data']['results'][0]['production_order_info']['quantity'];
-          // this.operator_name = localStorage.getItem('username');
-          // this.width_A = data['data']['results'][0]['width_A'];
-          // this.width_B = data['data']['results'][0]['width_B'];
-          // this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
-          // this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
         }
       })
   }
@@ -42,16 +40,7 @@ export class AddOrderPage implements OnInit {
     this.api.order_currency_data().subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
-          // this.inward_production_data = data['data']['results'];
-          // this.greige_article_name = data['data']['results'][0]['greige_article_name'];
-          // this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
-          // this.greige_color_name = data['data']['results'][0]['production_order_info']['greige_color_name'];
-          // this.quantity = data['data']['results'][0]['production_order_info']['quantity'];
-          // this.operator_name = localStorage.getItem('username');
-          // this.width_A = data['data']['results'][0]['width_A'];
-          // this.width_B = data['data']['results'][0]['width_B'];
-          // this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
-          // this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
+           // this.inward_production_data = data['data']['results'];
         }
       })
   }
@@ -75,4 +64,38 @@ client_details(event){
     }
   }
 }
+salesuserdata(event){
+  if(event && event.target.value){
+  this.api.order_sales_data(event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.sales_data = data['data']['results'];
+         console.log(this.sales_data);
+      }
+    })
+}
+}
+address_delivery(event){
+  if(event && event.target.value){
+  this.api.order_address_data(event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.address_data = data['data']['results'];
+         console.log(this.address_data);
+      }
+    })
+}
+}
+transport(event){
+  if(event && event.target.value){
+  this.api.order_transport_data(event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.transport_data = data['data']['results'];
+         console.log(this.transport_data);
+      }
+    })
+}
+}
+
 }

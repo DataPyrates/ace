@@ -58,6 +58,28 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/company_ledger/?active=true&client_status=true&name__icontains='+name__icontains,{'headers':headers});
   }
 
+  public order_sales_data(first_last_name_contains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/user/?is_active=true&first_last_name_contains='+first_last_name_contains,{'headers':headers});
+  }
+
+  public order_address_data(first_last_name_contains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/delivery_address/?active=true&company_ledger=218&branch_isnull=true&company_ledger_isnull=false&delivery_name__icontains='+first_last_name_contains,{'headers':headers});
+  }
+
+  public order_transport_data(first_last_name_contains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/transport/?active=true&name__icontains='+first_last_name_contains,{'headers':headers});
+  }
+
+
   public get_machine_detail(machine_no) {
     let headers = new HttpHeaders();
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));

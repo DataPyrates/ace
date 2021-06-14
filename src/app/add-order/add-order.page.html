@@ -20,21 +20,10 @@
           </ion-label>
         </div>
         <div padding>
-          <!-- <ion-item>
-            <ion-searchbar placeholder="Search Client Name" [(ngModel)]="name" animated="true" (click)="getclientdata()" >  
-            </ion-searchbar>
-            <ion-list>
-              <button ion-item *ngFor="let names of client_data">
-                  {{names.name}}
-              </button>
-          </ion-list>
-          </ion-item> -->
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-          <input class="datalist" list="browsers" placeholder="Search Client Name" (keyup)="getclientdata($event)" (change)="client_details($event)">
-          
-          <!-- <ion-label>Name</ion-label>  -->
-          <datalist id="browsers" > 
+          <input class="datalist" list="client" placeholder="Search Client Name" (keyup)="getclientdata($event)" (change)="client_details($event)">
+          <datalist id="client" > 
             <option value="">--Select--</option> 
             <option [value]="names.name" *ngFor="let names of client_data">{{ names.name }}</option> 
           </datalist>
@@ -55,25 +44,37 @@
               [(ngModel)]="po_no"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-searchbar placeholder="Search Delivery Address" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
-          </ion-item>
-          <ion-item>
-            <ion-searchbar placeholder="Search Sales User" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
-          </ion-item>
-          <ion-item>
-            <ion-searchbar placeholder="Search Transport Name" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
-          </ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+          <input class="datalist" list="sales_user" placeholder="Search Sales User" (keyup)="salesuserdata($event)" (change)="sales_details($event)">
+          <datalist id="sales_user" > 
+            <option value="">--Select--</option> 
+            <option [value]="users.full_name" *ngFor="let users of sales_data">{{ users.full_name }}</option> 
+          </datalist>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="search-outline" class="pr3"></ion-icon>
+        <input class="datalist" list="delivery_add" placeholder="Search Delivery Address" (keyup)="address_delivery($event)" (change)="address_details($event)">
+        <datalist id="delivery_add" > 
+          <option value="">--Select--</option> 
+          <option [value]="address.delivery_name" *ngFor="let address of address_data">{{ address.delivery_name }}</option> 
+        </datalist>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="search-outline" class="pr3"></ion-icon>
+      <input class="datalist" list="transport" placeholder="Search Transport Name" (keyup)="transport($event)" (change)="transport_details($event)">
+      <datalist id="transport" > 
+        <option value="">--Select--</option> 
+        <option [value]="addr.name" *ngFor="let addr of transport_data">{{ addr.name }}</option> 
+      </datalist>
+    </ion-item>
           
           <ion-item>
             <ion-icon name="settings-outline" class="pr3"></ion-icon>
             <ion-label *ngIf="!view">Dispatch from Branch</ion-label>
             <ion-select [(ngModel)]="dispatch" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
-              <ion-select-option [value]="batch.id" *ngFor="let branch of dispatch">
-                {{branch.machine_number}}</ion-select-option>
+              <ion-select-option [value]="branch_name">
+                {{ branch_name }}</ion-select-option>
             </ion-select>
             <ion-input name="gst_no" type="text" [(ngModel)]="gst_no" readonly *ngIf="view"></ion-input>
           </ion-item>
