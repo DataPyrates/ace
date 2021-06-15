@@ -23,10 +23,16 @@ export class AddOrderPage implements OnInit {
   hsn: any;
   cgst: any;
   sgst: any;
-  name: any;
-  quality_name: any;
+  design_name: any='';
+  quality_name: any ='';
   currency_data: any;
   design_data: any;
+  article_code: any ='';
+  chart_name:any='';
+  quality_master: any;
+  chart_master: any;
+  color_data: any;
+  color_master: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService
     ) { }
@@ -130,33 +136,106 @@ quality(event){
     })
 }
 }
-article_details(event){
-  if(event && event.target.value){
-  this.api.order_article_details_data(event.target.value).subscribe(
+article_details(event,type){
+  var article_code;
+  if(type =='design'){
+    article_code = this.article_code;
+  }
+  else{
+    article_code = event.target.value;
+  }
+  if(event && article_code){
+  this.api.order_article_details_data(article_code).subscribe(
     (data: any) => {
       if ((data['status'] == 200)) {
          this.hsn = data['data']['hsn_info']['hsn_code'];
          this.igst = data['data']['hsn_info']['igst'];
          this.cgst = data['data']['hsn_info']['cgst'];
          this.sgst = data['data']['hsn_info']['sgst'];
-         this.name = data['data']['name'];
+         this.design_name = data['data']['name'];
          this.quality_name = data['data']['quality_name'];
+         this.quality_master = data['data']['quality_master'];
+
          
       }
     })
 }
 }
 
-// design(event){
-//   if(event && event.target.value){
-//   this.api.order_design_data(event.target.value).subscribe(
-//     (data: any) => {
-//       if ((data['status'] == 200)) {
-//          this.design_data = data['data']['results'];
-//          console.log(this.design_data);
-//       }
-//     })
-// }
-// }
+design(event){
+  if(event && event.target.value){
+  this.api.order_design_data().subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+         this.design_data = data['data']['results'];
+         console.log(this.design_data);
+      }
+    })
+}
+}
 
+getarticlecode(article_code){
+  this.article_code = article_code;
+  console.log('get article code',this.article_code);
+}
+
+getdesign(event){
+  if(event && event.target.value){
+    for(let i=0;i< this.design_data.length;i++){
+      if(this.design_data[i]['name'] == event.target.value){
+        this.article_code = this.design_data[i]['article_code'];
+        this.article_details(this.design_data[i]['article_code'],'design')
+      }
+    }
+  }
+}
+chart(event){
+  if(event && event.target.value){
+  this.api.order_chart_data(this.quality_master,this.article_code,event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+       var chart_data = data['data']['results'][0];
+       this.chart_master = chart_data.id;
+       console.log(this.chart_master);
+      }
+    })
+}
+}
+
+chart_details(event){
+  if(event && event.target.value){
+    this.api.order_chart_details_data(this.chart_master).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+          //  this.color_data = data['data']['results'];
+          //  console.log(this.color_data);
+        }
+      })
+  }
+  }
+
+color(event){
+  if(event && event.target.value){
+  this.api.order_color_data(this.quality_master,this.article_code,this.chart_master,event.target.value).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+        this.color_data = data['data']['results'];
+         console.log(this.color_data);
+         this.color_master = this.color_data[0].id;
+       console.log(this.color_master);
+      }
+    })
+}
+}
+color_details(event){
+  if(event && event.target.value){
+    this.api.order_color_details_data(this.color_master).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+          //  this.color_data = data['data']['results'];
+          //  console.log(this.color_data);
+        }
+      })
+  }
+  }
 }

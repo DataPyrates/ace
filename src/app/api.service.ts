@@ -100,7 +100,40 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/design_master/'+name__icontains+'/',{'headers':headers});
   }
 
+  public order_design_data() {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/design_master/',{'headers':headers});
+  }
 
+  public order_chart_data(quality_master,article_code,name__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/chart_master/?active=true&quality_master='+quality_master+'&design_master='+article_code+'&name__icontains='+name__icontains,{'headers':headers});
+  }
+
+  public order_chart_details_data(chart_master) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/chart_master/'+chart_master+'/',{'headers':headers});
+  }
+
+  public order_color_data(quality_master,article_code,chart_master,name__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/fabric_color_master/?active=true&quality_master'+quality_master+'&design_master='+article_code+'&chart_master='+chart_master+'&name__icontains='+name__icontains,{'headers':headers});
+  }
+
+  public order_color_details_data(color_master) {
+    let headers = new HttpHeaders();
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/fabric_color_master/'+color_master+'/',{'headers':headers});
+  }
 
   public get_machine_detail(machine_no) {
     let headers = new HttpHeaders();

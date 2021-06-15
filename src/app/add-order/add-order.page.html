@@ -8,7 +8,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content>
   <ion-grid>
     <h4 class="center">Basic Details</h4>
@@ -22,51 +22,54 @@
         <div padding>
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-          <input class="datalist" list="client" placeholder="Search Client Name" (keyup)="getclientdata($event)" (change)="client_details($event)">
-          <datalist id="client" > 
-            <option value="">--Select--</option> 
-            <option [value]="names.name" *ngFor="let names of client_data">{{ names.name }}</option> 
-          </datalist>
-        </ion-item>
-          <ion-item>
-            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="gst_number" type="text" placeholder="GST No."
-              [(ngModel)]="gst_number" readonly></ion-input>
+            <input class="datalist" list="client" placeholder="Search Client Name" (keyup)="getclientdata($event)"
+              (change)="client_details($event)">
+            <datalist id="client">
+              <option value="">--Select--</option>
+              <option [value]="names.name" *ngFor="let names of client_data">{{ names.name }}</option>
+            </datalist>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="address" type="text" placeholder="Address"
-              [(ngModel)]="address" readonly></ion-input>
+            <ion-input name="gst_number" type="text" placeholder="GST No." [(ngModel)]="gst_number" readonly>
+            </ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="po_no" type="text" placeholder="Client PO No."
-              [(ngModel)]="po_no"></ion-input>
+            <ion-input name="address" type="text" placeholder="Address" [(ngModel)]="address" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input name="po_no" type="text" placeholder="Client PO No." [(ngModel)]="po_no"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-          <input class="datalist" list="sales_user" placeholder="Search Sales User" (keyup)="salesuserdata($event)" (change)="sales_details($event)">
-          <datalist id="sales_user" > 
-            <option value="">--Select--</option> 
-            <option [value]="users.full_name" *ngFor="let users of sales_data">{{ users.full_name }}</option> 
-          </datalist>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="search-outline" class="pr3"></ion-icon>
-        <input class="datalist" list="delivery_add" placeholder="Search Delivery Address" (keyup)="address_delivery($event)" (change)="address_details($event)">
-        <datalist id="delivery_add" > 
-          <option value="">--Select--</option> 
-          <option [value]="address.delivery_name" *ngFor="let address of address_data">{{ address.delivery_name }}</option> 
-        </datalist>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="search-outline" class="pr3"></ion-icon>
-      <input class="datalist" list="transport" placeholder="Search Transport Name" (keyup)="transport($event)" (change)="transport_details($event)">
-      <datalist id="transport" > 
-        <option value="">--Select--</option> 
-        <option [value]="addr.name" *ngFor="let addr of transport_data">{{ addr.name }}</option> 
-      </datalist>
-    </ion-item>         
+            <input class="datalist" list="sales_user" placeholder="Search Sales User" (keyup)="salesuserdata($event)"
+              (change)="sales_details($event)">
+            <datalist id="sales_user">
+              <option value="">--Select--</option>
+              <option [value]="users.full_name" *ngFor="let users of sales_data">{{ users.full_name }}</option>
+            </datalist>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="delivery_add" placeholder="Search Delivery Address"
+              (keyup)="address_delivery($event)" (change)="address_details($event)">
+            <datalist id="delivery_add">
+              <option value="">--Select--</option>
+              <option [value]="address.delivery_name" *ngFor="let address of address_data">{{ address.delivery_name }}
+              </option>
+            </datalist>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="transport" placeholder="Search Transport Name" (keyup)="transport($event)"
+              (change)="transport_details($event)">
+            <datalist id="transport">
+              <option value="">--Select--</option>
+              <option [value]="addr.name" *ngFor="let addr of transport_data">{{ addr.name }}</option>
+            </datalist>
+          </ion-item>
           <ion-item>
             <ion-icon name="settings-outline" class="pr3"></ion-icon>
             <ion-label *ngIf="!view">Dispatch from Branch</ion-label>
@@ -87,40 +90,53 @@
         <div padding>
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-          <input class="datalist" type="number" list="article_code" placeholder="Search Article Code" (keyup)="article($event)" (change)="article_details($event)">
-          <datalist id="article_code" > 
-            <option value="">--Select--</option> 
-            <option [value]="code.article_code" *ngFor="let code of article_data">{{ code.article_code }}</option> 
-          </datalist>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="search-outline" class="pr3"></ion-icon>
-        <input class="datalist" list="quality" [(ngModel)]="quality_name" placeholder="Search Quality Master" (keyup)="quality($event)" (change)="quality_details($event)">
-        <datalist id="quality"> 
-          <option value="">--Select--</option> 
-          <option [value]="master.name" *ngFor="let master of quality_data">{{ master.name }}</option> 
-        </datalist>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="search-outline" class="pr3"></ion-icon>
-      <input class="datalist" list="design" placeholder="Search Design Master" [(ngModel)]="name" (keyup)="design($event)" (change)="design_details($event)">
-      <datalist id="design"> 
-        <option value="">--Select--</option> 
-        <option [value]="design.name" *ngFor="let design of design_data">{{ design.name }}</option> 
-      </datalist>
-    </ion-item>
-          <ion-item>
-            <ion-searchbar placeholder="Search Chart Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
+            <input class="datalist" type="number" [(ngModel)]="article_code" list="article_code"
+              placeholder="Search Article Code" (keyup)="article($event)" (change)="article_details($event,'')">
+            <datalist id="article_code">
+              <option value="">--Select--</option>
+              <option [value]="code.article_code" *ngFor="let code of article_data">{{ code.article_code }}</option>
+            </datalist>
           </ion-item>
           <ion-item>
-            <ion-searchbar placeholder="Search Color Master" [(ngModel)]="term" animated="true" (click)="getFilterdata()" >  
-            </ion-searchbar>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="quality" [(ngModel)]="quality_name" placeholder="Search Quality Master"
+              (keyup)="quality($event)" (blur)="quality_details($event)">
+            <datalist id="quality">
+              <option value="">--Select--</option>
+              <option [value]="master.name" *ngFor="let master of quality_data">{{ master.name }}</option>
+            </datalist>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="design" placeholder="Search Design Master" [(ngModel)]="design_name"
+              (keyup)="design($event)" (change)="getdesign($event)">
+            <datalist id="design">
+              <option value="">--Select--</option>
+              <option [value]="design.name" *ngFor="let design of design_data">{{ design.name }}</option>
+            </datalist>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="chart" placeholder="Search Chart Master"
+              [disabled]="this.article_code=='' || this.quality_name=='' || this.design_name ==''"
+              [(ngModel)]="chart_name" (keyup)="chart($event)" (blur)="chart_details($event)">
+            <!-- <datalist id="chart"> 
+      <option value="">--Select--</option> 
+      <option [value]="chart.name" *ngFor="let chart of chart_data">{{ chart.name }}</option> 
+    </datalist> -->
+          </ion-item>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="color" [disabled]="this.chart_name==''" placeholder="Search Color Master" [(ngModel)]="color_name"
+              (keyup)="color($event)" (change)=color_details($event)>
+            <datalist id="color">
+              <option value="">--Select--</option>
+              <option [value]="color.name" *ngFor="let color of color_data">{{ color.name }}</option>
+            </datalist>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="quantity" type="text" placeholder="Quantity"
-              [(ngModel)]="quantity"></ion-input>
+            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="settings-outline" class="pr3"></ion-icon>
@@ -134,37 +150,31 @@
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="rate" type="text" placeholder="Rate Per Unit"
-              [(ngModel)]="rate"></ion-input>
+            <ion-input name="rate" type="text" placeholder="Rate Per Unit" [(ngModel)]="rate"></ion-input>
           </ion-item>
           <ion-item>
             <ion-input type="date" placeholder="Required on Date" [(ngModel)]="date"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input type="text" placeholder="Discount"
-              [(ngModel)]="discount"></ion-input>
+            <ion-input type="text" placeholder="Discount" [(ngModel)]="discount"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="hsn" type="text" placeholder="HSN"
-              [(ngModel)]="hsn" readonly></ion-input>
-              <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input type="text" placeholder="IGST"
-              [(ngModel)]="igst" readonly></ion-input>
+            <ion-input name="hsn" type="text" placeholder="HSN" [(ngModel)]="hsn" readonly></ion-input>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input type="text" placeholder="IGST" [(ngModel)]="igst" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input type="text" placeholder="SGST"
-              [(ngModel)]="sgst" readonly></ion-input>
-              <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input type="text" placeholder="CGST"
-              [(ngModel)]="cgst" readonly></ion-input>
+            <ion-input type="text" placeholder="SGST" [(ngModel)]="sgst" readonly></ion-input>
+            <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
+            <ion-input type="text" placeholder="CGST" [(ngModel)]="cgst" readonly></ion-input>
           </ion-item>
           <ion-item>
             <button class="danger">RESET</button>
             <button class="Success">ADD</button>
-          </ion-item>         
+          </ion-item>
         </div>
       </ion-col>
     </ion-row>
@@ -185,8 +195,7 @@
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
-            <ion-input name="remark" type="text" placeholder="Remarks"
-              [(ngModel)]="remark"></ion-input>
+            <ion-input name="remark" type="text" placeholder="Remarks" [(ngModel)]="remark"></ion-input>
           </ion-item>
         </div>
       </ion-col>

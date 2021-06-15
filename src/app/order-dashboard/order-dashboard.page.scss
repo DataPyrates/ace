@@ -5,7 +5,7 @@ ion-grid {
     
     ion-row:first-child {
       --ion-grid-column-padding: 10px;
-      background-color:  #1a181f;
+      background-color:  #292e32;
       font-weight: bold;
       color:white;
       display:flex;
@@ -13,26 +13,24 @@ ion-grid {
     }
    
     ion-col {
-      border: 1px solid black;
+      border: 1px solid #292e32;
       border-bottom: 0;
       border-right: 0;
       display:flex;
       
     }
     ion-col:last-child {
-       border-right: 1px solid black;
+       border-right: 1px solid #292e32;
       display:flex;
      
     }
     
     ion-row:last-child {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid #292e32;
       display:flex;
     }
   }
-  ion-button{
-    --background: #1a181f;
-  }
+
   .content_card{
     font-size: 11px !important;
     padding-right: 2px;
@@ -40,6 +38,7 @@ ion-grid {
     #icon{
      margin-top: 1%;
      margin-right: 1%;
+     color:black;
      position:absolute;
      top:0;
      right:0;
@@ -49,6 +48,7 @@ ion-grid {
  #icon1{
   margin-top: 1%;
   margin-right: 10%;
+  color:#008b8b;
   position:absolute;
   top:0;
   right:0;
@@ -57,6 +57,15 @@ ion-grid {
 #icon2{
   margin-top: 1%;
   margin-right: 20%;
+  color:#4b4f68;
+  position:absolute;
+  top:0;
+  right:0;
+  padding:3;
+}
+#icon3{
+  margin-top: 1%;
+  margin-right: 30%;
   position:absolute;
   top:0;
   right:0;
@@ -71,4 +80,7 @@ ion-card-content{
 }
 ion-label{
   padding-left:0px ;
+}
+ion-button{
+  --background:#7774e7;
 }
