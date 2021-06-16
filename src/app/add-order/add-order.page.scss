@@ -27,4 +27,29 @@
   .content_card {
     font-size: 11px;
   }
-  
+  .success{
+    background:#7774e7;
+  }
+  .danger{
+    background-color: red;
+    float:right;
+    margin-left: 50%;
+  }
+  .primary{
+    background:#7774e7;
+  }
+  .content_card{
+    font-size: 11px !important;
+    padding-right: 2px;
+    // height:33px;
+    padding: 1%;
+    }
+    h3{
+      text-align: center;
+      color:black;
+    }
+    #bt{
+      float: right;
+    margin: 2%;
+    }
+    

@@ -33,6 +33,8 @@ export class AddOrderPage implements OnInit {
   chart_master: any;
   color_data: any;
   color_master: any;
+  public show:boolean = false;
+  public buttonName:any = 'Show';
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService
     ) { }
@@ -238,4 +240,22 @@ color_details(event){
       })
   }
   }
+  toggle() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)  
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
+  }
+  // toggle1() {
+  //   this.show = !this.show;
+
+  //   // CHANGE THE NAME OF THE BUTTON.
+  //   if(this.show)  
+  //     this.buttonName = "Hide";
+  //   else
+  //     this.buttonName = "Show";
+  // }
 }
