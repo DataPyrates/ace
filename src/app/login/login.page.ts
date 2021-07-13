@@ -33,13 +33,27 @@ password:any;
             localStorage.setItem('username',this.username);
             localStorage.setItem('access',data['data']['access']);
             localStorage.setItem('department_master',JSON.stringify(data['data']['departments']));
+            localStorage.setItem('branch_master',JSON.stringify(data['data']['branches'][0]['id']));
+            this.unit_data();
             this.route.navigate(['/home']);
+            
        }
       })
     }
     else{
       this.popup.showAlert('Login','Please Enter Username and Password !');
     }
+  }
+
+  unit_data() {
+    // var machine_role = 2;
+    this.api.get_unit_data().subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+          this.unit_data = data['data']['results'];
+        }
+
+      })
   }
 }
 

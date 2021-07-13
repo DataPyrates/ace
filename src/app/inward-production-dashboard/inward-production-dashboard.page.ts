@@ -31,8 +31,8 @@ export class InwardProductionDashboardPage implements OnInit {
 
   inward_production_log(page) {
     this.page = 1;
-    let start_greige_production_machine__machine_master__number__icontains = this.term;
-    this.api.inward_production_log_data(this.page, start_greige_production_machine__machine_master__number__icontains).subscribe(
+    //let start_greige_production_machine__machine_master__number__icontains = this.term;
+    this.api.inward_production_log_data(this.page).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
           var month = new Array();
