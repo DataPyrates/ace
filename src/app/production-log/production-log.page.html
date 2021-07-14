@@ -17,14 +17,14 @@
         </div>
         <div padding>
           <ion-item>
-            <ion-icon name="settings-outline" class="pr3"></ion-icon>
-            <ion-label *ngIf="!view">Select Machine No.</ion-label>
-            <ion-select [(ngModel)]="machine_no" (ionChange)="get_machine_detail()" *ngIf="!view">
-              <ion-select-option value="">--Select--</ion-select-option>
-              <ion-select-option [value]="machine.id" *ngFor="let machine of machine_data" >{{machine.number}}</ion-select-option>
-            </ion-select>
-            <ion-input name="machine_no" type="text" *ngIf="view"  [(ngModel)]="machine_no" readonly></ion-input>
-
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="machine" placeholder="Search Machine Number" (keyup)="getmachinedata($event)"
+              (change)="machine_details($event)">
+            <datalist id="machine">
+              <option value="">--Select--</option>
+              <option [value]="numbers.number" *ngFor="let numbers of machine_data">{{ numbers.number }}</option>
+            </datalist>
+            <ion-input name="number" type="text" *ngIf="view"  [(ngModel)]="number" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>

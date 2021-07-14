@@ -39,6 +39,7 @@ export class ProductionLogPage implements OnInit {
   startminutes: number;
   transaction_number: any;
   show:boolean;
+  machine_master: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService) { }
   ngOnInit() {
@@ -71,14 +72,15 @@ export class ProductionLogPage implements OnInit {
   }
 
   get_machine_detail() {
-    this.api.get_machine_detail(this.machine_no).subscribe(
+    this.api.get_machine_detail(this.machine_master).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
           this.machine_flag = true;
           this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
-          this.greige_article_name = data['data']['results'][0]['greige_article_name'];
+          //this.greige_article_name = data['data']['results'][0]['greige_article_name'];
           this.operator = localStorage.getItem('username');
           this.start_greige_production = data['data']['results'][0]['id'];
+          this.get_machine_greige();
         }
 
       })
@@ -284,6 +286,34 @@ export class ProductionLogPage implements OnInit {
       });
   }
   }
+
+  getmachinedata(event){
+    if(event && event.target.value){
+    this.api.production_machine_data(event.target.value).subscribe(
+      (data: any) => {
+        if ((data['status'] == 200)) {
+           this.machine_data = data['data']['results'];
+           this.machine_master = data['data']['results'][0]['id'];
+           console.log(this.machine_data);
+           this.get_machine_detail();
+        }
+      })
+  }
+}
+get_machine_greige(){
+  this.api.get_machine_greige_detail(this.start_greige_production).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+        this.machine_flag = true;
+        this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
+        this.greige_article_name = data['data']['production_order_info']['greige_article_name'];
+        this.operator = localStorage.getItem('username');
+        this.start_greige_production = data['data']['results'][0]['id'];
+      }
+
+    })
+
+}
 
 }
 

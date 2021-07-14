@@ -55,13 +55,23 @@ export class ApiService {
 
   public order_client_data(name__icontains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/company_ledger/?active=true&client_status=true&name__icontains='+name__icontains,{'headers':headers});
   }
 
+  public production_machine_data(name__icontains) {
+    let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?machine_type__machine_role=2&number__icontains='+name__icontains,{'headers':headers});
+  }
+
   public order_sales_data(first_last_name_contains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/user/?is_active=true&first_last_name_contains='+first_last_name_contains,{'headers':headers});
@@ -69,6 +79,7 @@ export class ApiService {
 
   public order_address_data(first_last_name_contains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/delivery_address/?active=true&company_ledger=218&branch_isnull=true&company_ledger_isnull=false&delivery_name__icontains='+first_last_name_contains,{'headers':headers});
@@ -76,6 +87,7 @@ export class ApiService {
 
   public order_transport_data(first_last_name_contains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/transport/?active=true&name__icontains='+first_last_name_contains,{'headers':headers});
@@ -83,6 +95,7 @@ export class ApiService {
 
   public order_article_data(id__icontains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/design_master/?action=table_list&active=true&id__icontains='+id__icontains,{'headers':headers});
@@ -90,6 +103,7 @@ export class ApiService {
 
   public order_quality_data(name__icontains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/quality_master/?action=table_list&active=true&name__icontains='+name__icontains,{'headers':headers});
@@ -97,6 +111,7 @@ export class ApiService {
 
   public order_article_details_data(name__icontains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/design_master/'+name__icontains+'/',{'headers':headers});
@@ -104,6 +119,7 @@ export class ApiService {
 
   public order_design_data() {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/design_master/',{'headers':headers});
@@ -119,6 +135,7 @@ export class ApiService {
 
   public order_chart_data(quality_master,article_code,name__icontains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/chart_master/?active=true&quality_master='+quality_master+'&design_master='+article_code+'&name__icontains='+name__icontains,{'headers':headers});
@@ -126,6 +143,7 @@ export class ApiService {
 
   public order_chart_details_data(chart_master) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/chart_master/'+chart_master+'/',{'headers':headers});
@@ -133,6 +151,7 @@ export class ApiService {
 
   public order_color_data(quality_master,article_code,chart_master,name__icontains) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/fabric_color_master/?active=true&quality_master'+quality_master+'&design_master='+article_code+'&chart_master='+chart_master+'&name__icontains='+name__icontains,{'headers':headers});
@@ -140,6 +159,7 @@ export class ApiService {
 
   public order_color_details_data(color_master) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/fabric_color_master/'+color_master+'/',{'headers':headers});
@@ -147,9 +167,20 @@ export class ApiService {
 
   public get_machine_detail(machine_no) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?machine_master=' + machine_no,{'headers':headers});
   }
+
+  public get_machine_greige_detail(machine_no) {
+    let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/'+ machine_no+'/',{'headers':headers});
+  }
+
   public  greige_production_log_data(page) {
   let headers = new HttpHeaders();
   headers=headers.append('branch',localStorage.getItem('branch_master'));
@@ -161,6 +192,7 @@ export class ApiService {
 
   public fabric_order_data(page){
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     console.log(headers);
@@ -259,6 +291,8 @@ export class ApiService {
 
   public greige_production_log(postData,id){
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     if(id){
       return this.http.patch(environment.apiURL + 'erp/api/transactions/greige_production_log/'+id+'/',postData,{'headers':headers}).pipe(map((res: Response) => {
