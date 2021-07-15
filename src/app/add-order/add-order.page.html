@@ -124,7 +124,7 @@
     <ion-row color="primary" justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div padding>
-          <ion-item>
+          <!-- <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <input class="datalist" type="number" [(ngModel)]="article_code" list="article_code"
               placeholder="Search Article Code" (keyup)="article($event)" (change)="article_details($event,'')">
@@ -132,7 +132,7 @@
               <option value="">--Select--</option>
               <option [value]="code.article_code" *ngFor="let code of article_data">{{ code.article_code }}</option>
             </datalist>
-          </ion-item>
+          </ion-item> -->
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <input class="datalist" list="quality" [(ngModel)]="quality_name" placeholder="Search Quality Master"
@@ -144,7 +144,8 @@
           </ion-item>
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-            <input class="datalist" list="design" placeholder="Search Design Master" [(ngModel)]="design_name"
+            <input class="datalist" list="design" placeholder="Search Design Master" [disabled]="this.quality_name==''"
+             [(ngModel)]="design_name"
               (keyup)="design($event)" (change)="getdesign($event)">
             <datalist id="design">
               <option value="">--Select--</option>
@@ -154,7 +155,7 @@
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <input class="datalist" list="chart" placeholder="Search Chart Master"
-              [disabled]="this.article_code=='' || this.quality_name=='' || this.design_name ==''"
+              [disabled]="this.quality_name=='' || this.design_name ==''"
               [(ngModel)]="chart_name" (keyup)="chart($event)" (blur)="chart_details($event)">
             <!-- <datalist id="chart"> 
       <option value="">--Select--</option> 

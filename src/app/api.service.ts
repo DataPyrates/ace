@@ -42,12 +42,14 @@ export class ApiService {
 
   public order_design_master_data() {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/design_master/',{'headers':headers});
   }
   public order_currency_data() {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/masters/currency/',{'headers':headers});
@@ -209,12 +211,16 @@ export class ApiService {
 
   public  inward_production_log_view(id) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/greige_inward_production/'+id+'/',{'headers':headers});
   }
 
   public  production_log_view(id) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/'+id+'/',{'headers':headers});
   }
@@ -237,12 +243,16 @@ export class ApiService {
   
   public get_machine_master(machine_master) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?machine_master=' + machine_master,{'headers':headers});
   }
 
   public get_qr_data(inward_from_production_id) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/wk_inventory/?inward_from_production_id=' + inward_from_production_id,{'headers':headers});
   }
@@ -259,6 +269,8 @@ export class ApiService {
 
   public get_greige_inward_card(postData) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.post(environment.apiURL + 'erp/api/transactions/greige_inward_production/',postData,{'headers':headers}).pipe(map((res: Response) => {
       return res;
@@ -275,6 +287,8 @@ export class ApiService {
 
   public greige_inward_roll_inventory(postData) {
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.post(environment.apiURL + 'erp/api/transactions/greige_inward_roll_inventory/',postData,{'headers':headers}).pipe(map((res: Response) => {
       return res;
@@ -324,6 +338,8 @@ export class ApiService {
 
   public greige_production_log_details(postData){
     let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.post(environment.apiURL + 'erp/api/transactions/greige_production_log_details/',postData,{'headers':headers}).pipe(map((res: Response) => {
       return res;
