@@ -50,6 +50,13 @@ export class AddInwardProductionPage implements OnInit {
   end_meter_B: any;
   sameendflag:boolean = true;
   show:boolean;
+  machine_flag: boolean = false;
+  operator: string;
+  start_greige_production: any;
+  width_C: any;
+  start_meter_C: any;
+  end_meter_C: any;
+  roll_cut_C: number;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -145,7 +152,7 @@ export class AddInwardProductionPage implements OnInit {
   }
 
   machine_master() {
-    var machine_master = 9;
+    var machine_master = 10;
     this.api.get_machine_master(machine_master).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
@@ -155,6 +162,7 @@ export class AddInwardProductionPage implements OnInit {
           // this.lot_no_A = data['data']['id'];
           // this.lot_no_B = data['data']['id'];
           console.log(this.total_length_produced, this.total_qty_produced);
+          this.get_machine_inward_greige();
         }
 
       })
@@ -262,6 +270,7 @@ export class AddInwardProductionPage implements OnInit {
       this.popup.showAlert("Greige Inward Production","Please enter the end meter");      
     }
   }
+  
 
   get_rollcut(type) {
     console.log(this.start_meter_A,this.end_meter_A/this.start_meter_B,this.end_meter_B);
@@ -271,12 +280,21 @@ export class AddInwardProductionPage implements OnInit {
     else if (type == 'B' && this.end_meter_B >= this.start_meter_B) {
       this.roll_cut_B = this.end_meter_B - this.start_meter_B;
     }
+    else if (type == 'C' && this.end_meter_C >= this.start_meter_C) {
+      this.roll_cut_C = this.end_meter_C - this.start_meter_C;
+    }
     if(this.sameendflag==true){
       if(type == 'B'){
         this.end_meter_A = this.end_meter_B;
+        this.end_meter_C = this.end_meter_B;
+      }
+      else if(type == 'C'){
+        this.end_meter_A = this.end_meter_C;
+        this.end_meter_B = this.end_meter_C;
       }
       this.end_meter_B = this.end_meter_A;
       this.roll_cut_B = this.end_meter_B - this.start_meter_B;
+      this.roll_cut_C = this.end_meter_C - this.start_meter_C;
     }
   }
   
@@ -298,6 +316,30 @@ save(){
         this.inward_data_log_view();
         this.machine_master();
       }
+    })
+
+}
+
+get_machine_inward_greige(){
+  this.api.get_machine_inward_greige_detail(this.start_greige_production_machine).subscribe(
+    (data: any) => {
+      if ((data['status'] == 200)) {
+        this.machine_flag = true;
+        this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
+        this.greige_article_name = data['data']['greige_article_name'];
+        this.operator_name = localStorage.getItem('username');
+        this.greige_color_name = data['data']['production_order_info']['greige_color_name'];
+        this.quantity = data['data']['production_order_info']['quantity'];
+        this.width_A = data['data']['width_A'];
+        this.width_B = data['data']['width_B'];
+        this.width_C = data['data']['width_C'];
+        this.start_meter_A = data['data']['taakas_start_meter']['start_meter_A'];
+        this.start_meter_B = data['data']['taakas_start_meter']['start_meter_B'];
+        this.start_meter_C = data['data']['taakas_start_meter']['start_meter_C'];
+        this.total_length_produced = data['data']['total_length_produced'];
+        this.total_qty_produced = data['data']['total_qty_produced'];
+      }
+
     })
 
 }

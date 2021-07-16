@@ -110,13 +110,40 @@
               <ion-input name="lot_no" type="number" min="0" placeholder="Lot No." [(ngModel)]="lot_no_B" readonly></ion-input>
             </ion-item>
           </ion-grid>
-
-
-
         </div>
         <div padding class="register_btn" *ngIf="((machine_number && !view ) || (process_status_display=='Running')) && show">
           <ion-button size="large" (click)="stickerB()">Add and Generate Sticker</ion-button>
         </div>
+
+        
+        <ion-grid *ngIf="((machine_number && !view ) || (process_status_display=='Running')) && show" class="production_detail">
+          <ion-item>
+            <ion-text class="pr3">TAKA C</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer-outline"></ion-icon>
+            <ion-input name="roll_width" type="number" min="0" placeholder="Roll Width" [(ngModel)]="width_C" readonly>
+            </ion-input>
+            <ion-icon name="timer-outline"></ion-icon>
+            <ion-input name="start_meter" type="number" min="0" placeholder="Start Meter" [(ngModel)]="start_meter_C"
+            readonly></ion-input>
+            <ion-icon name="time-outline"></ion-icon>
+            <ion-input name="end_meter" type="number" min="0" placeholder="End Meter" (keyup)="get_rollcut('C')"
+              [(ngModel)]="end_meter_C" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="cut-outline" class="pr3"></ion-icon>
+            <ion-input name="roll_cut" type="number" min="0" placeholder="Roll Cut" [(ngModel)]="roll_cut_C" readonly>
+            </ion-input>
+            <ion-icon name="grid-outline" class="pr3"></ion-icon>
+            <ion-input name="weight" type="number" min="0" placeholder="Weight" [(ngModel)]="weight_C" required></ion-input>K
+            <ion-icon name="grid-outline" class="pr3"></ion-icon>
+            <ion-input name="lot_no" type="number" min="0" placeholder="Lot No." [(ngModel)]="lot_no_C" readonly></ion-input>
+          </ion-item>
+          <div padding class="register_btn" *ngIf="((machine_number && !view ) || (process_status_display=='Running')) && show">
+            <ion-button size="large" (click)="stickerC()">Add and Generate Sticker</ion-button>
+          </div>
+        </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>
