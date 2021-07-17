@@ -39,15 +39,16 @@ export class AddInwardProductionPage implements OnInit {
   total_length_produced: any;
   total_qty_produced: any;
   roll_cut_A: number =0;
-  end_meter_A: any;
-  weight_A: any;
-  weight_B:any;
+  end_meter_A: any=0;
+  weight_A: any=0;
+  weight_B:any=0;
+  weight_C:any=0;
   start_greige_production_machine: any;
   process_status_display: any;
   lot_no_A: any;
   lot_no_B: any;
   roll_cut_B: number =0;
-  end_meter_B: any;
+  end_meter_B: any=0;
   sameendflag:boolean = true;
   show:boolean;
   machine_flag: boolean = false;
@@ -55,8 +56,8 @@ export class AddInwardProductionPage implements OnInit {
   start_greige_production: any;
   width_C: any;
   start_meter_C: any;
-  end_meter_C: any;
-  roll_cut_C: number;
+  end_meter_C: any=0;
+  roll_cut_C: number =0;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 

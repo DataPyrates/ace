@@ -101,7 +101,7 @@ export class ProductionLogPage implements OnInit {
           this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
           this.transaction_number= data['data']['transaction_number'];
           this.operator = data['data']['operator_first_name'];
-          this.greige_article_name = data['data']['greige_article'];
+          //this.greige_article_name = data['data']['greige_article'];
           this.production_log_details = data['data']['production_log_details'];
           this.process_status_display = data['data']['process_status_display'];
           if(this.process_status_display == 'Paused'){
@@ -306,7 +306,7 @@ get_machine_greige(){
       if ((data['status'] == 200)) {
         this.machine_flag = true;
         this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
-        this.greige_article_name = data['data']['production_order_info']['greige_article_name'];
+        this.greige_article_name = data['data']['greige_article_name'];
         this.operator = localStorage.getItem('username');
         this.start_greige_production = data['data']['results'][0]['id'];
       }
