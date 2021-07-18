@@ -56,7 +56,7 @@
   </ion-slide>
   </ion-slides>
 
-<div class="list">
+<div class="list"  *ngIf="collection && collection.length>0">
   <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
 </ion-content>

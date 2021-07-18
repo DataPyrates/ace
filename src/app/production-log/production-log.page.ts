@@ -304,11 +304,12 @@ get_machine_greige(){
   this.api.get_machine_greige_detail(this.start_greige_production).subscribe(
     (data: any) => {
       if ((data['status'] == 200)) {
+        console.log(data,'machine select data');
         this.machine_flag = true;
-        this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
+        this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
         this.greige_article_name = data['data']['greige_article_name'];
         this.operator = localStorage.getItem('username');
-        this.start_greige_production = data['data']['results'][0]['id'];
+        this.start_greige_production = data['data']['id'];
       }
 
     })
