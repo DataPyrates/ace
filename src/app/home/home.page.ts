@@ -16,7 +16,9 @@ export class HomePage {
    console.log(userdata);
    $(".branch").html(userdata.data.branches[0]['short_name']);
    $(".department").html(userdata.data.departments[0]['name']);
+   if(userdata.data.departments.length >1){
    $(".department1").html(userdata.data.departments[1]['name']);
+   }
   }
 
   ionViewWillEnter(){
