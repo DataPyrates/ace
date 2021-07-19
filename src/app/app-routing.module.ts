@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'add-order',
     loadChildren: () => import('./add-order/add-order.module').then( m => m.AddOrderPageModule)
   },
+  {
+    path: 'machine-master-view',
+    loadChildren: () => import('./machine-master-view/machine-master-view.module').then( m => m.MachineMasterViewPageModule)
+  },
 ];
 
 @NgModule({

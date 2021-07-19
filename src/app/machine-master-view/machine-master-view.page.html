@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
+      </ion-buttons>
+    <ion-title>ACE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="scroll-content">
+  <ion-grid>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h4 class="center">Machine Master</h4>
+        </div>
+        <div padding>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <ion-input name="Machine_number" type="text" *ngIf="view" placeholder="Machine Number" [(ngModel)]="number" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <ion-input name="machine_type" type="text" *ngIf="view" placeholder="Machine Type" [(ngModel)]="machine_type_name" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="created_date" type="text" placeholder="Installation Date" [(ngModel)]="i_date" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="machine_make" type="text" placeholder="Machine Make" [(ngModel)]="machine_make" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="year" type="text" placeholder="Year" [(ngModel)]="year" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="machine_status" type="text" placeholder="Machine Status" [(ngModel)]="machine_status" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="branch" type="text" placeholder="Branch" [(ngModel)]="branch" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="department" type="text" placeholder="Department" [(ngModel)]="department" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="remark" type="text" placeholder="Remark" [(ngModel)]="remark" readonly></ion-input>
+          </ion-item>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

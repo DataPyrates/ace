@@ -51,6 +51,17 @@ export class MachineMasterPage implements OnInit {
       
       })
   }
+
+  view(id,type){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id,
+        type:type,
+      }
+    };
+    this.route.navigate(['/machine-master-view'],navigationExtras);
+  }
+
   pageChanged(event){
     this.get_machine_data(event);
    }

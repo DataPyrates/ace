@@ -40,6 +40,10 @@ export class ProductionLogPage implements OnInit {
   transaction_number: any;
   show:boolean;
   machine_master: any;
+  course: any;
+  shift: any;
+  created_date: any;
+  c_date: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService) { }
   ngOnInit() {
@@ -309,6 +313,11 @@ get_machine_greige(){
         this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
         this.greige_article_name = data['data']['greige_article_name'];
         this.operator = localStorage.getItem('username');
+        this.course = data['data']['production_order_info']['course'];
+        this.created_date = data['data']['created_date'];
+        this.created_date = this.created_date.split('T');
+        this.c_date = this.created_date[0]; 
+        this.shift = data['data']['deleted'];
         this.start_greige_production = data['data']['id'];
       }
 

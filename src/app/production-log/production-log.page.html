@@ -31,12 +31,24 @@
             <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="greige_production_transaction_number" readonly></ion-input>
           </ion-item>
           <ion-item>
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="created_date" type="text" placeholder="Greige Production Order Date" [(ngModel)]="c_date" readonly></ion-input>
+          </ion-item>
+          <ion-item>
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
             <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="greige_article_name" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="operator" type="text" placeholder="Operator" [(ngModel)]="operator" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="course" type="text" placeholder="Course" [(ngModel)]="course" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="shift" type="text" placeholder="Shift" [(ngModel)]="shift" readonly></ion-input>
           </ion-item>
           <ion-grid *ngIf="((!view && machine_flag) || (process_status_display == 'Paused' || process_status_display=='Running')) && show" class="production_detail">
           <ion-item>
