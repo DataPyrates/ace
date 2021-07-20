@@ -319,6 +319,8 @@ get_machine_greige(){
         this.c_date = this.created_date[0]; 
         this.shift = data['data']['deleted'];
         this.start_greige_production = data['data']['id'];
+        this.process_status_display = data['data']['process_status_display'];
+
       }
 
     })
