@@ -15,9 +15,11 @@ export class HomePage {
    var userdata= JSON.parse(localStorage.getItem('user_data'));
    console.log(userdata);
    $(".branch").html(userdata.data.branches[0]['short_name']);
-   $(".department").html(userdata.data.departments[0]['name']);
+   var department_first_index = userdata.data.departments.findIndex(x => x['name'] ==="Warp Knitting"); 
+   $(".department").html(userdata.data.departments[department_first_index]['name']);
    if(userdata.data.departments.length >1){
-   $(".department1").html(userdata.data.departments[1]['name']);
+    var department_second_index = userdata.data.departments.findIndex(x => x['name'] ==="Trading"); 
+   $(".department1").html(userdata.data.departments[department_second_index]['name']);
    }
   }
 

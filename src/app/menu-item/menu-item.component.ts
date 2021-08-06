@@ -19,7 +19,7 @@ export class MenuItemComponent implements OnInit {
   constructor(private route: Router, public menuCtrl: MenuController) {}
 
   ngOnInit() {
-    this.department = localStorage.getItem('department');
+    this.department = localStorage.getItem('department')?localStorage.getItem('department'):'Warp Knitting';
   }
 
   onMenuItemSelected(menuItem: MenuItem): void {
