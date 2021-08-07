@@ -36,7 +36,7 @@ export class MenuItemComponent implements OnInit {
   }
   
   openclosedmenu(name){
-    console.log(name);
+    console.log(name,this.isOpen);
     if(name == 'Commmon Master'){
     var firstmenu = localStorage.getItem('firstmenu');
     if(firstmenu == 'open'){

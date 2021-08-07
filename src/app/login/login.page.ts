@@ -27,7 +27,8 @@ password:any;
       (data :any )=> {
        if((data['status'] == 200)){
             // localStorage.clear();
-            let department = data['data']['departments'][0]['name'];
+            var department_first_index = data['data']['departments'].findIndex(x => x['name'] ==="Warp Knitting"); 
+            let department = data['data']['departments'][department_first_index]['name'];
             localStorage.setItem('department',department);
             localStorage.setItem('user_data',JSON.stringify(data));
             localStorage.setItem('username',this.username);
