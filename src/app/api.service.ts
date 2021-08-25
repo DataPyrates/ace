@@ -234,6 +234,14 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/transactions/greige_inward_production/?action=table_list&page_size=10&page='+page,{'headers':headers});
   }
 
+  public wk_production_log_data(page){
+    let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/?action=table_list&page_size=10&page='+page,{'headers':headers});
+  }
+
   public  inward_production_log_view(id) {
     let headers = new HttpHeaders();
     headers=headers.append('branch',localStorage.getItem('branch_master'));

@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'machine-master-view',
     loadChildren: () => import('./machine-master-view/machine-master-view.module').then( m => m.MachineMasterViewPageModule)
   },
+  {
+    path: 'start-wk-production',
+    loadChildren: () => import('./start-wk-production/start-wk-production.module').then( m => m.StartWkProductionPageModule)
+  },
 ];
 
 @NgModule({
