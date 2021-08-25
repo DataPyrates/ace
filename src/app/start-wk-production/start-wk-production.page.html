@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
       </ion-buttons>
     <ion-title class="main font_18"> Start W.K. Production</ion-title>
-    <ion-button slot="end" [routerLink]="['/add-wk-production']" large >
+    <ion-button slot="end" [routerLink]="['/wk-production-add']" large >
       <ion-icon name="add-circle" ></ion-icon>
       </ion-button>
   </ion-toolbar>
@@ -27,12 +27,12 @@
 
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">Machine No.</ion-title>
-        <ion-label>{{ wk.machine_info.machine_number }}</ion-label>
+        <ion-label>{{ wk.machine_number }}</ion-label>
       </ion-item>
 
       <ion-item class="content_card">
         <ion-title class="content_card" slot="start">No. of Taaka</ion-title>
-        <ion-label>{{ wk.machine_info.no_of_taaka }}</ion-label>
+        <ion-label>{{ wk.no_of_taaka }}</ion-label>
       </ion-item>
 
       <ion-item class="content_card">

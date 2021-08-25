@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
+      </ion-buttons>
+    <ion-title>ACE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="scroll-content">
+  <ion-grid>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h4 class="center">Add W.K. Production Order On Machine</h4>
+          <ion-label *ngIf="view" class="center">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
+        </div>
+        <div padding>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist" list="order" placeholder="Search Greige Production order" (keyup)="getwkdata($event)"
+              (change)="wk_details($event)">
+            <datalist id="order">
+              <option value="">--Select--</option>
+              <option [value]="numbers.transaction_number" *ngFor="let numbers of wk_data">{{ numbers.transaction_number }}</option>
+            </datalist>
+          </ion-item>
+          <ion-item>
+            <ion-input name="number" type="text" [(ngModel)]="machine_no" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="created_date" type="text" placeholder="Greige Production Order Date" [(ngModel)]="c_date" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="created_date" type="text" placeholder="Greige Production Order Date" [(ngModel)]="c_date" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="greige_article_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="article" type="text" placeholder="Greige Article" [(ngModel)]="greige_article_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="greige_color_name" type="text" placeholder="Operator" [(ngModel)]="greige_color_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="greige_color_name" type="text" placeholder="greige_color_name" [(ngModel)]="greige_color_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="course" type="text" placeholder="Course" [(ngModel)]="course" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="course" type="text" placeholder="Course" [(ngModel)]="course" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="shift" type="text" placeholder="Shift" [(ngModel)]="shift" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="timer-outline" class="pr3"></ion-icon>
+            <ion-input name="shift" type="text" placeholder="Shift" [(ngModel)]="shift" readonly></ion-input>
+          </ion-item>
+        
+        </div>
+        <div padding class="register_btn" *ngIf=" ((machine_number && !view )||(process_status_display=='Paused') || (process_status_display=='Running')) && show">
+          <ion-button size="large" (click)="register()">Submit</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

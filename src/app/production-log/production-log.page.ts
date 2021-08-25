@@ -15,7 +15,7 @@ export class ProductionLogPage implements OnInit {
   machine_data: any;
   machine_detail: any;
   machine_no: any;
-  greige_article_name: any;
+  greige_article: any;
   greige_production_transaction_number: any;
   operator: any;
   production_data: any;
@@ -44,6 +44,7 @@ export class ProductionLogPage implements OnInit {
   shift: any;
   created_date: any;
   c_date: any;
+  greige_article_name: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService) { }
   ngOnInit() {
@@ -75,15 +76,16 @@ export class ProductionLogPage implements OnInit {
       })
   }
 
-  get_machine_detail() {
+  get_machine_details() {
     this.api.get_machine_detail(this.machine_master).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
           this.machine_flag = true;
           this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
-          //this.greige_article_name = data['data']['results'][0]['greige_article_name'];
+          this.greige_article_name = data['data']['greige_article_name'];
           this.operator = localStorage.getItem('username');
           this.start_greige_production = data['data']['results'][0]['id'];
+          this.machine_no = data['data']['machine_number'];
           this.get_machine_greige();
         }
 
@@ -105,9 +107,14 @@ export class ProductionLogPage implements OnInit {
           this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
           this.transaction_number= data['data']['transaction_number'];
           this.operator = data['data']['operator_first_name'];
-          //this.greige_article_name = data['data']['greige_article'];
+          this.greige_article_name = data['data']['greige_article'];
           this.production_log_details = data['data']['production_log_details'];
           this.process_status_display = data['data']['process_status_display'];
+          this.course = data['data']['production_order_info']['course'];
+          this.created_date = data['data']['created_date'];
+          this.created_date = this.created_date.split('T');
+          this.c_date = this.created_date[0]; 
+          this.shift = data['data']['deleted']?data['data']['deleted']:'null';
           if(this.process_status_display == 'Paused'){
           this.taka_no_flag = false;
           }
@@ -299,7 +306,7 @@ export class ProductionLogPage implements OnInit {
            this.machine_data = data['data']['results'];
            this.machine_master = data['data']['results'][0]['id'];
            console.log(this.machine_data);
-           this.get_machine_detail();
+           this.get_machine_details();
         }
       })
   }
@@ -311,13 +318,13 @@ get_machine_greige(){
         console.log(data,'machine select data');
         this.machine_flag = true;
         this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
-        this.greige_article_name = data['data']['greige_article_name'];
+        this.greige_article_name = data['data']['greige_article']?data['data']['greige_article']:data['data']['greige_article_name'];
         this.operator = localStorage.getItem('username');
         this.course = data['data']['production_order_info']['course'];
         this.created_date = data['data']['created_date'];
         this.created_date = this.created_date.split('T');
         this.c_date = this.created_date[0]; 
-        this.shift = data['data']['deleted'];
+        this.shift = data['data']['deleted']?data['data']['deleted']:'null';
         this.start_greige_production = data['data']['id'];
         this.process_status_display = data['data']['process_status_display'];
 

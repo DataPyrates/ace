@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { StartWkProductionPageRoutingModule } from './start-wk-production-routing.module';
 
 import { StartWkProductionPage } from './start-wk-production.page';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StartWkProductionPageRoutingModule
+    StartWkProductionPageRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [StartWkProductionPage]
 })

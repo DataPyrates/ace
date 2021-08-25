@@ -58,7 +58,11 @@ const routes: Routes = [
   {
     path: 'start-wk-production',
     loadChildren: () => import('./start-wk-production/start-wk-production.module').then( m => m.StartWkProductionPageModule)
+  },  {
+    path: 'wk-production-add',
+    loadChildren: () => import('./wk-production-add/wk-production-add.module').then( m => m.WkProductionAddPageModule)
   },
+
 ];
 
 @NgModule({
