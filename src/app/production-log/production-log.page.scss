@@ -26,3 +26,7 @@ ion-button {
 .content_card {
   font-size: 11px;
 }
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+  text-overflow: unset !important; 
+  white-space: unset !important;
+}

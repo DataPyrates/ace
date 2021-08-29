@@ -58,6 +58,7 @@ export class AddInwardProductionPage implements OnInit {
   start_meter_C: any;
   end_meter_C: any=0;
   roll_cut_C: number =0;
+  unit_name: string;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -330,7 +331,13 @@ get_machine_inward_greige(){
         this.greige_article_name = data['data']['greige_article_name'];
         this.operator_name = localStorage.getItem('username');
         this.greige_color_name = data['data']['production_order_info']['greige_color_name'];
-        this.quantity = data['data']['production_order_info']['quantity'];
+        if(data['data']['unit_name']  == 'm'){
+          this.unit_name = 'Meter';
+        }
+        else{
+          this.unit_name = data['data']['unit_name'];
+        }
+        this.quantity = data['data']['production_order_info']['quantity']+ " "+ this.unit_name;
         this.width_A = data['data']['width_A'];
         this.width_B = data['data']['width_B'];
         this.width_C = data['data']['width_C'];

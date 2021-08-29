@@ -26,7 +26,7 @@
             </datalist>
             <ion-input name="number" type="text" *ngIf="view"  [(ngModel)]="machine_no" readonly></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="!view">
             <ion-icon name="information-circle-outline" class="pr3"></ion-icon>
             <ion-input name="order_no" type="text" placeholder="Greige Pro Order No." [(ngModel)]="greige_production_transaction_number" readonly></ion-input>
           </ion-item>
@@ -96,12 +96,14 @@
             <ion-select [(ngModel)]="taka_no" multiple [disabled]="taka_no_flag">
               <ion-select-option value="A">A</ion-select-option>
               <ion-select-option value="B">B</ion-select-option>
+              <ion-select-option value="C">C</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
-            <ion-input  type="number" placeholder="Meter Reading" [(ngModel)]="meter_reading" [disabled]="taka_no_flag"></ion-input>
+            <ion-input  type="number" placeholder="Meter Reading" [(ngModel)]="meter_reading" [disabled]="taka_no_flag" (keyup)="checkenterreading($event)"></ion-input>
           </ion-item>
+          <p *ngIf="lessmeterflag" class="red_color text-center">Please enter correct meter reading</p>
           <ion-item>
             <ion-icon name="help-buoy-outline" class="pr3"></ion-icon>
             <ion-label>Select Fields</ion-label>
@@ -163,7 +165,7 @@
         </ion-card>
       </div>
         <div padding class="register_btn" *ngIf=" ((machine_number && !view )||(process_status_display=='Paused') || (process_status_display=='Running')) && show">
-          <ion-button size="large" (click)="register()">End Log Sheet</ion-button>
+          <ion-button size="large" (click)="endlogsheet()">End Log Sheet</ion-button>
         </div>
       </ion-col>
     </ion-row>

@@ -208,12 +208,12 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/transactions/start_greige_production/'+ machine_no+'/',{'headers':headers});
   }
 
-  public  greige_production_log_data(page) {
+  public  greige_production_log_data(page,term) {
   let headers = new HttpHeaders();
   headers=headers.append('branch',localStorage.getItem('branch_master'));
   headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));   
-    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/?action=table_list&page_size=10&page='+page,{'headers':headers});
+    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_log/?action=table_list&page_size=10&page='+page+'&start_greige_production__machine_master__number__icontains='+term,{'headers':headers});
     
   }
 
@@ -375,6 +375,24 @@ export class ApiService {
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.post(environment.apiURL + 'erp/api/transactions/greige_production_log_details/',postData,{'headers':headers}).pipe(map((res: Response) => {
+      return res;
+    })).pipe(catchError((error: any) => {
+      console.log(error);
+      if (error.status === 500) {
+        return throwError(new Error(error.status));
+      }
+      else if (error.message) {
+        this.popup.showAlert('Error',error.error.message);
+      }
+    }));
+  }
+
+  public end_log_sheet_production(postData,id){
+    let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.post(environment.apiURL + 'erp/api/transactions/greige_production_log/'+id+'/',postData,{'headers':headers}).pipe(map((res: Response) => {
       return res;
     })).pipe(catchError((error: any) => {
       console.log(error);

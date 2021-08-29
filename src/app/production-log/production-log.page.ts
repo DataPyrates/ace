@@ -11,6 +11,7 @@ import copy from 'text-copy';
 })
 
 export class ProductionLogPage implements OnInit {
+  lessmeterflag: boolean = false;
   secondgrid: boolean = false;
   machine_data: any;
   machine_detail: any;
@@ -45,6 +46,7 @@ export class ProductionLogPage implements OnInit {
   created_date: any;
   c_date: any;
   greige_article_name: any;
+  last_meter_reading: any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService) { }
   ngOnInit() {
@@ -81,7 +83,7 @@ export class ProductionLogPage implements OnInit {
       (data: any) => {
         if ((data['status'] == 200)) {
           this.machine_flag = true;
-          this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
+          this.greige_production_transaction_number = data['data']['greige_production_transaction_number']?data['data']['greige_production_transaction_number']:data['data']['results'][0]['greige_production_transaction_number'];
           this.greige_article_name = data['data']['greige_article_name'];
           this.operator = localStorage.getItem('username');
           this.start_greige_production = data['data']['results'][0]['id'];
@@ -110,7 +112,6 @@ export class ProductionLogPage implements OnInit {
           this.greige_article_name = data['data']['greige_article'];
           this.production_log_details = data['data']['production_log_details'];
           this.process_status_display = data['data']['process_status_display'];
-          this.course = data['data']['production_order_info']['course'];
           this.created_date = data['data']['created_date'];
           this.created_date = this.created_date.split('T');
           this.c_date = this.created_date[0]; 
@@ -179,6 +180,17 @@ export class ProductionLogPage implements OnInit {
               this.production_log_details[i]['field']= field;
             }
           }
+          this.api.get_machine_master(data['data']['machine_master']).subscribe(
+            data => {
+              console.log('machine_data',data);
+              var id = data['data']['results'][0]['id'];
+              this.api.get_machine_greige_detail(id).subscribe(
+                data => {
+                this.course = data['data']['production_order_info']['course'];
+                });
+          });
+          this.last_meter_reading = data['data']['production_log_details'][0]['meter_reading'];
+          console.log("final meter reading",this.last_meter_reading);
         })
     }
   }
@@ -331,7 +343,30 @@ get_machine_greige(){
       }
 
     })
+}
 
+checkenterreading(event){
+  console.log(event,event.target.value);
+  if(event && (event.target.value < this.last_meter_reading) || (event.target.value == this.last_meter_reading)){
+  this.lessmeterflag = true;
+  }
+  else{
+  this.lessmeterflag = false;
+  }
+}
+
+endlogsheet(){
+  let postData = {
+    action:'end',
+    branch:0,
+    department:0,
+    id:this.id,
+    start_greige_production:0
+  }
+  this.api.end_log_sheet_production(postData,this.id).subscribe(
+    data => {
+      this.route.navigate(['/production-dashboard']);
+  });
 }
 
 }

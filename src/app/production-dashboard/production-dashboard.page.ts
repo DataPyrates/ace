@@ -29,8 +29,9 @@ export class ProductionDashboardPage implements OnInit {
   
   greige_production_log(page){
    this.page=page;  
+   this.term = this.term?this.term:'';
    //let start_greige_production__machine_master__number__icontains = this.term;
-    this.api.greige_production_log_data(this.page).subscribe(
+    this.api.greige_production_log_data(this.page,this.term).subscribe(
     (data :any )=> {
      if((data['status'] == 200)){
       var month = new Array();
