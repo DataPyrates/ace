@@ -161,8 +161,7 @@ export class AddInwardProductionPage implements OnInit {
   }
 
   machine_master() {
-    let machine_master = this.machine_masters;
-    console.log(this.machine_master,'machine_master');
+    let machine_master = this.machine_number;
     this.api.get_machine_master(machine_master).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
