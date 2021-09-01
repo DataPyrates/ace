@@ -71,6 +71,15 @@ export class ApiService {
     return this.http.get(environment.apiURL + 'erp/api/masters/machine_number/?machine_type__machine_role=2&number__icontains='+name__icontains,{'headers':headers});
   }
 
+  public wk_machine_data(transaction_number__icontains){
+    let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/greige_production_order/?transaction_status=1&schedule_status=2&bom_status=2&start_gpr_machine_isnull=true&transaction_number__icontains='+transaction_number__icontains,{'headers':headers});
+  } 
+  
+
   public order_sales_data(first_last_name_contains) {
     let headers = new HttpHeaders();
     headers=headers.append('branch',localStorage.getItem('branch_master'));

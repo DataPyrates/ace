@@ -24,6 +24,7 @@ export class AddInwardProductionPage implements OnInit {
   greige_production_transaction_number: any;
   view: boolean = false;
   machine_number: any;
+  machine_master_no:any;
   inward_item: any;
   modelData: any;
   transaction_number: any;
@@ -59,6 +60,7 @@ export class AddInwardProductionPage implements OnInit {
   end_meter_C: any=0;
   roll_cut_C: number =0;
   unit_name: string;
+  machine_masters: any;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -140,21 +142,27 @@ export class AddInwardProductionPage implements OnInit {
       (data: any) => {
         if ((data['status'] == 200)) {
           this.inward_production_data = data['data']['results'];
-          this.greige_article_name = data['data']['results'][0]['greige_article_name'];
-          this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
-          this.greige_color_name = data['data']['results'][0]['production_order_info']['greige_color_name'];
-          this.quantity = data['data']['results'][0]['production_order_info']['quantity'];
-          this.operator_name = localStorage.getItem('username');
-          this.width_A = data['data']['results'][0]['width_A'];
-          this.width_B = data['data']['results'][0]['width_B'];
-          this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
-          this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
+          console.log(this.inward_production_data.length);
+          
+          this.machine_masters = this.machine_master_no;
+          
+          console.log(this.machine_master_no);
+          // this.greige_article_name = data['data']['results'][0]['greige_article_name'];
+          // this.greige_production_transaction_number = data['data']['results'][0]['greige_production_transaction_number'];
+          // this.greige_color_name = data['data']['results'][0]['production_order_info']['greige_color_name'];
+          // this.quantity = data['data']['results'][0]['production_order_info']['quantity'];
+          // this.operator_name = localStorage.getItem('username');
+          // this.width_A = data['data']['results'][0]['width_A'];
+          // this.width_B = data['data']['results'][0]['width_B'];
+          // this.start_meter_A = data['data']['results'][0]['taakas_start_meter']['start_meter_A'];
+          // this.start_meter_B = data['data']['results'][0]['taakas_start_meter']['start_meter_B'];
         }
       })
   }
 
   machine_master() {
-    var machine_master = 10;
+    let machine_master = this.machine_masters;
+    console.log(this.machine_master,'machine_master');
     this.api.get_machine_master(machine_master).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
@@ -163,7 +171,6 @@ export class AddInwardProductionPage implements OnInit {
           this.start_greige_production_machine = data['data']['results'][0]['id'];
           // this.lot_no_A = data['data']['id'];
           // this.lot_no_B = data['data']['id'];
-          console.log(this.total_length_produced, this.total_qty_produced);
           this.get_machine_inward_greige();
         }
 

@@ -21,9 +21,9 @@
           <ion-item>
             <ion-icon name="settings-outline" class="pr3"></ion-icon>
             <ion-label *ngIf="!view">Select Machine Number</ion-label>
-            <ion-select [(ngModel)]="machine_number" (ionChange)="machine_master()" *ngIf="!view">
+            <ion-select [(ngModel)]="machine_master_no" (ionChange)="machine_master()" *ngIf="!view">
               <ion-select-option value="">--Select--</ion-select-option>
-              <ion-select-option [value]="machine.id" *ngFor="let machine of inward_production_data">
+              <ion-select-option *ngFor="let machine of inward_production_data">
                 {{machine.machine_number}}</ion-select-option>
             </ion-select>
             <ion-input name="order_no" type="text" [(ngModel)]="machine_number" readonly *ngIf="view"></ion-input>
