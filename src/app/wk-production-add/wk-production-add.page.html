@@ -20,7 +20,7 @@
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <input class="datalist"  [(ngModel)]="transaction_number" list="order" placeholder="Search Greige Production order" (keyup)="getwkdata($event)"
               (change)="wk_alldata()">
-            <datalist id="order">
+            <datalist id="order" *ngIf="wk_data_flag">
               <option value="">--Select--</option>
               <option *ngFor="let numbers of wk_data">{{ numbers.transaction_number }}</option>
             </datalist>

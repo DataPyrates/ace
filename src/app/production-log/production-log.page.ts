@@ -47,6 +47,7 @@ export class ProductionLogPage implements OnInit {
   c_date: any;
   greige_article_name: any;
   last_meter_reading: any;
+  machine_data_flag: boolean = true;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService,public popup:PopupService) { }
   ngOnInit() {
@@ -318,10 +319,44 @@ export class ProductionLogPage implements OnInit {
            this.machine_data = data['data']['results'];
            this.machine_master = data['data']['results'][0]['id'];
            console.log(this.machine_data);
-           this.get_machine_details();
+           for (let i = 0; i < this.machine_data.length; i++) {
+            if (this.machine_data[i]['number'] == this.machine_no) {
+              this.machine_data_flag = false;
+            }
+          }
+           //this.get_machine_details();
         }
       })
   }
+}
+
+machine_details(){
+  var machine_no;
+  for (let i = 0; i < this.machine_data.length; i++) {
+    if (this.machine_data[i]['number'] == this.machine_no) {
+      machine_no = this.machine_data[i]['id'];
+    }
+  }
+  this.api.get_machine_master(machine_no).subscribe(
+    data => {
+      console.log('machine_data',data);
+      var id = data['data']['results'][0]['id'];
+      this.api.get_machine_greige_detail(id).subscribe(
+        data => {
+        console.log(data,'machine data details');
+        this.machine_flag = true;
+        this.greige_production_transaction_number = data['data']['greige_production_transaction_number'];
+        this.greige_article_name = data['data']['greige_article']?data['data']['greige_article']:data['data']['greige_article_name'];
+        this.operator = localStorage.getItem('username');
+        this.course = data['data']['production_order_info']['course'];
+        this.created_date = data['data']['created_date'];
+        this.created_date = this.created_date.split('T');
+        this.c_date = this.created_date[0]; 
+        this.shift = data['data']['deleted']?data['data']['deleted']:'null';
+        this.process_status_display = data['data']['process_status_display'];
+        this.start_greige_production = data['data']['id'];
+        });
+  });
 }
 get_machine_greige(){
   this.api.get_machine_greige_detail(this.start_greige_production).subscribe(

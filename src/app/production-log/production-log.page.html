@@ -18,9 +18,9 @@
         <div padding>
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-            <input class="datalist" *ngIf="!view" list="machine" placeholder="Search Machine Number" (keyup)="getmachinedata($event)"
+            <input class="datalist" *ngIf="!view" list="machine" [(ngModel)]="machine_no" placeholder="Search Machine Number" (keyup)="getmachinedata($event)"
               (change)="machine_details($event)">
-            <datalist id="machine">
+            <datalist id="machine" *ngIf="machine_data_flag">
               <option value="">--Select--</option>
               <option [value]="numbers.number" *ngFor="let numbers of machine_data">{{ numbers.number }}</option>
             </datalist>

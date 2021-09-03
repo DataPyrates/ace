@@ -295,14 +295,22 @@ export class AddInwardProductionPage implements OnInit {
       if(type == 'B'){
         this.end_meter_A = this.end_meter_B;
         this.end_meter_C = this.end_meter_B;
+        this.roll_cut_A = this.end_meter_A - this.start_meter_A;
+        this.roll_cut_C = this.end_meter_C - this.start_meter_C;
+      }
+      else if(type == 'A'){
+        this.end_meter_B = this.end_meter_A;
+        this.end_meter_C = this.end_meter_A;
+        this.roll_cut_B = this.end_meter_B - this.start_meter_B;
+        this.roll_cut_C = this.end_meter_C - this.start_meter_C;
       }
       else if(type == 'C'){
         this.end_meter_A = this.end_meter_C;
         this.end_meter_B = this.end_meter_C;
+        this.roll_cut_B = this.end_meter_B - this.start_meter_B;
+        this.roll_cut_A = this.end_meter_A - this.start_meter_A;
       }
-      this.end_meter_B = this.end_meter_A;
-      this.roll_cut_B = this.end_meter_B - this.start_meter_B;
-      this.roll_cut_C = this.end_meter_C - this.start_meter_C;
+      console.log(this.roll_cut_A,this.roll_cut_B,this.roll_cut_C,this.end_meter_A,this.end_meter_B,this.end_meter_C);
     }
   }
   
