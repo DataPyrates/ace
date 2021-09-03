@@ -14,7 +14,12 @@ import { PopupService } from './../popup.service';
 })
 export class WkProductionAddPage implements OnInit {
   wk_data: any;
-  id: any;
+  transaction_number: any;
+  machine_number: any;
+  greige_article_name: any;
+  greige_color_name: any;
+  quantity: any;
+  machine_width: any;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: ApiService) { }
 
@@ -26,7 +31,6 @@ getwkdata(event){
       (data: any) => {
         if ((data['status'] == 200)) {
            this.wk_data = data['data']['results'];
-           this.wk_alldata();
         }
       })
   }
@@ -34,17 +38,27 @@ getwkdata(event){
 }
 
 wk_alldata(){
-  let t_id = this.id;
-  this.api.wk_allmachine_data(t_id).subscribe(
-    (data: any) => {
-      if ((data['status'] == 200)) {
-        // this.total_length_produced = data['data']['results'][0]['total_length_produced'];
-        // this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
-        // this.start_greige_production_machine = data['data']['results'][0]['id'];
-        // this.lot_no_A = data['data']['id'];
-        // this.lot_no_B = data['data']['id'];
-      }
-
-    })
+  console.log(this.transaction_number);
+  for( let i=0; i< this.wk_data.length;i++){
+    if(this.wk_data[i]['transaction_number'] == this.transaction_number){
+      this.api.wk_allmachine_data(this.wk_data[i]['id']).subscribe(
+        (data: any) => {
+          if ((data['status'] == 200)) {
+            console.log(data);
+             this.machine_number = data['data']['machine_info']['machine_number'];
+             this.greige_article_name = data['data']['greige_article_name'];
+             this.greige_color_name = data['data']['greige_color_name'];
+             this.quantity = data['data']['quantity'];
+             this.machine_width =data['data']['machine_info']['machine_width'];
+            // this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
+            // this.start_greige_production_machine = data['data']['results'][0]['id'];
+            // this.lot_no_A = data['data']['id'];
+            // this.lot_no_B = data['data']['id'];
+          }
+    
+        })
+    }
+  }
+  
 }
 }

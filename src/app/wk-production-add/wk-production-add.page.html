@@ -19,10 +19,10 @@
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <input class="datalist"  [(ngModel)]="transaction_number" list="order" placeholder="Search Greige Production order" (keyup)="getwkdata($event)"
-              (change)="wk_details($event)">
+              (change)="wk_alldata()">
             <datalist id="order">
               <option value="">--Select--</option>
-              <option [value]="numbers.id" *ngFor="let numbers of wk_data">{{ numbers.transaction_number }}</option>
+              <option *ngFor="let numbers of wk_data">{{ numbers.transaction_number }}</option>
             </datalist>
           </ion-item>
           <!-- <ion-item>
@@ -30,7 +30,11 @@
           </ion-item> -->
           <ion-item *ngIf="!view">
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-            <ion-input name="machine_no" type="text" placeholder="Machine Number" [(ngModel)]="machine_no" readonly></ion-input>
+            <ion-input name="machine_number" type="text" placeholder="Machine Number" [(ngModel)]="machine_number" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <ion-input name="machine_number" type="text" placeholder="Machine Number" [(ngModel)]="machine_number" readonly></ion-input>
           </ion-item>
           <ion-item *ngIf="view">
             <ion-icon name="calendar-outline" class="pr3"></ion-icon>
@@ -54,11 +58,11 @@
           </ion-item>
           <ion-item *ngIf="!view">
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>
+            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>M
           </ion-item>
           <ion-item *ngIf="view">
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
-            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>
+            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>M
           </ion-item>
           <ion-item *ngIf="!view">
             <ion-icon name="timer-outline" class="pr3"></ion-icon>
@@ -114,8 +118,8 @@
           </ion-item>
           
         </div>
-        <div padding class="register_btn" *ngIf=" ((machine_number && !view )||(process_status_display=='Paused') || (process_status_display=='Running')) && show">
-          <ion-button size="large" (click)="register()">Submit</ion-button>
+        <div padding class="register_btn" *ngIf="!view">
+          <ion-button size="small" (click)="register()">Submit</ion-button>
         </div>
       </ion-col>
     </ion-row>
