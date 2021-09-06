@@ -62,6 +62,14 @@ const routes: Routes = [
     path: 'wk-production-add',
     loadChildren: () => import('./wk-production-add/wk-production-add.module').then( m => m.WkProductionAddPageModule)
   },
+  {
+    path: 'start-warping-production',
+    loadChildren: () => import('./start-warping-production/start-warping-production.module').then( m => m.StartWarpingProductionPageModule)
+  },
+  {
+    path: 'warping-inward-production',
+    loadChildren: () => import('./warping-inward-production/warping-inward-production.module').then( m => m.WarpingInwardProductionPageModule)
+  },
 
 ];
 

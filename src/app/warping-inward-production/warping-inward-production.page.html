@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title class="main font_18">warp_inward Inward From Production</ion-title>
+    <ion-button slot="end" [routerLink]="['/warp_inward-production-add']" large >
+      <ion-icon name="add-circle" ></ion-icon>
+      </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar placeholder="Search Machine No." [(ngModel)]="term" animated="true" (click)="getFilterdata()"></ion-searchbar>
+  <ion-card class="ion-card-list" *ngFor="let warp_inward of warp_inward_production | paginate: { itemsPerPage: 10, currentPage: p,totalItems: total }">
+    <ion-card-content >
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Date</ion-title>
+        <ion-label>{{ warp_inward.created_date}}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">WIP No.</ion-title>
+        <ion-label>{{ warp_inward.transaction_number }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">M/C No.</ion-title>
+        <ion-label>{{ warp_inward.machine_number }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Warper</ion-title>
+        <ion-label>{{ warp_inward.operator_name }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">No. Of Beam Produced</ion-title>
+        <ion-label>{{ warp_inward.number_of_beams_produced }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Status</ion-title>
+        <ion-label [ngClass]="{'yellow_color':warp_inward.process_status_display=='Completed','green_color':warp_inward.process_status_display=='Running'}">{{ warp_inward.process_status_display }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Remarks</ion-title>
+        <ion-label>{{ warp_inward.remarks }}</ion-label>
+      </ion-item>
+
+      <ion-item class="content_card">
+        <ion-title class="content_card" slot="start">Action</ion-title>
+        <ion-label>
+          <ion-icon class="pr3 font_18" name="eye-outline"  (click)="view(warp_inward.id,'view')"></ion-icon>
+          <ion-icon name="create-outline" class="pr3 edit_icon font_18" (click)="view(warp_inward.id,'edit');machine_master()" *ngIf="warp_inward.process_status_display=='Running'"></ion-icon>
+
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+<div class="list" *ngIf="production && production.length >0 ">
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div>
+</ion-content>
