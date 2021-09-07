@@ -59,10 +59,7 @@ export class WkProductionAddPage implements OnInit {
               this.greige_color_name = data['data']['greige_color_name'];
               this.quantity = data['data']['quantity'];
               this.machine_width = data['data']['machine_info']['machine_width'];
-              // this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
-              // this.start_greige_production_machine = data['data']['results'][0]['id'];
-              // this.lot_no_A = data['data']['id'];
-              // this.lot_no_B = data['data']['id'];
+             
             }
 
           })

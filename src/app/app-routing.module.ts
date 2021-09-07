@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'warping-inward-production',
     loadChildren: () => import('./warping-inward-production/warping-inward-production.module').then( m => m.WarpingInwardProductionPageModule)
   },
+  {
+    path: 'add-start-warping-production',
+    loadChildren: () => import('./add-start-warping-production/add-start-warping-production.module').then( m => m.AddStartWarpingProductionPageModule)
+  },
 
 ];
 
