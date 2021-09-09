@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  class="back" (click)="history.go(-1);"></ion-back-button>
+      </ion-buttons>
+    <ion-title>ACE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="scroll-content">
+  <ion-grid>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h4 class="center">Add Warping Inward From Production</h4>
+          <ion-label *ngIf="view" class="center">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
+        </div>
+        <div padding>
+          <ion-item>
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <input class="datalist"  [(ngModel)]="machine_type_name" list="machine_type" placeholder="Warping Production Order" (keyup)="getwrapinwarddata($event)"
+              (change)="wrapinward_alldata()">
+            <datalist id="machine_type" *ngIf="warp_data_flag" >
+              <option value="">--Select--</option>
+              <option *ngFor="let types of warp_data">{{ types.machine_type_name }}</option>
+            </datalist>
+          </ion-item>
+          <!-- <ion-item>
+            <ion-input name="number" type="text" [(ngModel)]="transaction_number" readonly></ion-input>
+          </ion-item> -->
+          <!-- <ion-item *ngIf="!view">
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <ion-input name="machine_number" type="text" placeholder="Machine Number" [(ngModel)]="machine_number" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
+            <ion-input name="machine_number" type="text" placeholder="Machine Number" [(ngModel)]="machine_number" readonly></ion-input>
+          </ion-item> -->
+          <ion-item *ngIf="!view">
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="transaction_number" type="text" placeholder="Warping Production order" [(ngModel)]="transaction_number" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="transaction_number" type="text" placeholder="Warping Production order" [(ngModel)]="transaction_number" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="article" type="text" placeholder="Yarn Article" [(ngModel)]="yarn_article_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="mail-outline" class="pr3"></ion-icon>
+            <ion-input name="article" type="text" placeholder="Yarn Article" [(ngModel)]="yarn_article_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="yarn_color_name" type="text" placeholder="Yarn Color" [(ngModel)]="yarn_color_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="yarn_color_name" type="text" placeholder="Yarn Color" [(ngModel)]="yarn_color_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>KG
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="quantity" type="text" placeholder="Quantity" [(ngModel)]="quantity" readonly></ion-input>KG
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="yarn_lot_number" type="text" placeholder="Yarn Lot No" [(ngModel)]="yarn_lot_number" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="yarn_lot_number" type="text" placeholder="Yarn Lot No" [(ngModel)]="yarn_lot_number" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="prod_remark" type="text" placeholder="Production Order Remark" [(ngModel)]="prod_remark" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="prod_remark" type="text" placeholder="Production Order Remark" [(ngModel)]="prod_remark" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="pencil-outline" class="pr3"></ion-icon>
+            <ion-input name="remarks" type="text" placeholder="Remarks" [(ngModel)]="remarks"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="pencil-outline" class="pr3"></ion-icon>
+            <ion-input name="remarks" type="text" placeholder="Remarks" [(ngModel)]="remarks" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="set_no" type="text" placeholder="Set Number" [(ngModel)]="set_no" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="set_no" type="text" placeholder="Set Number" [(ngModel)]="set_no" readonly></ion-input>
+          </ion-item>
+          <ion-button>Start New Set</ion-button>
+          <ion-item *ngIf="!view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="beam_id" type="text" placeholder="Scan Beam ID" [(ngModel)]="beam_id" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="person-outline" class="pr3"></ion-icon>
+            <ion-input name="beam_id" type="text" placeholder="Scan Beam ID" [(ngModel)]="beam_id" readonly></ion-input>
+          </ion-item>
+          
+        </div>
+        <div padding class="register_btn" *ngIf="!view">
+          <ion-button size="small" (click)="register()">Submit</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
