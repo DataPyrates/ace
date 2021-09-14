@@ -28,8 +28,15 @@ password:any;
        if((data['status'] == 200)){
             // localStorage.clear();
             var department_first_index = data['data']['departments'].findIndex(x => x['name'] ==="Warp Knitting"); 
+            if(department_first_index  !=  '-1'){
             let department = data['data']['departments'][department_first_index]['name'];
             localStorage.setItem('department',department);
+            }
+            if(department_first_index == '-1'){
+            var department_first_index = data['data']['departments'].findIndex(x => x['name'] ==="WK"); 
+            let department = data['data']['departments'][department_first_index]['name'];
+            localStorage.setItem('department',department);
+            }
             localStorage.setItem('user_data',JSON.stringify(data));
             localStorage.setItem('username',this.username);
             localStorage.setItem('access',data['data']['access']);
