@@ -35,7 +35,7 @@ export class AddWarpingInwardPage implements OnInit {
           if ((data['status'] == 200)) {
             console.log("api hit");
             this.warp_data = data['data']['results'];
-            this.warp_data = true;
+            this.warp_data_flag = true;
             for (let i = 0; i < this.warp_data.length; i++) {
               if (this.warp_data[i]['machine_type_name'] == this.machine_type_name) {
                 this.warp_data_flag = false;
@@ -46,11 +46,20 @@ export class AddWarpingInwardPage implements OnInit {
     }
   }
 
-  wrapinward_alldata() {
-    console.log(this.machine_type_name);
-    for (let i = 0; i < this.warp_data.length; i++) {
-      if (this.warp_data[i]['machine_type_name'] == this.machine_type_name) {
-        this.api.wrapinward_allmachine_data(this.warp_data[i]['id']).subscribe(
+  wrapinward_alldata(){
+   for(let i=0;i< this.warp_data.length;i++){
+     if(this.warp_data[i]['machine_type_name'] = this.machine_type_name){
+      this.api.warp_inward_machine_master_data(this.warp_data[i]['id']).subscribe(
+        (data: any) => {
+          this.wrap_id(data['data']['results'][0]['id']);
+        })
+     } 
+     }
+   }
+  
+
+  wrap_id(id) {   
+        this.api.wrapinward_allmachine_data(id).subscribe(
           (data: any) => {
             if ((data['status'] == 200)) {
               console.log(data);
@@ -58,14 +67,23 @@ export class AddWarpingInwardPage implements OnInit {
               this.yarn_article_name = data['data']['machine_yarn_info']['yarn_article_name'];
               this.yarn_color_name = data['data']['machine_yarn_info']['yarn_color_name'];
               this.yarn_lot_number = data['data']['machine_yarn_info']['lot_number_code'];
-              this.quantity = data['data']['total_qty'];
+              this.quantity = data['data']['production_order_info']['total_qty'];
                this.remarks = data['data']['remarks'];
              
             }
 
           })
       }
-    }
 
-  }
-}
+      new_set(){
+        this.api.new_set_data().subscribe(
+          (data: any) => {
+            if ((data['status'] == 200)) {
+              console.log(data);
+               this.remarks = data['data']['code'];
+             
+            }
+
+          })
+      }
+    }

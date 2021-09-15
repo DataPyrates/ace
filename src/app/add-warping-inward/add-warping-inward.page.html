@@ -18,7 +18,7 @@
         <div padding>
           <ion-item>
             <ion-icon name="search-outline" class="pr3"></ion-icon>
-            <input class="datalist"  [(ngModel)]="machine_type_name" list="machine_type" placeholder="Warping Production Order" (keyup)="getwrapinwarddata($event)"
+            <input class="datalist"  [(ngModel)]="machine_type_name" list="machine_type" placeholder="Machine No." (keyup)="getwrapinwarddata($event)"
               (change)="wrapinward_alldata()">
             <datalist id="machine_type" *ngIf="warp_data_flag" >
               <option value="">--Select--</option>
@@ -100,10 +100,10 @@
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="set_no" type="text" placeholder="Set Number" [(ngModel)]="set_no" readonly></ion-input>
           </ion-item>
-          <ion-button>Start New Set</ion-button>
+          <ion-button (click)="new_set()" id="new_set">Start New Set</ion-button>
           <ion-item *ngIf="!view">
             <ion-icon name="person-outline" class="pr3"></ion-icon>
-            <ion-input name="beam_id" type="text" placeholder="Scan Beam ID" [(ngModel)]="beam_id" readonly></ion-input>
+            <ion-input name="beam_id" type="text" placeholder="Scan Beam ID" [(ngModel)]="beam_id"></ion-input>
           </ion-item>
           <ion-item *ngIf="view">
             <ion-icon name="person-outline" class="pr3"></ion-icon>
