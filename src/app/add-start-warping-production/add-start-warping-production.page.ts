@@ -25,6 +25,49 @@ export class AddStartWarpingProductionPage implements OnInit {
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: WarpingService) { }
 
   ngOnInit() {
+   this.showTime();
+  }
+
+  showTime(){
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+    var date = new Date();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = month[today.getMonth()];
+    var year = today.getFullYear();
+    var date_cur = dd + '-' + mm + '-' + year;
+    var h:any = date.getHours(); 
+    var m:any = date.getMinutes(); 
+    var s:any = date.getSeconds(); 
+    var session = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = h + ":" + m + ":" + s + " " + session;
+    this.c_date = date_cur+', '+time;
   }
 
   getwrapdata(event){
@@ -58,6 +101,7 @@ export class AddStartWarpingProductionPage implements OnInit {
               this.yarn_color_name = data['data']['yarn_color_name'];
               this.c_date = data['data']['c_date'];
               this.remarks = data['data']['machine_info']['remarks'];
+              this.showTime();
               // this.total_qty_produced = data['data']['results'][0]['total_qty_produced'];
               // this.start_greige_production_machine = data['data']['results'][0]['id'];
               // this.lot_no_A = data['data']['id'];

@@ -16,11 +16,19 @@ export class HomePage {
    console.log(userdata);
    $(".branch").html(userdata.data.branches[0]['short_name']);
    var department_first_index = userdata.data.departments.findIndex(x => x['name'] ==="Warp Knitting"); 
+   if(department_first_index != '-1'){
    $(".department").html(userdata.data.departments[department_first_index]['name']);
+   }
    if(userdata.data.departments.length >1){
     var department_second_index = userdata.data.departments.findIndex(x => x['name'] ==="Trading"); 
+   if(department_second_index != '-1'){
    $(".department1").html(userdata.data.departments[department_second_index]['name']);
    }
+  }
+  var department_second_index = userdata.data.departments.findIndex(x => x['name'] ==="WK"); 
+  if(department_second_index != '-1'){
+  $(".department2").html(userdata.data.departments[department_second_index]['name']);
+  }
   }
 
   ionViewWillEnter(){

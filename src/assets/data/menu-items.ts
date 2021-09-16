@@ -96,6 +96,45 @@ export const menuItems = [
     ]
   },
   {
+    name: 'Transaction',
+    id: 15,
+    url:'',
+    class:'WK',
+    children: [
+      {
+        name: 'Warping',
+        id: 16,
+        url:'',
+        class:'WK',
+        children: 
+        [
+          {
+            name: 'Machine Planning',
+            id: 17,
+            url:'',
+            class:'WK',
+            children: null
+          },
+          {
+            name: 'Start Warping Production',
+            id: 18,
+            url:'start-warping-production',
+            class:'WK',
+            children: null
+          },
+          {
+            name: 'Inward from Production',
+            id: 19,
+            url:'warping-inward-production',
+            class:'WK',
+            children: null
+          },
+        ]
+      },
+     
+    ]
+  },
+  {
     name: 'Logout',
     id: 3,
     url:'login',
