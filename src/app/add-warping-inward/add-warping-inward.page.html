@@ -100,7 +100,9 @@
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="set_no" type="text" placeholder="Set Number" [(ngModel)]="set_no" readonly></ion-input>
           </ion-item>
-          <ion-button (click)="new_set()" id="new_set">Start New Set</ion-button>
+          <div padding class="register_btn">
+          <ion-button size="small" (click)="new_set()" id="new_set">Start New Set</ion-button>
+        </div>
           <ion-item *ngIf="!view">
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="beam_id" type="text" placeholder="Scan Beam ID" [(ngModel)]="beam_id"></ion-input>
@@ -108,8 +110,7 @@
           <ion-item *ngIf="view">
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="beam_id" type="text" placeholder="Scan Beam ID" [(ngModel)]="beam_id" readonly></ion-input>
-          </ion-item>
-          
+          </ion-item>  
         </div>
         <div padding class="register_btn" *ngIf="!view">
           <ion-button size="small" (click)="register()">Submit</ion-button>
