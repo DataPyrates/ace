@@ -29,6 +29,20 @@ export class HomePage {
   if(department_second_index != '-1'){
   $(".department2").html(userdata.data.departments[department_second_index]['name']);
   }
+
+  if(userdata.data.departments){
+    console.log(userdata.data.departments[0]['tags']);
+    if(userdata.data.departments[0]['tags']){
+      for(let i=0;i< userdata.data.departments[0]['tags'].length;i++){
+        if(userdata.data.departments[0]['tags'][i] == '1'){
+          $(".department").html('Warp Knitting');
+        }
+        if(userdata.data.departments[0]['tags'][i] == '4'){
+          $(".department1").html('Trading');
+        }
+      }
+    }
+  }
   }
 
   ionViewWillEnter(){
