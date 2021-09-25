@@ -21,14 +21,86 @@ export class AddStartWarpingProductionPage implements OnInit {
   yarn_color_name: any;
   c_date: any;
   remarks: any;
+  id: any;
+  view: boolean = false;
+  show: boolean;
+  warping_production_data: Object;
 
   constructor(public popup: PopupService, public modalController: ModalController, private route: Router, private activatedRoute: ActivatedRoute, private api: WarpingService) { }
 
   ngOnInit() {
-   this.showTime();
+    this.showTime();
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.id = params['id'];
+      var type = params['type'];
+      if (type == 'view') {
+        this.show = false;
+      }
+      else {
+        this.show = true;
+      }
+    });
+    if (this.id) {
+      this.view = true;
+      this.start_warping_production_view();
+    }
   }
 
-  showTime(){
+  start_warping_production_view() {
+    if (this.id) {
+      this.api.start_warping_production_view(this.id).subscribe(
+        data => {
+          this.warping_production_data = data;
+          console.log(this.warping_production_data);
+          this.transaction_number = this.warping_production_data['data']['production_order_info']['transaction_number'];
+          this.machine_number = this.warping_production_data['data']['machine_number'];
+          this.yarn_article_name = this.warping_production_data['data']['production_order_info']['yarn_article_name'];
+          this.yarn_color_name = this.warping_production_data['data']['production_order_info']['yarn_article_color'];
+          var today = new Date(this.warping_production_data['data']['start_datetime']);
+          var month = new Array();
+          month[0] = "January";
+          month[1] = "February";
+          month[2] = "March";
+          month[3] = "April";
+          month[4] = "May";
+          month[5] = "June";
+          month[6] = "July";
+          month[7] = "August";
+          month[8] = "September";
+          month[9] = "October";
+          month[10] = "November";
+          month[11] = "December";
+          var date = new Date();
+          var dd = today.getDate();
+          var mm = month[today.getMonth()];
+          var year = today.getFullYear();
+          var date_cur = dd + '-' + mm + '-' + year;
+          var h: any = date.getHours();
+          var m: any = date.getMinutes();
+          var s: any = date.getSeconds();
+          var session = "AM";
+
+          if (h == 0) {
+            h = 12;
+          }
+
+          if (h > 12) {
+            h = h - 12;
+            session = "PM";
+          }
+
+          h = (h < 10) ? "0" + h : h;
+          m = (m < 10) ? "0" + m : m;
+          s = (s < 10) ? "0" + s : s;
+
+          var time = h + ":" + m + ":" + s + " " + session;
+          this.c_date = date_cur + ', ' + time;
+          this.remarks = this.warping_production_data['data']['remarks'];
+        })
+    }
+  }
+
+  showTime() {
     var month = new Array();
     month[0] = "January";
     month[1] = "February";
@@ -48,29 +120,29 @@ export class AddStartWarpingProductionPage implements OnInit {
     var mm = month[today.getMonth()];
     var year = today.getFullYear();
     var date_cur = dd + '-' + mm + '-' + year;
-    var h:any = date.getHours(); 
-    var m:any = date.getMinutes(); 
-    var s:any = date.getSeconds(); 
+    var h: any = date.getHours();
+    var m: any = date.getMinutes();
+    var s: any = date.getSeconds();
     var session = "AM";
-    
-    if(h == 0){
-        h = 12;
+
+    if (h == 0) {
+      h = 12;
     }
-    
-    if(h > 12){
-        h = h - 12;
-        session = "PM";
+
+    if (h > 12) {
+      h = h - 12;
+      session = "PM";
     }
-    
+
     h = (h < 10) ? "0" + h : h;
     m = (m < 10) ? "0" + m : m;
     s = (s < 10) ? "0" + s : s;
-    
+
     var time = h + ":" + m + ":" + s + " " + session;
-    this.c_date = date_cur+', '+time;
+    this.c_date = date_cur + ', ' + time;
   }
 
-  getwrapdata(event){
+  getwrapdata(event) {
     if (event && event.target.value) {
       this.api.wrap_machine_data(event.target.value).subscribe(
         (data: any) => {
@@ -111,6 +183,14 @@ export class AddStartWarpingProductionPage implements OnInit {
           })
       }
     }
+  }
 
+  register(){
+    if(this.transaction_number){
+
+    }
+    else{
+      this.popup.showAlert('Warping Production','Please fill all the required fields');
+    }
   }
 }
