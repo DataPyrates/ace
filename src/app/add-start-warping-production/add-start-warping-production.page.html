@@ -12,11 +12,11 @@
     <ion-row color="primary" justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div text-center>
-          <h4 class="center">Add Start Warping Production On Machine</h4>
-          <ion-label *ngIf="view" class="center">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label>
+          <h4 class="center">Start Warping Production On Machine</h4>
+          <!-- <ion-label *ngIf="view" class="center">Transaction Number:- {{ transaction_number }} <ion-icon name="copy-outline" (click)="copyTransaction(transaction_number)"></ion-icon></ion-label> -->
         </div>
         <div padding>
-          <ion-item>
+          <ion-item *ngIf="!view">
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <input class="datalist"  [(ngModel)]="transaction_number" list="transaction" placeholder="Warping Production Order" (keyup)="getwrapdata($event)"
               (change)="wrap_alldata()">
@@ -25,9 +25,10 @@
               <option *ngFor="let numbers of wrap_data">{{ numbers.transaction_number }}</option>
             </datalist>
           </ion-item>
-          <!-- <ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="search-outline" class="pr3"></ion-icon>
             <ion-input name="number" type="text" [(ngModel)]="transaction_number" readonly></ion-input>
-          </ion-item> -->
+          </ion-item>
           <ion-item *ngIf="!view">
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <ion-input name="machine_number" type="text" placeholder="Machine Number" [(ngModel)]="machine_number" readonly></ion-input>
@@ -35,14 +36,6 @@
           <ion-item *ngIf="view">
             <ion-icon name="search-outline" class="pr3"></ion-icon>
             <ion-input name="machine_number" type="text" placeholder="Machine Number" [(ngModel)]="machine_number" readonly></ion-input>
-          </ion-item>
-          <ion-item *ngIf="!view">
-            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
-            <ion-input name="created_date" type="text" placeholder="Start Date & Time" [(ngModel)]="c_date" readonly></ion-input>
-          </ion-item>
-          <ion-item *ngIf="view">
-            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
-            <ion-input name="created_date" type="text" placeholder="Start Date & Time" [(ngModel)]="c_date" readonly></ion-input>
           </ion-item>
           <ion-item *ngIf="!view">
             <ion-icon name="mail-outline" class="pr3"></ion-icon>
@@ -59,6 +52,14 @@
           <ion-item *ngIf="view">
             <ion-icon name="person-outline" class="pr3"></ion-icon>
             <ion-input name="yarn_color_name" type="text" placeholder="Yarn Color" [(ngModel)]="yarn_color_name" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!view">
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="created_date" type="text" placeholder="Start Date & Time" [(ngModel)]="c_date" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngIf="view">
+            <ion-icon name="calendar-outline" class="pr3"></ion-icon>
+            <ion-input name="created_date" type="text" placeholder="Start Date & Time" [(ngModel)]="c_date" readonly></ion-input>
           </ion-item>
           <ion-item *ngIf="!view">
             <ion-icon name="pencil-outline" class="pr3"></ion-icon>

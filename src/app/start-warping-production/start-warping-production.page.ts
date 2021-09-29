@@ -14,16 +14,32 @@ export class StartWarpingProductionPage implements OnInit {
   page: number;
   warping_production: any;
   total: any;
+  term: any;
 
   constructor(private route: Router, private api: WarpingService,  public modalController: ModalController) { }
 
   ngOnInit() {
     this.warping_production_log(1);
   }
+
+  getFilterdata() {
+    this.warping_production_log(this.page);
+  }
+
+  view(id,type){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id,
+        type:type,
+      }
+    };
+    this.route.navigate(['/add-start-warping-production'],navigationExtras);
+  }
+
   warping_production_log(page) {
     this.page = 1;
-    //let start_greige_production_machine__machine_master__number__icontains = this.term;
-    this.api.warping_production_log_data(this.page).subscribe(
+    var machine_master__number__icontains = this.term?this.term:'';
+    this.api.warping_production_log_data(this.page,machine_master__number__icontains).subscribe(
       (data: any) => {
         if ((data['status'] == 200)) {
           var month = new Array();

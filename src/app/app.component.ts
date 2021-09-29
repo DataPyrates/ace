@@ -7,18 +7,21 @@ import { menuItems } from '../assets/data/menu-items';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+// export class AppComponent implements OnInit {
+  export class AppComponent {
   private menu = menuItems;
   department: string;
   branch: string;
   constructor(private route: Router) {
   }
 
-  ngOnInit(){
+  // ngOnInit(){
+  ngOnChanges(){
     this.department = localStorage.getItem('department');
     console.log(this.department);
   
   }
+
   get_department(event) {
     console.log(event.target.value);
     localStorage.setItem('department', event.target.value);

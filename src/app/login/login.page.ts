@@ -44,7 +44,7 @@ password:any;
             localStorage.setItem('branch_master',JSON.stringify(data['data']['branches'][0]['id']));
             localStorage.setItem('branch_name',JSON.stringify(data['data']['branches'][0]['short_name']));
             localStorage.setItem('department_id',data['data']['default_department_id']); // department id defaut value set 
-            this.unit_data();
+            // this.unit_data();
             this.route.navigate(['/home']);
             
        }

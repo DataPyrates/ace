@@ -9,12 +9,12 @@ export class WarpingService {
 
   constructor(private http: HttpClient) { }
 
-  public warping_production_log_data(page){
+  public warping_production_log_data(page,machine_master__number__icontains){
     let headers = new HttpHeaders();
     headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
-    return this.http.get(environment.apiURL + 'erp/api/transactions/start_warping_production/?action=table_list&page_size=10&page='+page,{'headers':headers});
+    return this.http.get(environment.apiURL + 'erp/api/transactions/start_warping_production/?action=table_list&page_size=10&page='+page+'&machine_master__number__icontains='+machine_master__number__icontains,{'headers':headers});
   }
 
   public inward_warp_inward_production_log_data(page){
@@ -30,7 +30,7 @@ export class WarpingService {
     headers=headers.append('branch',localStorage.getItem('branch_master'));
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
-    return this.http.get(environment.apiURL + 'erp/api/transactions/warping_production_order/?transaction_status=1&schedule_status=2&bom_status=2&start_gpr_machine_isnull=true&transaction_number__icontains='+transaction_number__icontains,{'headers':headers});
+    return this.http.get(environment.apiURL + 'erp/api/transactions/warping_production_order/?transaction_status=1&schedule_status=2&bom_status=2&start_wpr_machine_isnull=true&transaction_number__icontains='+transaction_number__icontains,{'headers':headers});
   } 
   
   public wrap_allmachine_data(id){
@@ -71,6 +71,14 @@ export class WarpingService {
     headers=headers.append('department',localStorage.getItem('department_id'));
     headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
     return this.http.get(environment.apiURL + 'erp/api/transactions/warping_production_set/',{'headers':headers});
+  }
+
+  public start_warping_production_view(id){
+    let headers = new HttpHeaders();
+    headers=headers.append('branch',localStorage.getItem('branch_master'));
+    headers=headers.append('department',localStorage.getItem('department_id'));
+    headers=headers.append('Authorization','Bearer '+localStorage.getItem('access'));
+    return this.http.get(environment.apiURL + 'erp/api/transactions/start_warping_production/'+id+'/',{'headers':headers});
   }
 
 
